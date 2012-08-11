@@ -18,6 +18,8 @@ public  abstract class Persona {
 		this.materno = materno;
 	}
 	
+	// hola
+	
 		
 	//3.-Generar Get Set	
 	//Click derecho >source>generar getter and setters
