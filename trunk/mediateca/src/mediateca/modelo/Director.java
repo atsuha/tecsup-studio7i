@@ -1,5 +1,5 @@
 package mediateca.modelo;
 
-public class Director {
+public class Director extends Persona  {
 
 }
