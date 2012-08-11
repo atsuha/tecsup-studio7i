@@ -4,6 +4,9 @@ public  abstract class Persona {
 	private String nombres;
 	private String paterno;
 	private String materno;
+
+	//hola
+	
 	//1.- Generar el constructor vacio	
 	public Persona(){
 		
