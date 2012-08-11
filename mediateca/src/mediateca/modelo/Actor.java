@@ -1,5 +1,6 @@
 package mediateca.modelo;
 
-public class Actor {
+public class Actor extends Persona {
+	
 
 }
