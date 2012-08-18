@@ -36,7 +36,32 @@ public class ArmadoBasico {
 	public void setInstrumento(Collection<Instrumento> instrumento) {
 		this.instrumento = instrumento;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ArmadoBasico other = (ArmadoBasico) obj;
+		if (instrumento == null) {
+			if (other.instrumento != null)
+				return false;
+		} else if (!instrumento.equals(other.instrumento))
+			return false;
+		if (sala == null) {
+			if (other.sala != null)
+				return false;
+		} else if (!sala.equals(other.sala))
+			return false;
+		if (servicio == null) {
+			if (other.servicio != null)
+				return false;
+		} else if (!servicio.equals(other.servicio))
+			return false;
+		return true;
+	}
 	
 }
