@@ -1,24 +1,24 @@
 package studio7i.modelo;
 
-import java.util.Collection;
-
 public class Sala {
 	private String nombre;
-	private double capacidad;
+	private int capacidad;
 	private String caracteristicas;
 	private double costo;
-	private Collection<Local> local;
+	private Local local;
+	private int salaId;
 	
 	public Sala() {
 		
 	}	
 	
-	public Sala(String nombre, double capacidad, String caracteristicas, double costo, Collection<Local> local) {
+	public Sala(String nombre, int capacidad, String caracteristicas, double costo,Local local,int salaId) {
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.caracteristicas = caracteristicas;
 		this.costo = costo;
 		this.local = local;
+		this.salaId = salaId;
 	}
 
 	public String getNombre() {
@@ -29,11 +29,11 @@ public class Sala {
 		this.nombre = nombre;
 	}
 
-	public double getCapacidad() {
+	public int getCapacidad() {
 		return capacidad;
 	}
 
-	public void setCapacidad(double capacidad) {
+	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
 
@@ -53,12 +53,20 @@ public class Sala {
 		this.costo = costo;
 	}
 
-	public Collection<Local> getLocal() {
+	public Local getLocal() {
 		return local;
 	}
 
-	public void setLocal(Collection<Local> local) {
+	public void setLocal(Local local) {
 		this.local = local;
+	}
+	
+	public int getSalaId() {
+		return salaId;
+	}
+
+	public void setSalaId(int salaId) {
+		this.salaId = salaId;
 	}
 
 	@Override
