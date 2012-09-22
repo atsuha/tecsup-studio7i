@@ -3,6 +3,7 @@ package studio7i.modelo;
 import java.util.Collection;
 
 public class Instrumento {
+	private int instrumento_id;
 	private String tipo;
 	private String marca;
 	private String modelo;
@@ -15,11 +16,17 @@ public class Instrumento {
 	public Instrumento() {
 
 	}
+	
+	
 
-	public Instrumento(String tipo, String marca, String modelo,
-			String caracteristicas, double precio, Collection<Local> locales,
-			Collection<ArmadoBasico> armadoBasicos, Collection<Reserva> reservas) {
+	
+
+	public Instrumento(int instrumento_id, String tipo, String marca,
+			String modelo, String caracteristicas, double precio,
+			Collection<Local> locales, Collection<ArmadoBasico> armadoBasicos,
+			Collection<Reserva> reservas) {
 		super();
+		this.instrumento_id = instrumento_id;
 		this.tipo = tipo;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -29,6 +36,26 @@ public class Instrumento {
 		this.armadoBasicos = armadoBasicos;
 		this.reservas = reservas;
 	}
+
+
+
+
+
+	public int getInstrumento_id() {
+		return instrumento_id;
+	}
+
+
+
+
+
+	public void setInstrumento_id(int instrumento_id) {
+		this.instrumento_id = instrumento_id;
+	}
+
+
+
+
 
 	public String getTipo() {
 		return tipo;
@@ -94,4 +121,5 @@ public class Instrumento {
 		this.reservas = reservas;
 	}
 
+	
 }
