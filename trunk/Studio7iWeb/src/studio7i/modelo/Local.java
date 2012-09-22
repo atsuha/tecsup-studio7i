@@ -2,6 +2,8 @@ package studio7i.modelo;
 
 import java.util.Collection;
 
+import studio7i.excepcion.DAOExcepcion;
+
 public class Local {
 	private int local_id;	
 	private String nombre;
@@ -93,6 +95,15 @@ public class Local {
 
 	public void setInstrumentos(Collection<Instrumento> instrumentos) {
 		this.instrumentos = instrumentos;
+	}
+
+
+
+
+
+	public Local obtener(int local_id) throws DAOExcepcion {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
