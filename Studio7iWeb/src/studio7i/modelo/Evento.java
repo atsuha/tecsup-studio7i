@@ -1,5 +1,7 @@
 package studio7i.modelo;
 
+import java.util.Collection;
+
 public class Evento {
 
 	//atributos
@@ -9,20 +11,24 @@ public class Evento {
 	private String lugar;
 	private String fecha;
 	private String premios;
+	private Collection<Inscrito> inscrito;
 	
-	//constructor personalizado
-	public Evento(int evento, String nombre, String descripcion, String lugar, String fecha, String premios){
-	this.evento = evento;
-	this.nombre = nombre;
-	this.descripcion = descripcion;
-	this.lugar = lugar;
-	this.fecha = fecha;
-	this.premios = premios;
+	
+	public Evento() {
+	
 	}
 
-	
-	//constructor por defecto
-	public Evento(){
+
+	public Evento(int evento, String nombre, String descripcion, String lugar,
+			String fecha, String premios, Collection<Inscrito> inscrito) {
+		super();
+		this.evento = evento;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.lugar = lugar;
+		this.fecha = fecha;
+		this.premios = premios;
+		this.inscrito = inscrito;
 	}
 
 
@@ -86,8 +92,18 @@ public class Evento {
 	}
 
 
-	//Getters and setters
+	public Collection<Inscrito> getInscrito() {
+		return inscrito;
+	}
 
+
+	public void setInscrito(Collection<Inscrito> inscrito) {
+		this.inscrito = inscrito;
+	}
+	
+	
+	
+	
 
 	
 }
