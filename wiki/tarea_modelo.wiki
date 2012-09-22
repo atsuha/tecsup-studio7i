@@ -8,19 +8,28 @@ robert:
 local
 instrumento
 servicio
+persistencia: local, instrumento, servicio.
 
 sailor:
 sala
 armadobasico
+persistencia: sala, detalle_servicio, detalle_instrumento
 
 david:
 reserva
 cliente
+persistencia: reserva, reserva_servicio, reserva_instrumento
 
 augusto:
 crear clases vacia.
 administrador
 persona
+persistencia: persona
+
+daniel:
+evento
+inscrito
+persistencia: evento, inscrito
 
 
 = Details =
