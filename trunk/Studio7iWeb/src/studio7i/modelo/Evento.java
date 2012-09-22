@@ -5,7 +5,7 @@ import java.util.Collection;
 public class Evento {
 
 	//atributos
-	private int evento;
+	private int evento_id;
 	private String nombre;
 	private String descripcion;
 	private String lugar;
@@ -19,10 +19,10 @@ public class Evento {
 	}
 
 
-	public Evento(int evento, String nombre, String descripcion, String lugar,
+	public Evento(int evento_id, String nombre, String descripcion, String lugar,
 			String fecha, String premios, Collection<Inscrito> inscrito) {
 		super();
-		this.evento = evento;
+		this.evento_id = evento_id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.lugar = lugar;
@@ -32,13 +32,13 @@ public class Evento {
 	}
 
 
-	public int getEvento() {
-		return evento;
+	public int getEvento_id() {
+		return evento_id;
 	}
 
 
-	public void setEvento(int evento) {
-		this.evento = evento;
+	public void setEvento_id(int evento_id) {
+		this.evento_id = evento_id;
 	}
 
 
