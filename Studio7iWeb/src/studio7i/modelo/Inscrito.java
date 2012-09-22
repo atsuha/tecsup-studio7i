@@ -1,7 +1,7 @@
 package studio7i.modelo;
 
 
-import java.util.Collection;
+
 
 public class Inscrito {
 
