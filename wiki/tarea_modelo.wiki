@@ -8,7 +8,7 @@ robert:
 local
 instrumento
 servicio
-persistencia: local, instrumento, servicio.
+persistencia: instrumento, servicio.
 
 sailor:
 sala
@@ -24,7 +24,7 @@ augusto:
 crear clases vacia.
 administrador
 persona
-persistencia: persona
+persistencia: persona, local.
 
 daniel:
 evento
