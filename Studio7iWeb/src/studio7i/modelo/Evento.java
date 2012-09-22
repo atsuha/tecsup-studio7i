@@ -3,7 +3,7 @@ package studio7i.modelo;
 public class Evento {
 
 	//atributos
-	private int evento_id;
+	private int evento;
 	private String nombre;
 	private String descripcion;
 	private String lugar;
@@ -11,8 +11,8 @@ public class Evento {
 	private String premios;
 	
 	//constructor personalizado
-	public Evento(int evento_id, String nombre, String descripcion, String lugar, String fecha, String premios){
-	this.evento_id = evento_id;
+	public Evento(int evento, String nombre, String descripcion, String lugar, String fecha, String premios){
+	this.evento = evento;
 	this.nombre = nombre;
 	this.descripcion = descripcion;
 	this.lugar = lugar;
