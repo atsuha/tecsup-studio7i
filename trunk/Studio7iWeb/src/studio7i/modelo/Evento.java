@@ -26,15 +26,13 @@ public class Evento {
 	}
 
 
-	//Getters and setters
-	
-	public int getEvento_id() {
-		return evento_id;
+	public int getEvento() {
+		return evento;
 	}
 
 
-	public void setEvento_id(int evento_id) {
-		this.evento_id = evento_id;
+	public void setEvento(int evento) {
+		this.evento = evento;
 	}
 
 
@@ -86,6 +84,9 @@ public class Evento {
 	public void setPremios(String premios) {
 		this.premios = premios;
 	}
+
+
+	//Getters and setters
 
 
 	
