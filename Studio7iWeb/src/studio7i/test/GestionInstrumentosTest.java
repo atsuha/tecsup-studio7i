@@ -11,22 +11,42 @@ import studio7i.negocio.GestionInstrumentos;
 
 public class GestionInstrumentosTest {
 	
-		@Test
+		//@Test
 		public void insertarTest() {
 
 			GestionInstrumentos negocio = new GestionInstrumentos();
 
 			try {
-				negocio.insertar("Bateria Electrica 3", "Yamahasa","XZ1000","Para zurdos",500);
+				negocio.insertar("Guitarra 4", "Yamahasa","XZ1000","Para zurdos",500,2);
 
-				Instrumento nuevo = negocio.obtener(6);
+				Instrumento nuevo = negocio.obtener(5);
 
-				Assert.assertEquals("Bateria Electrica 3", nuevo.getTipo());
+				Assert.assertEquals("Guitarra 4", nuevo.getTipo());
 
 			} catch (DAOExcepcion e) {
 				Assert.fail("Fallo la inserción: " + e.getMessage());
 			}
 		}
 
+		
+		@Test
+		public void actualizarTest() {
+
+			GestionInstrumentos negocio = new GestionInstrumentos();
+
+			try {
+
+				negocio.actualizar(2,"Guitarra 2", "Yamahasa5","XZ1000","Para zurdos",500,2);
+
+				Instrumento nuevo = negocio.obtener(2);
+
+				Assert.assertEquals("Guitarra 2", nuevo.getTipo());
+
+			} catch (DAOExcepcion e) {
+
+				Assert.fail("Falló la actualización: " + e.getMessage());
+
+			}
+		}
 	
 }
