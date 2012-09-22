@@ -3,9 +3,9 @@ package studio7i.modelo;
 import java.util.Collection;
 
 public class Local {
+	private int local_id;	
 	private String nombre;
-	private String direccion;
-	private String distrito;
+	private String direccion;	
 	private Collection<Sala> salas;
 	private Collection<Instrumento> instrumentos;
 	private Collection<Servicio> servicios;
@@ -16,17 +16,23 @@ public class Local {
 	}
 
 	
-	public Local(String nombre, String direccion, String distrito,
+
+
+
+	public Local(int local_id, String nombre, String direccion,
 			Collection<Sala> salas, Collection<Instrumento> instrumentos,
 			Collection<Servicio> servicios) {
 		super();
+		this.local_id = local_id;
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.distrito = distrito;
 		this.salas = salas;
 		this.instrumentos = instrumentos;
 		this.servicios = servicios;
 	}
+
+
+
 
 
 	public String getNombre() {
@@ -55,13 +61,23 @@ public class Local {
 		this.direccion = direccion;
 	}
 
-	public String getDistrito() {
-		return distrito;
+	
+
+	public int getLocal_id() {
+		return local_id;
 	}
 
-	public void setDistrito(String distrito) {
-		this.distrito = distrito;
+
+
+
+
+	public void setLocal_id(int local_id) {
+		this.local_id = local_id;
 	}
+
+
+
+
 
 	public Collection<Sala> getSalas() {
 		return salas;
