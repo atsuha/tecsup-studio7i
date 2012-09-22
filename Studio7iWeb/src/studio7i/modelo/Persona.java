@@ -10,6 +10,7 @@ public class Persona {
 	private String materno;
 	private String fechaNacimiento;
 	private String email;
+	private String 
 	
 	
 	// Constructores
