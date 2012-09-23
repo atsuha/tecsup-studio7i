@@ -123,4 +123,60 @@ public class InstrumentoDAO extends BaseDAO {
 		}
 		return vo;
 	}
+
+
+	public Collection<Instrumento> listar() throws DAOExcepcion {
+		Collection<Instrumento>c=new ArrayList<Instrumento>();
+		Connection con=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+	 try{
+		 con=ConexionBD.obtenerConexion();
+		 String query="select instrumento_id,tipo,modelo,marca,caracteristicas,precio from instrumento order by tipo";
+		 stmt=con.prepareStatement(query);
+		 rs=stmt.executeQuery();
+		 while(rs.next()){
+			 Instrumento vo =new Instrumento();
+			 vo.setInstrumento_id(rs.getInt("instrumento_id"));
+			 vo.setTipo(rs.getString("tipo"));
+			 vo.setMarca(rs.getString("marca"));
+			 vo.setCaracteristicas(rs.getString("caracteristicas"));
+			 vo.setModelo(rs.getString("modelo"));
+			 vo.setPrecio(rs.getDouble("precio"));
+			 c.add(vo);
+		 }
+		 
+	 } catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return c;
+	}
+
+
+	public void eliminar(int instrumento_id)throws DAOExcepcion {
+		String query = "delete from instrumento WHERE instrumento_id=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, instrumento_id);
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo eliminar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		
+	}
 }

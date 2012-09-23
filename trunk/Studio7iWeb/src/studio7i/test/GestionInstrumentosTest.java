@@ -1,6 +1,9 @@
 package studio7i.test;
 
 import static org.junit.Assert.*;
+
+import java.util.Collection;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -17,19 +20,35 @@ public class GestionInstrumentosTest {
 			GestionInstrumentos negocio = new GestionInstrumentos();
 
 			try {
-				negocio.insertar("Guitarra 4", "Yamahasa","XZ1000","Para zurdos",500,2);
+				negocio.insertar("Piano", "Yamota","XZ45435","Para diestros",689,1);
 
-				Instrumento nuevo = negocio.obtener(5);
+				Instrumento nuevo = negocio.obtener(2);
 
-				Assert.assertEquals("Guitarra 4", nuevo.getTipo());
+				Assert.assertEquals("Piano", nuevo.getTipo());
 
 			} catch (DAOExcepcion e) {
 				Assert.fail("Fallo la inserción: " + e.getMessage());
 			}
 		}
 
+		// @Test 
+			 public void listarTest(){
+				 GestionInstrumentos negocio=new GestionInstrumentos();		 
+				 try{
+					 Collection<Instrumento> listado=negocio.listar();
+					 System.out.println(listado.size());
+				 Assert.assertTrue(listado.size()> 0); 
+				 }
+				catch (DAOExcepcion e){
+					
+				Assert.fail("Falló el listado: " + e.getMessage());
+						
+				}
+				 
+			 }
+		 
 		
-		@Test
+		//@Test
 		public void actualizarTest() {
 
 			GestionInstrumentos negocio = new GestionInstrumentos();
@@ -49,4 +68,29 @@ public class GestionInstrumentosTest {
 			}
 		}
 	
+		
+		
+		
+		@Test
+		public void eliminarTest() {
+
+			GestionInstrumentos negocio = new GestionInstrumentos();
+
+			try {
+
+				negocio.eliminar(2);
+
+				Instrumento nuevo = negocio.obtener(2);
+
+				Assert.assertEquals(null, nuevo.getTipo());
+
+			} catch (DAOExcepcion e) {
+
+				Assert.fail("Falló la eliminición: " + e.getMessage());
+
+			}
+
+		}
+
+
 }

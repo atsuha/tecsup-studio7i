@@ -1,5 +1,7 @@
 package studio7i.negocio;
 
+import java.util.Collection;
+
 import studio7i.dao.InstrumentoDAO;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
@@ -54,6 +56,15 @@ public class GestionInstrumentos {
 	
 	}
 
+	public Collection<Instrumento> listar() throws DAOExcepcion {
+		InstrumentoDAO dao =new InstrumentoDAO();
+		return dao.listar();
+	}
+
+	public void eliminar(int instrumento_id) throws DAOExcepcion {
+		InstrumentoDAO dao = new InstrumentoDAO();
+		dao.eliminar(instrumento_id);
+	}
 
 
 }
