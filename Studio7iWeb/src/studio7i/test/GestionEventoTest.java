@@ -11,23 +11,50 @@ import studio7i.negocio.GestionEvento;
 
 public class GestionEventoTest {
 
-	@Test 
+	//@Test 
 	public void InsertarTest(){
 		GestionEvento evento = new GestionEvento();
 		
 		try{
-			evento.insertar("Rock 80", "Full bandas peruanas", "Parque de la Exposicion", "07/10/1992", "1er puesto: S/.5000");
+			evento.insertar("Rock en el parque", "bandas internacionales", "Miraflores", "2000-01-22", "1er puesto: S/.3000");
 			
-			Evento nuevo = evento.buscar(1);
-			Assert.assertEquals("Rock 80", nuevo.getNombre());
+			Evento nuevo = evento.buscar(2);
+			Assert.assertEquals("Rock en el parque", nuevo.getNombre());
 		}catch(DAOExcepcion e){
 			Assert.fail("Fallo la inserción:" + e.getMessage());
 		}
 	}
 	
 	//@Test
+	public void eliminarTest(){
+		GestionEvento evento = new GestionEvento();
+		try{
+			evento.eliminar(1);
+			Evento nuevo = evento.buscar(1);
+			
+			Assert.assertEquals(null, nuevo.getDescripcion());
+			
+		}catch (DAOExcepcion e){
+			Assert.fail("Falló la eliminación: " + e.getMessage());
+		}
+	}
 
 	
+	//@Test
+	public void actualizarTest(){
+		GestionEvento evento = new GestionEvento();
+		try{
+			evento.actualizar(1, "", "", "", "", "");
+			
+			Evento nuevo = evento.buscar(1);
+			Assert.assertEquals("",nuevo.getNombre());
+		} catch(DAOExcepcion e){
+			Assert.fail("Falló la actualización: " + e.getMessage());
+		}
+	}
+	
+	
+
 	
 	
 }
