@@ -3,78 +3,66 @@ package studio7i.modelo;
 import java.util.Collection;
 
 public class Servicio {
-	private String descripicon;
-	private double costoHora;
-	private Collection<Local> locales;
-	private Collection<ArmadoBasico> armadoBasicos;
-	private Collection<Reserva> reservas;
+	private int servicio_id;
+	private String descripcion;
+	private double precio_hora;
+	private Local local;
 	
 	
-	public Servicio(){
-		
-	}
+	public Servicio(){}
 
 
-	public Servicio(String descripicon, double costoHora,
-			Collection<Local> locales, Collection<ArmadoBasico> armadoBasicos,
-			Collection<Reserva> reservas) {
+	public Servicio(int servicio_id, String descripcion, double precio_hora,
+			Local local) {
 		super();
-		this.descripicon = descripicon;
-		this.costoHora = costoHora;
-		this.locales = locales;
-		this.armadoBasicos = armadoBasicos;
-		this.reservas = reservas;
+		this.servicio_id = servicio_id;
+		this.descripcion = descripcion;
+		this.precio_hora = precio_hora;
+		this.local = local;
 	}
 
 
-	public String getDescripicon() {
-		return descripicon;
+	public int getServicio_id() {
+		return servicio_id;
 	}
 
 
-	public void setDescripicon(String descripicon) {
-		this.descripicon = descripicon;
+	public void setServicio_id(int servicio_id) {
+		this.servicio_id = servicio_id;
 	}
 
 
-	public double getCostoHora() {
-		return costoHora;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
 
-	public void setCostoHora(double costoHora) {
-		this.costoHora = costoHora;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 
-	public Collection<Local> getLocales() {
-		return locales;
+	public double getPrecio_hora() {
+		return precio_hora;
 	}
 
 
-	public void setLocales(Collection<Local> locales) {
-		this.locales = locales;
+	public void setPrecio_hora(double precio_hora) {
+		this.precio_hora = precio_hora;
 	}
 
 
-	public Collection<ArmadoBasico> getArmadoBasicos() {
-		return armadoBasicos;
+	public Local getLocal() {
+		return local;
 	}
 
 
-	public void setArmadoBasicos(Collection<ArmadoBasico> armadoBasicos) {
-		this.armadoBasicos = armadoBasicos;
+	public void setLocal(Local local) {
+		this.local = local;
 	}
-
-
-	public Collection<Reserva> getReservas() {
-		return reservas;
-	}
-
-
-	public void setReservas(Collection<Reserva> reservas) {
-		this.reservas = reservas;
-	}
+	
+	
+	
 	
 	
 	
