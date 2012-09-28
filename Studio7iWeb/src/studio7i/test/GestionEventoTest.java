@@ -25,7 +25,7 @@ public class GestionEventoTest {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void eliminarTest(){
 		GestionEvento evento = new GestionEvento();
 		try{
