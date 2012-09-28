@@ -9,12 +9,12 @@ import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Inscrito;
 import studio7i.util.ConexionBD;
 
-public class InscritoDAO {
+public class InscritoDAO extends BaseDAO {
 
 	
 	//solo puede insertar
 	public Inscrito insertar(Inscrito in)throws DAOExcepcion{
-		String query = "insert into inscrito(fecha, presentacion) values(?, ?)";
+		String query = "insert into inscrito(evento, persona,fecha, presentacion) values(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -23,6 +23,9 @@ public class InscritoDAO {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, in.getFecha());
 			stmt.setString(2, in.getPresentacion());
+			stmt.setInt(3, in.getEvento().getEvento_id());
+			//si es agregado PK persona_id se cambia
+			stmt.setString(4, in.getPersona().getUsuario());
 			
 			int i = stmt.executeUpdate();
 			if(i != 1){
@@ -36,15 +39,21 @@ public class InscritoDAO {
 			if (rs.next()){
 				id = rs.getInt(1);
 			}
-			//in.setEvento(id);
-			//in.setPersona(id);			
+			//poner id, solo pk's ?
+			//in.setEvento(evento);
+			
 		}catch(SQLException e){
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
 		}finally{
-		//	this.cerrarResultSet(rs);
-			
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
 		}
 		return in;
 	}
+	
+		
+	
+	
 }
