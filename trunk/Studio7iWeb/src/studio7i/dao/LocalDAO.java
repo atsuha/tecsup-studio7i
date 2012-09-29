@@ -80,7 +80,6 @@ public class LocalDAO  extends BaseDAO {
 		return vo;
 	}
 
-	
 	public Local obtener(int idLocal) throws DAOExcepcion {
 		Local vo = new Local();
 		Connection con = null;
@@ -110,7 +109,52 @@ public class LocalDAO  extends BaseDAO {
 		}
 		return vo;
 	}
-	
+
+	public void eliminar(int idLocal) throws DAOExcepcion {
+		String query = "delete from local WHERE local_id=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, idLocal);
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo eliminar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+	}
+
+	public Local actualizar(Local vo) throws DAOExcepcion {
+		String query = "update local set nombre=?,direccion=? where local_id=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, vo.getNombre());
+			stmt.setString(2, vo.getDireccion());
+			stmt.setInt(3, vo.getLocal_id());
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo actualizar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+	}
+
 	public Collection<Local> listar() throws DAOExcepcion {
 		Collection<Local> c = new ArrayList<Local>();
 		Connection con = null;
