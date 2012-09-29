@@ -14,7 +14,7 @@ public class InscritoDAO extends BaseDAO {
 	
 	//solo puede insertar
 	public Inscrito insertar(Inscrito in)throws DAOExcepcion{
-		String query = "insert into inscrito(evento_id, persona_id,fecha_inscripcion, presentacion) values(?, ?, ?, ?)";
+		String query = "insert into inscrito(evento_id, persona_id,fecha, presentacion) values(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -24,7 +24,7 @@ public class InscritoDAO extends BaseDAO {
 			
 			stmt.setInt(1, in.getEvento().getEvento_id());
 			stmt.setString(2, in.getPersona().getUsuario());
-			stmt.setString(3, in.getFecha_inscripcion());
+			stmt.setString(3, in.getFecha());
 			stmt.setString(4, in.getPresentacion());
 			
 			int i = stmt.executeUpdate();
