@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Local;
+import studio7i.modelo.Servicio;
 import studio7i.util.ConexionBD;
 
 
@@ -101,6 +102,27 @@ public class LocalDAO  extends BaseDAO {
 				//vo.setInstrumentos(instrumentos);
 				//vo.setServicios(servicios);
 			}
+			
+			
+			// -- cargar la lista de servicios para la sala
+			Collection<Servicio> servicios = new ArrayList<Servicio>();
+			query = "select servicio_id, descripcion, precio_hora, estado from servicio where local_id=?";
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, idLocal);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()){
+				Servicio se = new Servicio();
+				se.setServicio_id(rs.getInt(1));
+				se.setDescripcion(rs.getString(2));
+				se.setPrecio_hora(rs.getDouble(3));
+				servicios.add(se);
+				
+			}
+			
+			vo.setServicios(servicios);
+			
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
