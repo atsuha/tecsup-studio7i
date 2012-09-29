@@ -10,6 +10,8 @@ import java.util.Collection;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Local;
 import studio7i.modelo.Sala;
+import studio7i.modelo.SalaInstrumento;
+import studio7i.modelo.SalaServicio;
 import studio7i.util.ConexionBD;
 
 public class SalaDAO extends BaseDAO {
@@ -41,6 +43,22 @@ public class SalaDAO extends BaseDAO {
 				id = rs.getInt(1);
 			}
 			vo.setSalaId(id);
+			
+			for(SalaServicio serv : vo.getListaServicios()){
+				SalaServicioDAO daos = new SalaServicioDAO();
+				SalaServicio sv = new SalaServicio();
+				sv.setSala(serv.getSala());
+				sv.setServicio(serv.getServicio());
+				daos.insertar(sv);
+			}
+			
+			for(SalaInstrumento ins : vo.getListaInstrumentos()){
+				SalaInstrumentoDAO daoi = new SalaInstrumentoDAO();
+				SalaInstrumento si = new SalaInstrumento();
+				si.setInstrumento(ins.getInstrumento());
+				si.setSala(ins.getSala());
+				daoi.insertar(si);
+			}
 
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -61,7 +79,7 @@ public class SalaDAO extends BaseDAO {
 		LocalDAO local =new LocalDAO();
 		
 		try {
-			String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where sala_id=?";
+			String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where estado=1 AND sala_id=? ";
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, sala_id);
@@ -88,7 +106,7 @@ public class SalaDAO extends BaseDAO {
 	}
 	
 	public void eliminar(int sala_id)throws DAOExcepcion{
-		String query = "update sala set estado=1 where id_categoria=?";
+		String query = "update sala set estado=0 where sala_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -109,7 +127,7 @@ public class SalaDAO extends BaseDAO {
 	}
 	
 	public Sala actualizar(Sala vo) throws DAOExcepcion {
-		String query = "update sala set nombre=?,capacidad=?,caracteristicas=?,costo=?,local_id=? where id_categoria=?";
+		String query = "update sala set nombre=?,capacidad=?,caracteristicas=?,costo=?,local_id=? where sala_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -120,6 +138,7 @@ public class SalaDAO extends BaseDAO {
 			stmt.setString(3, vo.getCaracteristicas());
 			stmt.setDouble(4, vo.getCosto());
 			stmt.setInt(5,vo.getLocal().getLocal_id());
+			stmt.setInt(6, vo.getSalaId());
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo actualizar");
