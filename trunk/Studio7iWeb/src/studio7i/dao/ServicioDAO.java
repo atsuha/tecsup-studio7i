@@ -11,6 +11,7 @@ import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
 import studio7i.modelo.Servicio;
+import studio7i.negocio.GestionLocal;
 import studio7i.util.ConexionBD;
 
 
@@ -64,7 +65,7 @@ public class ServicioDAO extends BaseDAO{
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		//Local lo =new Local();
+		GestionLocal lo=new GestionLocal();
 		
 		try {
 			String query = "select servicio_id,descripcion, precio_hora,local_id from servicio where servicio_id=?";
@@ -76,7 +77,7 @@ public class ServicioDAO extends BaseDAO{
 				vo.setServicio_id(rs.getInt(1));
 				vo.setDescripcion(rs.getString(2));
 				vo.setPrecio_hora(rs.getDouble(3));										
-				//vo.setLocal(lo.obtener(rs.getInt(7)));
+				vo.setLocal(lo.obtener(rs.getInt(4)));
 			}
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -144,14 +145,40 @@ public class ServicioDAO extends BaseDAO{
 		return c;
 	}
 
-	public void eliminar(int servicio_id)throws DAOExcepcion {
-		String query = "delete from servicio WHERE servicio_id=?";
+//	public void eliminar(int servicio_id)throws DAOExcepcion {
+//		String query = "delete from servicio WHERE servicio_id=?";
+//		Connection con = null;
+//		PreparedStatement stmt = null;
+//		try {
+//			con = ConexionBD.obtenerConexion();
+//			stmt = con.prepareStatement(query);
+//			stmt.setInt(1, servicio_id);
+//			int i = stmt.executeUpdate();
+//			if (i != 1) {
+//				throw new SQLException("No se pudo eliminar");
+//			}
+//		} catch (SQLException e) {
+//			System.err.println(e.getMessage());
+//			throw new DAOExcepcion(e.getMessage());
+//		} finally {
+//			this.cerrarStatement(stmt);
+//			this.cerrarConexion(con);
+//		}
+//		
+//	}
+//
+//	
+//	
+
+	public void eliminar(int servicio_id) throws DAOExcepcion {
+		String query = "update servicio set estado=? where servicio_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, servicio_id);
+			stmt.setString(1, "0");
+			stmt.setInt(2, servicio_id);
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo eliminar");
@@ -163,10 +190,5 @@ public class ServicioDAO extends BaseDAO{
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-		
 	}
-
-	
-	
-
 }

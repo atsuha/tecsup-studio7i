@@ -10,6 +10,7 @@ public class Instrumento {
 	private String caracteristicas;
 	private double precio;
 	private Local local;
+	private char estado;
 	
 	
 	
@@ -21,8 +22,14 @@ public class Instrumento {
 
 
 
+	
+
+
+
+
 	public Instrumento(int instrumento_id, String tipo, String marca,
-			String modelo, String caracteristicas, double precio, Local local) {
+			String modelo, String caracteristicas, double precio, Local local,
+			char estado) {
 		super();
 		this.instrumento_id = instrumento_id;
 		this.tipo = tipo;
@@ -31,7 +38,13 @@ public class Instrumento {
 		this.caracteristicas = caracteristicas;
 		this.precio = precio;
 		this.local = local;
+		this.estado = estado;
 	}
+
+
+
+
+
 
 
 
@@ -53,6 +66,30 @@ public class Instrumento {
 	public String getTipo() {
 		return tipo;
 	}
+
+
+
+
+	public char getEstado() {
+		return estado;
+	}
+
+
+
+
+
+
+
+
+
+	public void setEstado(char estado) {
+		this.estado = estado;
+	}
+
+
+
+
+
 
 
 

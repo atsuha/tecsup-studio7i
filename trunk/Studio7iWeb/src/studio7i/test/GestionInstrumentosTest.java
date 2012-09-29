@@ -1,6 +1,6 @@
 package studio7i.test;
 
-import static org.junit.Assert.*;
+
 
 import java.util.Collection;
 
@@ -22,7 +22,7 @@ public class GestionInstrumentosTest {
 			try {
 				negocio.insertar("Piano", "Yamota","XZ45435","Para diestros",689,1);
 
-				Instrumento nuevo = negocio.obtener(2);
+				Instrumento nuevo = negocio.obtener(1);
 
 				Assert.assertEquals("Piano", nuevo.getTipo());
 
@@ -78,11 +78,11 @@ public class GestionInstrumentosTest {
 
 			try {
 
-				negocio.eliminar(2);
+				negocio.eliminar(1);
 
-				Instrumento nuevo = negocio.obtener(2);
+				Instrumento nuevo = negocio.obtener(1);
 
-				Assert.assertEquals(null, nuevo.getTipo());
+				Assert.assertEquals(0, nuevo.getEstado());
 
 			} catch (DAOExcepcion e) {
 

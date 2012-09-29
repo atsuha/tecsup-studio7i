@@ -10,6 +10,7 @@ import java.util.Collection;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
+import studio7i.negocio.GestionLocal;
 import studio7i.util.ConexionBD;
 
 public class InstrumentoDAO extends BaseDAO {
@@ -65,7 +66,9 @@ public class InstrumentoDAO extends BaseDAO {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		//Local lo =new Local();
+		GestionLocal lo=new GestionLocal();
+		
+		
 		
 		try {
 			String query = "select instrumento_id, tipo, marca,modelo, caracteristicas,precio,local_id from instrumento where instrumento_id=?";
@@ -80,7 +83,7 @@ public class InstrumentoDAO extends BaseDAO {
 				vo.setMarca(rs.getString(4));
 				vo.setCaracteristicas(rs.getString(5));
 				vo.setPrecio(rs.getDouble(6));										
-				//vo.setLocal(lo.obtener(rs.getInt(7)));
+				vo.setLocal(lo.obtener(rs.getInt(7)));
 				
 			}
 		} catch (SQLException e) {
@@ -158,14 +161,36 @@ public class InstrumentoDAO extends BaseDAO {
 	}
 
 
-	public void eliminar(int instrumento_id)throws DAOExcepcion {
-		String query = "delete from instrumento WHERE instrumento_id=?";
+//	public void eliminar(int instrumento_id)throws DAOExcepcion {
+//		String query = "delete from instrumento WHERE instrumento_id=?";
+//		Connection con = null;
+//		PreparedStatement stmt = null;
+//		try {
+//			con = ConexionBD.obtenerConexion();
+//			stmt = con.prepareStatement(query);
+//			stmt.setInt(1, instrumento_id);
+//			int i = stmt.executeUpdate();
+//			if (i != 1) {
+//				throw new SQLException("No se pudo eliminar");
+//			}
+//		} catch (SQLException e) {
+//			System.err.println(e.getMessage());
+//			throw new DAOExcepcion(e.getMessage());
+//		} finally {
+//			this.cerrarStatement(stmt);
+//			this.cerrarConexion(con);
+//		}
+//		
+//	}
+	public void eliminar(int instrumento_id) throws DAOExcepcion {
+		String query = "update instrumento set estado=? where instrumento_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, instrumento_id);
+			stmt.setString(1, "0");
+			stmt.setInt(2, instrumento_id);
 			int i = stmt.executeUpdate();
 			if (i != 1) {
 				throw new SQLException("No se pudo eliminar");
@@ -177,6 +202,5 @@ public class InstrumentoDAO extends BaseDAO {
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-		
 	}
 }

@@ -32,7 +32,7 @@ public class GestionLocal {
 	
 	public void eliminar(int idLocal) throws DAOExcepcion {
 		LocalDAO dao = new LocalDAO();
-		dao.eliminar(idLocal);
+		dao.eliminar( idLocal);
 	}
 	
 	public Local actualizar(int idLocal, String nombre,
