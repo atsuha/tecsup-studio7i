@@ -62,6 +62,8 @@ public class GestionEvento {
 	}
 	
 	
+	
+	
 	public Collection<Evento> buscarPorNombre(String nombre) throws DAOExcepcion{
 		EventoDAO dao = new EventoDAO();
 		return dao.buscarPorNombre(nombre);
