@@ -9,17 +9,29 @@ import studio7i.negocio.GestionInscrito;
 
 public class GestionInscritoTest {
 
-	@Test
+	//@Test
 	public void insertarTest(){
 		GestionInscrito negocio = new GestionInscrito();
 		try{
-			negocio.insertar(1, 1, "2012-11-11", "Presentando nuestra banda");
+			negocio.insertar(2, 2, "2012-11-11", "AC/DC rocks");
 			
 	
 		}catch (DAOExcepcion e){
 			Assert.fail("Fallo la inserción: " + e.getMessage());
 		}
 	}
+	
+	@Test
+	public void eliminarTest(){
+		GestionInscrito negocio = new GestionInscrito();
+		
+		try{
+			negocio.eliminar(1, 1);
+		}catch (DAOExcepcion e){
+			Assert.fail("Falló la eliminacion: " + e.getMessage());
+		}
+	}
+	
 
 	
 }
