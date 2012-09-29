@@ -1,6 +1,7 @@
 package studio7i.dao;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,19 +16,20 @@ import studio7i.dao.BaseDAO;
 public class ReservaDAO extends BaseDAO {
 	
 	public Reserva insertar(Reserva vo)throws DAOExcepcion { 
-		String query = "insert into Reserva(hora_inicio, fecha, hora_fin, alquilado) values (?,?,?,?)";
-		Connection con = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		String query 			= "insert into Reserva(hora_inicio, fecha, hora_fin, alquilado,persona_id,sala_id) values (?,?,?,?,?,?)";
+		Connection con 			= null;
+		PreparedStatement stmt 	= null;
+		ResultSet rs 			= null;
+	
 		try {
-			
-			
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, vo.getHora_inicio());
-			stmt.setString(2, vo.getFecha());
+			stmt.setString(2,vo.getFechaString());
 			stmt.setInt(3, vo.getHora_fin());
 			stmt.setInt(4, vo.getAlquilado());
+			stmt.setInt(5,vo.getOpersona().getPersona_id());
+			stmt.setInt(6, vo.getOsala().getSalaId());
 			
 			
 			int i = stmt.executeUpdate();
@@ -79,7 +81,7 @@ public class ReservaDAO extends BaseDAO {
 			if (rs.next()) {
 				vo.setReserva_id(rs.getInt(1));
 				vo.setHora_inicio(rs.getInt(2));
-				vo.setFecha(rs.getString(3));
+				vo.setFecha(rs.getDate(3));
 				vo.setHora_fin(rs.getInt(4));
 				vo.setAlquilado(rs.getInt(5));
 												
@@ -106,7 +108,7 @@ public class ReservaDAO extends BaseDAO {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, vo.getHora_inicio());
-			stmt.setString(2, vo.getFecha());
+			stmt.setString(2,  vo.getFechaString());
 			stmt.setInt(3, vo.getHora_fin());
 			stmt.setInt(4, vo.getAlquilado());
 			stmt.setInt(5, vo.getReserva_id());
@@ -140,7 +142,7 @@ public class ReservaDAO extends BaseDAO {
 			 Reserva vo =new Reserva();
 			 vo.setReserva_id(rs.getInt("reserva_id"));
 			 vo.setHora_inicio(rs.getInt("hora_inicio"));
-			 vo.setFecha(rs.getString("fecha"));
+			 vo.setFecha(rs.getDate("fecha"));
 			 vo.setHora_fin(rs.getInt("hora_fin"));
 			 vo.setAlquilado(rs.getInt("alquilado"));
 			 
