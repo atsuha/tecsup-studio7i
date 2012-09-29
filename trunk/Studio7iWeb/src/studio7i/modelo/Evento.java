@@ -14,13 +14,13 @@ public class Evento {
 	private Collection<Inscrito> inscrito;
 
 	
-	
+	//constructor sin parametros
 	public Evento() {
 	
 	}
 
 
-
+	//constructor con parametros
 	public Evento(int evento_id, String nombre, String descripcion,
 			String lugar, String fecha, String premios,
 			Collection<Inscrito> inscrito) {
@@ -36,6 +36,7 @@ public class Evento {
 	}
 
 
+	//getters and setters
 
 	public int getEvento_id() {
 		return evento_id;
