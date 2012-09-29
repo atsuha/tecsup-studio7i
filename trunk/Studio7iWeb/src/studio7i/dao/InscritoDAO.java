@@ -44,8 +44,6 @@ public class InscritoDAO extends BaseDAO {
 		return in;
 	}
 	
-		
-
-	
+			
 	
 }
