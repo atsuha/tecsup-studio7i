@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
-import studio7i.modelo.Local;
 import studio7i.modelo.Sala;
 import studio7i.modelo.SalaInstrumento;
 import studio7i.modelo.SalaServicio;
@@ -45,26 +44,24 @@ public class SalaDAO extends BaseDAO {
 			}
 			vo.setSalaId(id);
 			
-			// objeto para obtener sala
-			SalaDAO daoSala = new SalaDAO();
-			System.out.println(id);
-			Sala sala = daoSala.obtener(29);
-			System.out.println(sala.getNombre());
-			System.out.println(id);
+			// creando el objeto sala
+			Sala sala = new Sala();
+			sala.setSalaId(id);
+			
+			SalaInstrumentoDAO daoi = new SalaInstrumentoDAO();
+			SalaServicioDAO daos = new SalaServicioDAO();
 			for(SalaServicio serv : vo.getListaServicios()){
-				SalaServicioDAO daos = new SalaServicioDAO();
 				SalaServicio sv = new SalaServicio();
 				sv.setSala(sala);
 				sv.setServicio(serv.getServicio());
-				daos.insertar(sv);
+				daos.insertar(sv,con);
 			}
 			
 			for(SalaInstrumento ins : vo.getListaInstrumentos()){
-				SalaInstrumentoDAO daoi = new SalaInstrumentoDAO();
 				SalaInstrumento si = new SalaInstrumento();
 				si.setInstrumento(ins.getInstrumento());
 				si.setSala(sala);
-				daoi.insertar(si);
+				daoi.insertar(si,con);
 			}
 			con.commit();
 		}catch (SQLException e) {
