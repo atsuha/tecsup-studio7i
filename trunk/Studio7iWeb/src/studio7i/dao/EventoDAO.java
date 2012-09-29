@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Evento;
@@ -140,5 +142,41 @@ public class EventoDAO extends BaseDAO{
 		return ev;
 		
 	}
+	
+	
+	
+	public Collection<Evento> listar() throws DAOExcepcion{
+		Collection<Evento> c = new ArrayList<Evento>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			con = ConexionBD.obtenerConexion();
+			String query = "select evento_id, nombre, descripcion, lugar, fecha, premios from evento order by nombre";
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+			while (rs.next()){
+				Evento ev = new Evento();
+				ev.setEvento_id(rs.getInt("evento_id"));
+				ev.setNombre(rs.getString("nombre"));
+				ev.setDescripcion(rs.getString("descripcion"));
+				ev.setLugar(rs.getString("lugar"));
+				ev.setFecha(rs.getString("fecha"));
+				ev.setPremios(rs.getString("premios"));
+				c.add(ev);
+			}
+		}catch (SQLException e){
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		}finally{
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return c;
+	}
+	
+	
+
 	
 }
