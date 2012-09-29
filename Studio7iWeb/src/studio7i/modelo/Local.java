@@ -2,7 +2,6 @@ package studio7i.modelo;
 
 import java.util.Collection;
 
-import studio7i.excepcion.DAOExcepcion;
 
 public class Local {
 	private int local_id;	
@@ -17,10 +16,6 @@ public class Local {
 		
 	}
 
-	
-
-
-
 	public Local(int local_id, String nombre, String direccion,
 			Collection<Sala> salas, Collection<Instrumento> instrumentos,
 			Collection<Servicio> servicios) {
@@ -33,10 +28,6 @@ public class Local {
 		this.servicios = servicios;
 	}
 
-
-
-
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -48,7 +39,6 @@ public class Local {
 	public Collection<Servicio> getServicios() {
 		return servicios;
 	}
-
 
 	public void setServicios(Collection<Servicio> servicios) {
 		this.servicios = servicios;
@@ -63,23 +53,13 @@ public class Local {
 		this.direccion = direccion;
 	}
 
-	
-
 	public int getLocal_id() {
 		return local_id;
 	}
 
-
-
-
-
 	public void setLocal_id(int local_id) {
 		this.local_id = local_id;
 	}
-
-
-
-
 
 	public Collection<Sala> getSalas() {
 		return salas;
@@ -97,14 +77,6 @@ public class Local {
 		this.instrumentos = instrumentos;
 	}
 
-
-
-
-
-	public Local obtener(int local_id) throws DAOExcepcion {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	
