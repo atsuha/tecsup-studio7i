@@ -62,11 +62,8 @@ public class GestionEventoTest {
 		try{
 			Collection<Evento> listado = negocio.listar();
 			
-			Evento even = new Evento();
-			
 			System.out.println(listado.size());
-			
-			
+						
 			Assert.assertTrue(listado.size()>0);
 			
 		}catch (DAOExcepcion e){
