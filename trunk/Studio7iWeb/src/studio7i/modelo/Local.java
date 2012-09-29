@@ -6,7 +6,8 @@ import java.util.Collection;
 public class Local {
 	private int local_id;	
 	private String nombre;
-	private String direccion;	
+	private String direccion;
+	private String estado;
 	private Collection<Sala> salas;
 	private Collection<Instrumento> instrumentos;
 	private Collection<Servicio> servicios;
@@ -75,6 +76,14 @@ public class Local {
 
 	public void setInstrumentos(Collection<Instrumento> instrumentos) {
 		this.instrumentos = instrumentos;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	
