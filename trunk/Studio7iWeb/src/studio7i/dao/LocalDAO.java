@@ -110,7 +110,7 @@ public class LocalDAO  extends BaseDAO {
 		return vo;
 	}
 
-	public void eliminar(int idLocal) throws DAOExcepcion {
+/*	public void eliminar(int idLocal) throws DAOExcepcion {
 		String query = "delete from local WHERE local_id=?";
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -129,8 +129,31 @@ public class LocalDAO  extends BaseDAO {
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
-	}
+	}*/
 
+	public Local eliminar(Local vo) throws DAOExcepcion {
+		String query = "update local set estado=? where local_id=?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "0");
+			stmt.setInt(2, vo.getLocal_id());
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo actualizar");
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
+	}
+	
 	public Local actualizar(Local vo) throws DAOExcepcion {
 		String query = "update local set nombre=?,direccion=? where local_id=?";
 		Connection con = null;
