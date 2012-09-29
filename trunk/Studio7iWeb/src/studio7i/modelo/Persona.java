@@ -54,11 +54,11 @@ public class Persona {
 		this.usuario = usuario;
 	}
 
-	public String getpassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setpassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -110,74 +110,6 @@ public class Persona {
 		this.email = email;
 	}
 
-	
-	// toString
-	
-	@Override
-	public String toString() {
-		return "Persona [usuario=" + usuario + ", password=" + password + ", dni="
-				+ dni + ", nombres=" + nombres + ", paterno=" + paterno
-				+ ", materno=" + materno + ", fechaNacimiento="
-				+ fechaNacimiento + ", email=" + email + "]";
-	}
-
-	// equals
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Persona other = (Persona) obj;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (dni == null) {
-			if (other.dni != null)
-				return false;
-		} else if (!dni.equals(other.dni))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (fechaNacimiento == null) {
-			if (other.fechaNacimiento != null)
-				return false;
-		} else if (!fechaNacimiento.equals(other.fechaNacimiento))
-			return false;
-		if (materno == null) {
-			if (other.materno != null)
-				return false;
-		} else if (!materno.equals(other.materno))
-			return false;
-		if (nombres == null) {
-			if (other.nombres != null)
-				return false;
-		} else if (!nombres.equals(other.nombres))
-			return false;
-		if (paterno == null) {
-			if (other.paterno != null)
-				return false;
-		} else if (!paterno.equals(other.paterno))
-			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
-			return false;
-		return true;
-	}
-
-	
-	
-	
 	
 
 }
