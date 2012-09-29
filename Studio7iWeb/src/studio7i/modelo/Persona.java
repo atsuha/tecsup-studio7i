@@ -11,6 +11,8 @@ public class Persona {
 	private String materno;
 	private String fechaNacimiento;
 	private String email;
+	private String rol;
+	private String estado;
 
 	
 	
@@ -109,6 +111,24 @@ public class Persona {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
 
 	
 
