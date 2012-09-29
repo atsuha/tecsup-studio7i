@@ -22,17 +22,23 @@ public class GestionEvento {
 		return dao.insertar(ev);
 	}
 	
+	
+	
 	public void eliminar(int evento_id)throws DAOExcepcion{
 		EventoDAO dao = new EventoDAO();
 		
 		dao.eliminar(evento_id);
 	}
 	
+	
+	
 	public Evento buscar(int evento_id)throws DAOExcepcion{
 		EventoDAO dao = new EventoDAO();
 		
 		return dao.buscar(evento_id);
 	}
+	
+	
 	
 	public Evento actualizar(int evento_id, String nombre, String descripcion, String lugar, String fecha, String premios) throws DAOExcepcion{
 		EventoDAO dao = new EventoDAO();
@@ -49,8 +55,17 @@ public class GestionEvento {
 	}
 	
 	
+	
 	public Collection<Evento> listar() throws DAOExcepcion{
 		EventoDAO dao = new EventoDAO();
 		return dao.listar();
 	}
+	
+	
+	public Collection<Evento> buscarPorNombre(String nombre) throws DAOExcepcion{
+		EventoDAO dao = new EventoDAO();
+		return dao.buscarPorNombre(nombre);
+		
+	}
 }
+
