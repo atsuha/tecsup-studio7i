@@ -1,5 +1,7 @@
 package studio7i.test;
 
+import java.util.Collection;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -54,6 +56,20 @@ public class GestionEventoTest {
 	}
 	
 	
+	//@Test
+	public void listarTest(){
+		GestionEvento negocio = new GestionEvento();
+		try{
+			Collection<Evento> listado = negocio.listar();
+			
+			System.out.println(listado.size());
+			
+			Assert.assertTrue(listado.size()>0);
+			
+		}catch (DAOExcepcion e){
+			Assert.fail("Fallo el listado: " + e.getMessage());
+		}
+	}
 
 	
 	
