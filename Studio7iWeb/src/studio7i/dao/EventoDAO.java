@@ -112,7 +112,7 @@ public class EventoDAO extends BaseDAO{
 		
 	}
 	
-
+	//actualizar
 	public Evento actualizar(Evento ev) throws DAOExcepcion{
 		
 		String query = "update evento set nombre=?, descripcion = ?, lugar = ?, fecha = ?, premios = ? where evento_id = ?";
@@ -144,7 +144,7 @@ public class EventoDAO extends BaseDAO{
 	}
 	
 	
-	
+	//listar eventos
 	public Collection<Evento> listar() throws DAOExcepcion{
 		Collection<Evento> c = new ArrayList<Evento>();
 		Connection con = null;
@@ -174,6 +174,43 @@ public class EventoDAO extends BaseDAO{
 			this.cerrarConexion(con);
 		}
 		return c;
+	}
+	
+	
+	//buscar por nombre
+	public Collection<Evento> buscarPorNombre(String nombre) throws DAOExcepcion{
+		String query = "select evento_id, nombre, descripcion, lugar, fecha, premios from evento where nombre like = ?";
+		Collection<Evento> lista = new ArrayList<Evento>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + nombre +  "%");
+			rs = stmt.executeQuery();
+			while (rs.next()){
+
+				Evento ev = new Evento();
+				ev.setEvento_id(rs.getInt("evento_id"));
+				ev.setNombre(rs.getString("nombre"));
+				ev.setDescripcion(rs.getString("descripcion"));
+				ev.setLugar(rs.getString("lugar"));
+				ev.setPremios(rs.getString("premios"));
+				
+				lista.add(ev);
+			}
+		}	catch (SQLException e){
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		}finally{
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+		
 	}
 	
 	
