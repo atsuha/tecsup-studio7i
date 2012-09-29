@@ -1,26 +1,34 @@
 package studio7i.negocio;
 
+import java.util.Date;
 import java.util.Collection;
 
 import studio7i.dao.ReservaDAO;
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Persona;
 import studio7i.modelo.Reserva;
+import studio7i.modelo.Sala;
 
 public class GestionReserva {
 
-	public Reserva insertar(int hora_inicio, String fecha, int hora_fin, int alquilado)
-//	eserva_id, sala_id, persona_id, hora_inicio, fecha, hora_fin, alquilado
+	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId, int persona_id)
 
 		throws DAOExcepcion {
 				
 		ReservaDAO dao = new ReservaDAO();
-
+		Sala s1	= new Sala();
 		Reserva vo = new Reserva();
+		s1.setSalaId(salaId);
+		
+		Persona p1 = new Persona();
+		p1.setPersona_id(persona_id);
 		
 		vo.setHora_inicio(hora_inicio);
 		vo.setHora_fin(hora_fin);
 		vo.setFecha(fecha);
 		vo.setAlquilado(alquilado);
+		vo.setOpersona(p1);
+		vo.setOsala(s1);
 		
 		
 		return dao.insertar(vo);				
@@ -31,7 +39,7 @@ public class GestionReserva {
 		return dao.obtener(reserva_id);
 	}
 
-	public Reserva actualizar(int reserva_id, int hora_inicio, String fecha,
+	public Reserva actualizar(int reserva_id, int hora_inicio, Date fecha,
 			int hora_fin, int alquilado)throws DAOExcepcion {
 				
 		ReservaDAO dao =new ReservaDAO();
