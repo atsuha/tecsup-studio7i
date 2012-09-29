@@ -1,5 +1,7 @@
 package studio7i.modelo;
 
+import java.util.Collection;
+
 public class Sala {
 	private String nombre;
 	private int capacidad;
@@ -7,6 +9,10 @@ public class Sala {
 	private double costo;
 	private Local local;
 	private int salaId;
+	private String estado;
+	private Collection<SalaInstrumento> listaInstrumentos;
+	private Collection<SalaServicio> listaServicios;
+	private Collection<Reserva> listadoReservas;
 	
 	public Sala() {
 		
@@ -19,6 +25,38 @@ public class Sala {
 		this.costo = costo;
 		this.local = local;
 		this.salaId = salaId;
+	}
+
+	public Collection<Reserva> getListadoReservas() {
+		return listadoReservas;
+	}
+
+	public void setListadoReservas(Collection<Reserva> listadoReservas) {
+		this.listadoReservas = listadoReservas;
+	}
+
+	public Collection<SalaInstrumento> getListaInstrumentos() {
+		return listaInstrumentos;
+	}
+
+	public void setListaInstrumentos(Collection<SalaInstrumento> listaInstrumentos) {
+		this.listaInstrumentos = listaInstrumentos;
+	}
+
+	public Collection<SalaServicio> getListaServicios() {
+		return listaServicios;
+	}
+
+	public void setListaServicios(Collection<SalaServicio> listaServicios) {
+		this.listaServicios = listaServicios;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getNombre() {
