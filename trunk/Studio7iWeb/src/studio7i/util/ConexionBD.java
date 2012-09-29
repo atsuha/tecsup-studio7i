@@ -12,7 +12,7 @@ public class ConexionBD {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost/studio7i",
-					"root", "admin$12");
+					"root", "");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
