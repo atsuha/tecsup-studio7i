@@ -26,9 +26,13 @@ public class GestionInscrito {
 		in.setPresentacion(presentacion);
 		
 		
-		return dao.insertar(in);
-		
-		
-		
+		return dao.insertar(in);		
 	}
+	
+	
+	public void eliminar(int evento_id, int persona_id)throws DAOExcepcion{
+		InscritoDAO dao = new InscritoDAO();
+		dao.eliminar(evento_id, persona_id);
+	}
+	
 }
