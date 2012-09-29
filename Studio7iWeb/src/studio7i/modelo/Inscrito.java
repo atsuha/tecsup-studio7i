@@ -8,7 +8,7 @@ public class Inscrito {
 	//atributos
 	private Evento evento;
 	private Persona persona;
-	private String fecha_inscripcion;
+	private String fecha;
 	private String presentacion;	
 	
 	public Inscrito(){
@@ -21,7 +21,7 @@ public class Inscrito {
 		super();
 		this.evento = evento;
 		this.persona = persona;
-		this.fecha_inscripcion = fecha;
+		this.fecha = fecha;
 		this.presentacion = presentacion;
 	}
 	
@@ -43,12 +43,12 @@ public class Inscrito {
 		this.persona = persona;
 	}
 
-	public String getFecha_inscripcion() {
-		return fecha_inscripcion;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setFecha_inscripcion(String fecha_inscripcion) {
-		this.fecha_inscripcion = fecha_inscripcion;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 	public String getPresentacion() {
