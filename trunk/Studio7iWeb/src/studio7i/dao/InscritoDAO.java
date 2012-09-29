@@ -44,6 +44,28 @@ public class InscritoDAO extends BaseDAO {
 		return in;
 	}
 	
+	public void eliminar(int evento_id, int persona_id)throws DAOExcepcion{
+		String query = "delete from inscrito where evento_id = ? and persona_id = ?";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		try{
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, evento_id);
+			stmt.setInt(2, persona_id);
+			int i = stmt.executeUpdate();
+			if (i != 1){
+				throw new SQLException("No se pudo eliminar");
+			}
+		} catch (SQLException e){
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		}finally{
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+	}
+	
 			
 	
 }
