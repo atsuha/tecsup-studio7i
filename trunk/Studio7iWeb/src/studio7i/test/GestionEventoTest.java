@@ -13,21 +13,21 @@ import studio7i.negocio.GestionEvento;
 
 public class GestionEventoTest {
 
-	//@Test 
+	@Test 
 	public void InsertarTest(){
 		GestionEvento evento = new GestionEvento();
 		
 		try{
 			evento.insertar("Rock en el parque", "bandas internacionales", "Miraflores", "2000-01-22", "1er puesto: S/.3000");
 			
-			Evento nuevo = evento.buscar(2);
+			Evento nuevo = evento.buscar(1);
 			Assert.assertEquals("Rock en el parque", nuevo.getNombre());
 		}catch(DAOExcepcion e){
 			Assert.fail("Fallo la inserción:" + e.getMessage());
 		}
 	}
 	
-	@Test
+	//@Test
 	public void eliminarTest(){
 		GestionEvento evento = new GestionEvento();
 		try{
