@@ -80,11 +80,11 @@ public class GestionServiciosTest {
 
 			try {
 
-				negocio.eliminar(2);
+				negocio.eliminar(1);
 
-				Servicio nuevo = negocio.obtener(2);
+				Servicio nuevo = negocio.obtener(1);
 
-				Assert.assertEquals(null, nuevo.getDescripcion());
+				Assert.assertEquals(0, nuevo.getEstado());
 
 			} catch (DAOExcepcion e) {
 

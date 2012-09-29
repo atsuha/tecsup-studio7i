@@ -13,17 +13,17 @@ import studio7i.negocio.GestionLocal;
 
 public class GestionLocalTest {
 	
-	//@Test
+	@Test
 	public void insertarTest() {
 
 		GestionLocal negocio = new GestionLocal();
 
 		try {
-			negocio.insertar("Miraflores", "Av. Diez Canseco 102");
+			negocio.insertar("Santiago de surco", "Av. Caminos del Inca 1500");
 
-			Local nuevo = negocio.obtener(4);
+			Local nuevo = negocio.obtener(2);
 
-			Assert.assertEquals("Av. Diez Canseco 102", nuevo.getDireccion());
+			Assert.assertEquals("Av. Caminos del Inca 1500", nuevo.getDireccion());
 
 		} catch (DAOExcepcion e) {
 			Assert.fail("Fallo la inserción: " + e.getMessage());
@@ -49,7 +49,7 @@ public class GestionLocalTest {
 
 		}
 	}	
-	@Test
+	//@Test
 	public void listarTest() {
 
 		GestionLocal negocio = new GestionLocal();
@@ -69,7 +69,7 @@ public class GestionLocalTest {
 
 	}
 
-	@Test
+	//@Test
 	public void eliminarTest() {
 
 		GestionLocal negocio = new GestionLocal();
