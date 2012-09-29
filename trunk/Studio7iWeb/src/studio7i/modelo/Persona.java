@@ -2,8 +2,9 @@ package studio7i.modelo;
 
 public class Persona {
 
+	private int persona_id;
 	private String usuario;
-	private String clave;
+	private String password;
 	private String dni;
 	private String nombres;
 	private String paterno;
@@ -15,15 +16,17 @@ public class Persona {
 	
 	// Constructores
 
+
+
 	public Persona() {
 
 	}
 
-	public Persona(String usuario, String clave, String dni, String nombres,
+	public Persona(String usuario, String password, String dni, String nombres,
 			String paterno, String materno, String fechaNacimiento, String email) {
 		super();
 		this.usuario = usuario;
-		this.clave = clave;
+		this.password = password;
 		this.dni = dni;
 		this.nombres = nombres;
 		this.paterno = paterno;
@@ -34,6 +37,14 @@ public class Persona {
 	
 	
 	// Getters and Setters
+	
+	public int getPersona_id() {
+		return persona_id;
+	}
+
+	public void setPersona_id(int persona_id) {
+		this.persona_id = persona_id;
+	}
 
 	public String getUsuario() {
 		return usuario;
@@ -43,12 +54,12 @@ public class Persona {
 		this.usuario = usuario;
 	}
 
-	public String getClave() {
-		return clave;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setClave(String clave) {
-		this.clave = clave;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	public String getDni() {
@@ -104,7 +115,7 @@ public class Persona {
 	
 	@Override
 	public String toString() {
-		return "Persona [usuario=" + usuario + ", clave=" + clave + ", dni="
+		return "Persona [usuario=" + usuario + ", password=" + password + ", dni="
 				+ dni + ", nombres=" + nombres + ", paterno=" + paterno
 				+ ", materno=" + materno + ", fechaNacimiento="
 				+ fechaNacimiento + ", email=" + email + "]";
@@ -121,10 +132,10 @@ public class Persona {
 		if (getClass() != obj.getClass())
 			return false;
 		Persona other = (Persona) obj;
-		if (clave == null) {
-			if (other.clave != null)
+		if (password == null) {
+			if (other.password != null)
 				return false;
-		} else if (!clave.equals(other.clave))
+		} else if (!password.equals(other.password))
 			return false;
 		if (dni == null) {
 			if (other.dni != null)
