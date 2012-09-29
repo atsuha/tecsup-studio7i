@@ -12,6 +12,7 @@ public class Evento {
 	private String fecha;
 	private String premios;
 	private Collection<Inscrito> inscrito;
+
 	
 	
 	public Evento() {
@@ -19,8 +20,10 @@ public class Evento {
 	}
 
 
-	public Evento(int evento_id, String nombre, String descripcion, String lugar,
-			String fecha, String premios, Collection<Inscrito> inscrito) {
+
+	public Evento(int evento_id, String nombre, String descripcion,
+			String lugar, String fecha, String premios,
+			Collection<Inscrito> inscrito) {
 		super();
 		this.evento_id = evento_id;
 		this.nombre = nombre;
@@ -29,7 +32,9 @@ public class Evento {
 		this.fecha = fecha;
 		this.premios = premios;
 		this.inscrito = inscrito;
+
 	}
+
 
 
 	public int getEvento_id() {
@@ -100,9 +105,7 @@ public class Evento {
 	public void setInscrito(Collection<Inscrito> inscrito) {
 		this.inscrito = inscrito;
 	}
-	
-	
-	
+
 	
 
 	
