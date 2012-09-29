@@ -11,6 +11,8 @@ public class Inscrito {
 	private String fecha;
 	private String presentacion;	
 	
+	
+	//constructor sin parametros
 	public Inscrito(){
 		
 	}
