@@ -22,8 +22,8 @@ public class InscritoDAO extends BaseDAO {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			
-			stmt.setInt(1, in.getEvento_id().getEvento_id());
-			stmt.setInt(2, in.getPersona_id().getPersona_id());
+			stmt.setInt(1, in.getEvento().getEvento_id());
+			stmt.setInt(2, in.getPersona().getPersona_id());
 			stmt.setString(3, in.getFecha());
 			stmt.setString(4, in.getPresentacion());
 			
