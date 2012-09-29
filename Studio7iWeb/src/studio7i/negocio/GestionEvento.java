@@ -1,5 +1,7 @@
 package studio7i.negocio;
 
+import java.util.Collection;
+
 import studio7i.dao.EventoDAO;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Evento;
@@ -44,5 +46,11 @@ public class GestionEvento {
 		ev.setPremios(premios);
 		
 		return dao.actualizar(ev);
+	}
+	
+	
+	public Collection<Evento> listar() throws DAOExcepcion{
+		EventoDAO dao = new EventoDAO();
+		return dao.listar();
 	}
 }
