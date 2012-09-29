@@ -24,9 +24,10 @@ public class Inscrito {
 		this.fecha = fecha;
 		this.presentacion = presentacion;
 	}
+
 	
 	//getters and setters
-
+	
 	public Evento getEvento() {
 		return evento;
 	}
@@ -58,6 +59,7 @@ public class Inscrito {
 	public void setPresentacion(String presentacion) {
 		this.presentacion = presentacion;
 	}
+	
 
 	
 }
