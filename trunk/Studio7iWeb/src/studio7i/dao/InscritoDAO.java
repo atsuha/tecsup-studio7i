@@ -14,33 +14,24 @@ public class InscritoDAO extends BaseDAO {
 	
 	//solo puede insertar
 	public Inscrito insertar(Inscrito in)throws DAOExcepcion{
-		String query = "insert into inscrito(evento, persona,fecha, presentacion) values(?, ?, ?, ?)";
+		String query = "insert into inscrito(evento_id, persona_id,fecha_inscripcion, presentacion) values(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try{
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setString(1, in.getFecha());
-			stmt.setString(2, in.getPresentacion());
-			stmt.setInt(3, in.getEvento().getEvento_id());
-			//si es agregado PK persona_id se cambia
-			stmt.setString(4, in.getPersona().getUsuario());
+			
+			stmt.setInt(1, in.getEvento().getEvento_id());
+			stmt.setString(2, in.getPersona().getUsuario());
+			stmt.setString(3, in.getFecha_inscripcion());
+			stmt.setString(4, in.getPresentacion());
 			
 			int i = stmt.executeUpdate();
 			if(i != 1){
 				throw new SQLException("No se pudo insertar");
 			}
 			
-			int id = 0;
-			query = "select last_insert_id()";
-			stmt = con.prepareStatement(query);
-			rs = stmt.executeQuery();
-			if (rs.next()){
-				id = rs.getInt(1);
-			}
-			//poner id, solo pk's ?
-			//in.setEvento(evento);
 			
 		}catch(SQLException e){
 			System.err.println(e.getMessage());
@@ -54,6 +45,7 @@ public class InscritoDAO extends BaseDAO {
 	}
 	
 		
+
 	
 	
 }
