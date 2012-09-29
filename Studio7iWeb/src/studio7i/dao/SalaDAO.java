@@ -23,6 +23,7 @@ public class SalaDAO extends BaseDAO {
 		ResultSet rs = null;
 		try {
 			con = ConexionBD.obtenerConexion();
+			con.setAutoCommit(false);
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, vo.getNombre());
 			stmt.setInt(2,vo.getCapacidad());
@@ -44,10 +45,16 @@ public class SalaDAO extends BaseDAO {
 			}
 			vo.setSalaId(id);
 			
+			// objeto para obtener sala
+			SalaDAO daoSala = new SalaDAO();
+			System.out.println(id);
+			Sala sala = daoSala.obtener(29);
+			System.out.println(sala.getNombre());
+			System.out.println(id);
 			for(SalaServicio serv : vo.getListaServicios()){
 				SalaServicioDAO daos = new SalaServicioDAO();
 				SalaServicio sv = new SalaServicio();
-				sv.setSala(serv.getSala());
+				sv.setSala(sala);
 				sv.setServicio(serv.getServicio());
 				daos.insertar(sv);
 			}
@@ -56,14 +63,24 @@ public class SalaDAO extends BaseDAO {
 				SalaInstrumentoDAO daoi = new SalaInstrumentoDAO();
 				SalaInstrumento si = new SalaInstrumento();
 				si.setInstrumento(ins.getInstrumento());
-				si.setSala(ins.getSala());
+				si.setSala(sala);
 				daoi.insertar(si);
 			}
-
-		} catch (SQLException e) {
+			con.commit();
+		}catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				throw new DAOExcepcion(e.getMessage());
+			}
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
 		} finally {
+			try {
+				con.setAutoCommit(true);
+			} catch (SQLException e) {
+				throw new DAOExcepcion(e.getMessage());
+			}
 			this.cerrarResultSet(rs);
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
