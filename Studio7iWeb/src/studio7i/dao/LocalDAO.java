@@ -12,7 +12,41 @@ import studio7i.modelo.Local;
 import studio7i.util.ConexionBD;
 
 
+
 public class LocalDAO  extends BaseDAO {
+	
+	public Collection<Local> buscarPorNombre(String nombre)
+			throws DAOExcepcion {
+		String query = "select local_id, nombre, direccion from local where nombre like ?";
+		Collection<Local> lista = new ArrayList<Local>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + nombre + "%");
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Local vo = new Local();
+				vo.setLocal_id(rs.getInt("local_id"));
+				vo.setNombre(rs.getString("nombre"));
+				vo.setDireccion(rs.getString("direccion"));
+				lista.add(vo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
+
+	
 	public Local obtener(int idLocal) throws DAOExcepcion {
 		Local vo = new Local();
 		Connection con = null;
