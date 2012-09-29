@@ -12,7 +12,6 @@ import studio7i.modelo.Local;
 import studio7i.util.ConexionBD;
 
 
-
 public class LocalDAO  extends BaseDAO {
 	
 	public Collection<Local> buscarPorNombre(String nombre)
@@ -44,6 +43,41 @@ public class LocalDAO  extends BaseDAO {
 		}
 		System.out.println(lista.size());
 		return lista;
+	}
+
+	public Local insertar(Local vo) throws DAOExcepcion {
+		String query = "insert into local(nombre,direccion) values (?,?)";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, vo.getNombre());
+			stmt.setString(2, vo.getDireccion());
+			int i = stmt.executeUpdate();
+			if (i != 1) {
+				throw new SQLException("No se pudo insertar");
+			}
+			// Obtener el ultimo id
+			int id = 0;
+			query = "select last_insert_id()";
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+			vo.setLocal_id(id);
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return vo;
 	}
 
 	
