@@ -8,7 +8,7 @@ import studio7i.modelo.Persona;
 
 public class GestionInscrito {
 
-	public Inscrito insertar(int evento_id, int persona_id, String fecha_inscripcion, String presentacion) throws DAOExcepcion {
+	public Inscrito insertar(int evento_id, int persona_id, String fecha, String presentacion) throws DAOExcepcion {
 
 		Evento ev = new Evento();
 		ev.setEvento_id(evento_id);
@@ -22,7 +22,7 @@ public class GestionInscrito {
 		
 		in.setEvento(ev);
 		in.setPersona(per);
-		in.setFecha_inscripcion(fecha_inscripcion);
+		in.setFecha(fecha);
 		in.setPresentacion(presentacion);
 		
 		
