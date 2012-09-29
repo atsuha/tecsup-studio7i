@@ -13,7 +13,7 @@ import studio7i.negocio.GestionEvento;
 
 public class GestionEventoTest {
 
-	//@Test 
+	@Test 
 	public void InsertarTest(){
 		GestionEvento evento = new GestionEvento();
 		
@@ -56,7 +56,7 @@ public class GestionEventoTest {
 	}
 	
 	
-	@Test
+	//@Test
 	public void listarTest(){
 		GestionEvento negocio = new GestionEvento();
 		try{
