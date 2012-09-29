@@ -9,27 +9,47 @@ import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Local;
 import studio7i.negocio.GestionLocal;
 
+
+
 public class GestionLocalTest {
 	
-	@Test
+	//@Test
 	public void insertarTest() {
 
 		GestionLocal negocio = new GestionLocal();
 
 		try {
-			negocio.insertar("Surco", "Av. Caminos del Inca 1579");
+			negocio.insertar("Miraflores", "Av. Diez Canseco 102");
 
-			Local nuevo = negocio.obtener(1);
+			Local nuevo = negocio.obtener(4);
 
-			Assert.assertEquals("Av. Caminos del Inca 1579", nuevo.getDireccion());
+			Assert.assertEquals("Av. Diez Canseco 102", nuevo.getDireccion());
 
 		} catch (DAOExcepcion e) {
 			Assert.fail("Fallo la inserción: " + e.getMessage());
 		}
 	}
 	
-	
 	//@Test
+	public void actualizarTest() {
+
+		GestionLocal negocio = new GestionLocal();
+
+		try {
+
+			negocio.actualizar(1, "Santiago de surco", "Av. Caminos del Inca 1500");
+
+			Local nuevo = negocio.obtener(1);
+
+			Assert.assertEquals("Av. Caminos del Inca 1500", nuevo.getDireccion());
+
+		} catch (DAOExcepcion e) {
+
+			Assert.fail("Falló la actualización: " + e.getMessage());
+
+		}
+	}	
+	@Test
 	public void listarTest() {
 
 		GestionLocal negocio = new GestionLocal();
@@ -49,4 +69,24 @@ public class GestionLocalTest {
 
 	}
 
+	@Test
+	public void eliminarTest() {
+
+		GestionLocal negocio = new GestionLocal();
+
+		try {
+
+			negocio.eliminar(3);
+
+			Local nuevo = negocio.obtener(3);
+
+			Assert.assertEquals(null, nuevo.getDireccion());
+
+		} catch (DAOExcepcion e) {
+
+			Assert.fail("Falló la eliminición: " + e.getMessage());
+
+		}
+
+	}
 }
