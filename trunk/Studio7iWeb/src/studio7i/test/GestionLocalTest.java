@@ -19,9 +19,11 @@ public class GestionLocalTest {
 		GestionLocal negocio = new GestionLocal();
 
 		try {
+			negocio.insertar("Santiago de Surco", "Av. Caminos del Inca 1240");
+			negocio.insertar("Miraflores", "Av. Diez Canseco 109 Of. 306");
 			negocio.insertar("Los Olivos", "Centro Comercial Megaplaza Tienda 2040");
 
-			Local nuevo = negocio.obtener(4);
+			Local nuevo = negocio.obtener(3);
 
 			Assert.assertEquals("Centro Comercial Megaplaza Tienda 2040", nuevo.getDireccion());
 
@@ -101,8 +103,10 @@ public class GestionLocalTest {
 
 			Local nuevo = negocio.obtener(1);
 			
-			System.out.println(nuevo.getServicios().size());
-
+			System.out.println("servicios: " + nuevo.getServicios().size());
+			System.out.println("instrumentos: " + nuevo.getInstrumentos().size());
+			System.out.println("salas: " + nuevo.getSalas().size());
+			
 			Assert.assertTrue(nuevo.getServicios().size()>0);
 
 		} catch (DAOExcepcion e) {
