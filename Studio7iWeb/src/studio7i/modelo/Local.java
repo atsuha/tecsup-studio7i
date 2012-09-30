@@ -45,7 +45,6 @@ public class Local {
 		this.servicios = servicios;
 	}
 
-
 	public String getDireccion() {
 		return direccion;
 	}
