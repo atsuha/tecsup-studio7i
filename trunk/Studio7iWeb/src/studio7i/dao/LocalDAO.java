@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
+import studio7i.modelo.Sala;
 import studio7i.modelo.Servicio;
 import studio7i.util.ConexionBD;
 
@@ -104,7 +106,7 @@ public class LocalDAO  extends BaseDAO {
 			}
 			
 			
-			// -- cargar la lista de servicios para la sala
+			// -- cargar lista de servicios 
 			Collection<Servicio> servicios = new ArrayList<Servicio>();
 			query = "select servicio_id, descripcion, precio_hora, estado from servicio where local_id=?";
 			stmt = con.prepareStatement(query);
@@ -116,12 +118,55 @@ public class LocalDAO  extends BaseDAO {
 				se.setServicio_id(rs.getInt(1));
 				se.setDescripcion(rs.getString(2));
 				se.setPrecio_hora(rs.getDouble(3));
+				se.setEstado(rs.getString(4).toCharArray()[0]);
+				se.setLocal(vo);
 				servicios.add(se);
 				
 			}
 			
-			vo.setServicios(servicios);
+			// -- cargar lista de instrumentos 
+			Collection<Instrumento> instrumentos = new ArrayList<Instrumento>();
+			query = "select instrumento_id, tipo, caracteristicas, local_id, marca, modelo, precio, estado from instrumento where local_id=?";
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, idLocal);
+			rs = stmt.executeQuery();
 			
+			while (rs.next()){
+				Instrumento in = new Instrumento();
+				in.setInstrumento_id(rs.getInt(1));
+				in.setTipo(rs.getString(2));
+				in.setCaracteristicas(rs.getString(3));
+				in.setLocal(vo);
+				in.setMarca(rs.getString(5));
+				in.setModelo(rs.getString(6));
+				in.setPrecio(rs.getDouble(7));
+				in.setEstado(rs.getString(8).toCharArray()[0]);
+				instrumentos.add(in);
+				
+			}			
+
+			// -- cargar lista de salas 
+			Collection<Sala> salas = new ArrayList<Sala>();
+			query = "select sala_id, nombre, capacidad, caracteristicas, costo, local_id, estado from sala where local_id=?";
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, idLocal);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()){
+				Sala sa = new Sala();
+				sa.setSalaId(rs.getInt(1));
+				sa.setNombre(rs.getString(2));
+				sa.setCapacidad(rs.getInt(3));
+				sa.setCaracteristicas(rs.getString(4));
+				sa.setCosto(rs.getDouble(5));
+				sa.setLocal(vo);
+				sa.setEstado(rs.getString(7));
+				salas.add(sa);
+			}
+			
+			vo.setServicios(servicios);
+			vo.setInstrumentos(instrumentos);
+			vo.setSalas(salas);
 			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
