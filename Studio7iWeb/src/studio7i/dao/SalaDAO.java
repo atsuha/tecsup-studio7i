@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Local;
 import studio7i.modelo.Sala;
 import studio7i.modelo.SalaInstrumento;
 import studio7i.modelo.SalaServicio;
@@ -200,4 +201,38 @@ public class SalaDAO extends BaseDAO {
 		return c;
 	}
 	
+	public Collection<Sala> buscarPorNombre(String nombre)
+			throws DAOExcepcion {
+		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where nombre like ? order by nombre";
+		Collection<Sala> lista = new ArrayList<Sala>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		LocalDAO local =new LocalDAO();
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + nombre + "%");
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Sala vo = new Sala();
+				vo.setSalaId(rs.getInt("sala_id"));
+				vo.setNombre(rs.getString("nombre"));
+				vo.setCapacidad(rs.getInt("capacidad"));
+				vo.setCaracteristicas(rs.getString("caracteristicas"));
+				vo.setCosto(rs.getDouble("costo"));
+				vo.setLocal(local.obtener(rs.getInt(6)));
+				lista.add(vo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
 }
