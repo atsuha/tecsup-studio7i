@@ -11,7 +11,7 @@ public class GestionLocal {
 	public Collection<Local> buscarPorNombre(String nombre)
 			throws DAOExcepcion {
 		LocalDAO dao = new LocalDAO();
-		return dao.listar();
+		return dao.buscarPorNombre(nombre);
 	}
 
 	public Local insertar(String nombre, String direccion)
