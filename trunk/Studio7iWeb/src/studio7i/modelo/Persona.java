@@ -1,5 +1,7 @@
 package studio7i.modelo;
 
+import java.util.Date;
+
 public class Persona {
 
 	private int persona_id;
@@ -9,7 +11,7 @@ public class Persona {
 	private String nombres;
 	private String paterno;
 	private String materno;
-	private String fechaNacimiento;
+	private Date fechaNacimiento;
 	private String email;
 	private String rol;
 	private String estado;
@@ -25,7 +27,7 @@ public class Persona {
 	}
 
 	public Persona(String usuario, String password, String dni, String nombres,
-			String paterno, String materno, String fechaNacimiento, String email) {
+			String paterno, String materno, Date fechaNacimiento, String email) {
 		super();
 		this.usuario = usuario;
 		this.password = password;
@@ -96,11 +98,11 @@ public class Persona {
 		this.materno = materno;
 	}
 
-	public String getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
