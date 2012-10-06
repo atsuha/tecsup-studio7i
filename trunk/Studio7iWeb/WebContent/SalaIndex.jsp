@@ -1,4 +1,4 @@
-    <%@include file="menu.jsp" %>
+<%@include file="menu.jsp" %>
     <head>
     <script src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
@@ -8,10 +8,10 @@
   	  
   	});
     
-    function editar_sala(){
+    function editar_sala(sala){
     	$('#mantenimiento').load('inscripcionSala.jsp');
     }
-    function eliminar_sala(){
+    function eliminar_sala(sala){
     	if(confirm("Esta seguro de eliminar la sala?")){
 			alert("Elimino");
 		}
@@ -22,18 +22,18 @@
     }
     </script>
     </head>
-	<div class="container">
-		<form>
-		
-		</form>
-		<div class="">
-			<form class="form-search">
+	<div class="container" style="height: 400px;">
+		<div class="" >
+			<form class="form-search" name="frmBuscar" action="SalaServlet" method="POST">
+				<input type="hidden" name="metodo" id="metodo" value="listar" />
 				<table>
 					<tr>
 						<td>Nombre de la Sala :</td>
 						<td><input type="text" /></td>
-						<td><button class="btn" type="button"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
-						<td align="right" width="60%"><button class="btn btn-primary" type="button" onclick="editar_sala()">Nuevo</button></td>
+						<td><button class="btn" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
+						<td align="right" width="60%">
+							<button class="btn btn-primary" type="button" onclick="editar_sala()">Nuevo</button>
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -53,37 +53,19 @@
 					<th>Capacidad</th>
 					<th>&nbsp;</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>Sala 1</td>
-					<td>500 personas</td>
-					<td>
-						<a href="javascript:;" onclick="editar_sala();" title="editar" alt="editar"><i class="icon-edit"></i></a>
-						<a href="javascript:;" onclick="eliminar_sala();" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
-					</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Sala 2</td>
-					<td>500 personas</td>
-					<td>
-						<a href="javascript:;" onclick="editar_sala();" title="editar" alt="editar"><i class="icon-edit"></i></a>
-						<a href="javascript:;" onclick="eliminar_sala();" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
-					</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Sala 3</td>
-					<td>500 personas</td>
-					<td>
-						<a href="javascript:;" onclick="editar_sala();" title="editar" alt="editar"><i class="icon-edit"></i></a>
-						<a href="javascript:;" onclick="eliminar_sala();" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
-					</td>
-				</tr>
+				<c:forEach var="sala" items="${LISTA}">
+				   <tr>
+						<td>1</td>
+						<td>${sala.nombre}</td>
+						<td>${sala.capacidad}</td>
+						<td>
+							<a href="javascript:;" onclick="editar_sala(${sala.salaId});" title="editar" alt="editar"><i class="icon-edit"></i></a>
+							<a href="javascript:;" onclick="eliminar_sala(${sala.salaId});" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
-		<div id="mantenimiento">
-		
-		</div>
+		<div id="mantenimiento"></div>
 	</div>
 <%@include file="footer.jsp" %>
