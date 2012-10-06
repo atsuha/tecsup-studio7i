@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import junit.framework.Assert;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.junit.Test;
 
 import studio7i.dao.InstrumentoDAO;
@@ -16,7 +17,8 @@ import studio7i.modelo.SalaServicio;
 import studio7i.negocio.GestionSala;
 
 public class GestionSalaTest {
-	@Test
+	
+	//@Test
 	public void insertarTest() {
 
 		GestionSala negocio = new GestionSala();
@@ -84,6 +86,23 @@ public class GestionSalaTest {
 			System.out.println(listado.size());
 
 			Assert.assertTrue(listado.size() > 0);
+			
+		} catch (Exception e) {
+			Assert.fail("Falló el listado: " + e.getMessage());
+		}
+	}
+	
+	@Test
+	public void buscarPorNombreTest(){
+		GestionSala negocio = new GestionSala();
+		try {
+			Collection<Sala> listado = negocio.buscarPorNombre("Beatles");
+
+			System.out.println(listado.size());
+			
+			for (Sala sala: listado) {
+				Assert.assertTrue(sala.getNombre().equals("Beatles"));
+			}
 			
 		} catch (Exception e) {
 			Assert.fail("Falló el listado: " + e.getMessage());
