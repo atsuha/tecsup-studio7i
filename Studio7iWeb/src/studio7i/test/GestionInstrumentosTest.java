@@ -14,17 +14,17 @@ import studio7i.negocio.GestionInstrumentos;
 
 public class GestionInstrumentosTest {
 	
-		//@Test
+		@Test
 		public void insertarTest() {
 
 			GestionInstrumentos negocio = new GestionInstrumentos();
 
 			try {
-				negocio.insertar("Piano", "Yamota","XZ45435","Para diestros",689,1);
+				negocio.insertar("Guitarra", "Yamota","XZ45435","Para diestros",689,1);
 
 				Instrumento nuevo = negocio.obtener(1);
 
-				Assert.assertEquals("Piano", nuevo.getTipo());
+				Assert.assertEquals("Guitarra", nuevo.getTipo());
 
 			} catch (DAOExcepcion e) {
 				Assert.fail("Fallo la inserción: " + e.getMessage());
@@ -71,7 +71,7 @@ public class GestionInstrumentosTest {
 		
 		
 		
-		@Test
+		//@Test
 		public void eliminarTest() {
 
 			GestionInstrumentos negocio = new GestionInstrumentos();
