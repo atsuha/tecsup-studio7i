@@ -3,6 +3,8 @@ package studio7i.modelo;
 public class SalaServicio {
 	private Servicio servicio;
 	private Sala sala;
+	
+	
 	public SalaServicio(Servicio servicio, Sala sala) {
 		super();
 		this.servicio = servicio;
