@@ -1,9 +1,11 @@
 package studio7i.modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 
 public class Reserva {
 
@@ -14,7 +16,7 @@ public class Reserva {
 	private int    		alquilado;
 	private Persona		opersona;
 	private Sala		osala;
-	private Collection <ReservaInstrumento> reservainstrumento;
+	private Collection <ReservaInstrumento> reservainstrumento = new ArrayList<ReservaInstrumento>();
 	
 	SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-d:HH:mm:ss");
 	

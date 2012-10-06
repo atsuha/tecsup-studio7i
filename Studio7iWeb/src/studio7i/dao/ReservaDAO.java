@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Instrumento;
 import studio7i.modelo.Reserva;
+import studio7i.modelo.ReservaInstrumento;
 import studio7i.util.ConexionBD;
 import studio7i.dao.BaseDAO;
 
@@ -22,49 +24,70 @@ public class ReservaDAO extends BaseDAO {
 		ResultSet rs 			= null;
 	
 		try {
-			con = ConexionBD.obtenerConexion();
-			stmt = con.prepareStatement(query);
+			con 	= ConexionBD.obtenerConexion();
+			stmt 	= con.prepareStatement(query);
 			stmt.setInt(1, vo.getHora_inicio());
 			stmt.setString(2,vo.getFechaString());
 			stmt.setInt(3, vo.getHora_fin());
 			stmt.setInt(4, vo.getAlquilado());
 			stmt.setInt(5,vo.getOpersona().getPersona_id());
-			stmt.setInt(6, vo.getOsala().getSalaId());
+			stmt.setInt(6, vo.getOsala().getSalaId());			
 			
-			
-			int i = stmt.executeUpdate();
-			if (i != 1) {
+			int i 	= stmt.executeUpdate();
+			if (i 	!= 1) {
 				throw new SQLException("No se pudo insertar");
 			}
 			// Obtener el ultimo id
-			int id = 0;
-			query = "select last_insert_id()";
-			stmt = con.prepareStatement(query);
-			rs = stmt.executeQuery();
+			int id 	= 0;
+			query 	= "select last_insert_id()";
+			stmt 	= con.prepareStatement(query);
+			rs 		= stmt.executeQuery();
 			if (rs.next()) {
-				id = rs.getInt(1);
+				id 	= rs.getInt(1);
 			}
 			vo.setReserva_id(id);
 			
+			for (ReservaInstrumento inst : vo.getReservainstrumento()){
+				query 	= "INSERT INTO reserva_instrumento(reserva_id,instrumento_id, estado) VALUES (?,?,?)";
+							
+				stmt 	= con.prepareStatement(query);
+				stmt.setInt(1, id);
+				stmt.setInt(2, inst.getOinstrumento().getInstrumento_id());
+				stmt.setString(4, inst.getEstado());
 
-		} catch (SQLException e) {
+				int u 	= stmt.executeUpdate();
+				if (u 	!= 1) {
+					throw new SQLException("No se pudo insertar la reserva del Instrumento");
+				}
+				
+			}
+			con.commit();	
+		} 		
+		catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				throw new DAOExcepcion(e.getMessage());
+			}
 			System.err.println(e.getMessage());
 			throw new DAOExcepcion(e.getMessage());
 		} finally {
-			
+			try {
+				con.setAutoCommit(true);
+			} catch (SQLException e) {
+				throw new DAOExcepcion(e.getMessage());
+			}
 			this.cerrarResultSet(rs);
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
 		return vo;	
-		
-		
-	
+			
 	}
 	
-
-
-
+		
+	
+	//Consulta
 	public Reserva obtener(int reserva_id) throws DAOExcepcion {
 		Reserva vo = new Reserva();
 		Connection con = null;

@@ -7,11 +7,13 @@ import studio7i.dao.ReservaDAO;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Persona;
 import studio7i.modelo.Reserva;
+import studio7i.modelo.ReservaInstrumento;
 import studio7i.modelo.Sala;
 
 public class GestionReserva {
 
-	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId, int persona_id)
+	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId, int persona_id, 
+								Collection <ReservaInstrumento> reservainstrumento)
 
 		throws DAOExcepcion {
 				
@@ -29,11 +31,16 @@ public class GestionReserva {
 		vo.setAlquilado(alquilado);
 		vo.setOpersona(p1);
 		vo.setOsala(s1);
+				
+		//Reserva_instrumento
+		
+		vo.setReservainstrumento(reservainstrumento);
+				
+		return dao.insertar(vo);
 		
 		
-		return dao.insertar(vo);				
 	}
-
+	
 	public Reserva obtener(int reserva_id) throws DAOExcepcion {
 		ReservaDAO dao = new ReservaDAO();
 		return dao.obtener(reserva_id);
