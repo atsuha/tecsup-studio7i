@@ -51,7 +51,14 @@ public class SalaServlet extends HttpServlet {
 					request.setAttribute("LISTA", resultado);
 					RequestDispatcher rd = request.getRequestDispatcher("SalaIndex.jsp");
 					rd.forward(request, response);
-				break;
+				case "buscarPorNombre":
+					String sala = request.getParameter("txtSala");
+					resultado = buscarPorNombre(sala);
+					//resultado = listar();
+					request.setAttribute("RESULTADO", resultado);
+					RequestDispatcher rd1 = request.getRequestDispatcher("buscarSalaEnsayo.jsp");
+					rd1.forward(request, response);
+					break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,4 +70,8 @@ public class SalaServlet extends HttpServlet {
 		return dao.lista();
 	}
 
+	public Collection<Sala> buscarPorNombre(String sala) throws DAOExcepcion{
+		GestionSala dao = new GestionSala();
+		return dao.buscarPorNombre(sala);
+	}
 }
