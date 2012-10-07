@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="menu.jsp" %>
     <div class="container">
 
       <h1>Consultar reservas</h1>
       <p>Consultar las reservas que los clientes realizan.</p>
-    <form name="f1" action="SalaServlet" method="post">
-    	<input type="hidden" name="metodo" value="buscarPorNombre" >
+    <form name="f1" action="reservaServlet" method="post">
+    	<input type="hidden" name="metodo" value="listar" >
     	<label>Fecha</label>
     	<input type="text" placeholder="Type something" name="txtFecha">
     	<label>Sala</label>
@@ -18,11 +19,11 @@
 				<td>Instrumentos</td>
 				<td>Servicios</td>
 			</tr>
-		      <c:forEach var="sala" items="${RESULTADO}">
+		      <c:forEach var="reserva" items="${RESULTADO}">
         <tr>
-          <td>${sala.nombre}</td>
-			<td>Local</td>
-			<td>Capacidad</td>
+          <td>${reserva.reserva_id}</td>
+			<td>Horario</td>
+			<td>Costo</td>
 			<td>Instrumentos</td>
 			<td>Servicios</td>
         </tr>
