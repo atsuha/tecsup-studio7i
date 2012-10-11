@@ -51,6 +51,8 @@ public class SalaDAO extends BaseDAO {
 			
 			SalaInstrumentoDAO daoi = new SalaInstrumentoDAO();
 			SalaServicioDAO daos = new SalaServicioDAO();
+			
+			
 			for(SalaServicio serv : vo.getListaServicios()){
 				SalaServicio sv = new SalaServicio();
 				sv.setSala(sala);

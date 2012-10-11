@@ -13,7 +13,7 @@ import studio7i.negocio.GestionPersona;
 
 public class GestionPersonaTest {
 
-	//  @Test
+	  @Test
 	public void insertarTest() {
 
 		GestionPersona negocio = new GestionPersona();
@@ -95,7 +95,7 @@ public class GestionPersonaTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void obtenerTest(){
 		
 		

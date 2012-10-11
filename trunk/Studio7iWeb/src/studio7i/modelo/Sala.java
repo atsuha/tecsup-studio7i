@@ -10,6 +10,7 @@ public class Sala {
 	private Local local;
 	private int salaId;
 	private String estado;
+	
 	private Collection<SalaInstrumento> listaInstrumentos;
 	private Collection<SalaServicio> listaServicios;
 	private Collection<Reserva> listadoReservas;

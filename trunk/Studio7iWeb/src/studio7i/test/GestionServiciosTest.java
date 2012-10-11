@@ -14,7 +14,7 @@ import studio7i.negocio.GestionServicios;
 
 public class GestionServiciosTest {
 
-	//@Test
+	@Test
 	public void insertarTest() {
 
 		GestionServicios negocio = new GestionServicios();
@@ -22,7 +22,7 @@ public class GestionServiciosTest {
 		try {
 			negocio.insertar("Alquiler de Instrumentos", 150, 1);
 
-			Servicio nuevo = negocio.obtener(2);
+			Servicio nuevo = negocio.obtener(1);
 
 			Assert.assertEquals("Alquiler de Instrumentos", nuevo.getDescripcion());
 
@@ -73,7 +73,7 @@ public class GestionServiciosTest {
 		 
 	 }
 	 
-	@Test
+	//@Test
 		public void eliminarTest() {
 
 			GestionServicios negocio = new GestionServicios();

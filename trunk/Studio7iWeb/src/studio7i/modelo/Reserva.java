@@ -1,9 +1,7 @@
 package studio7i.modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Collection;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 
@@ -16,24 +14,36 @@ public class Reserva {
 	private int    		alquilado;
 	private Persona		opersona;
 	private Sala		osala;
-	private Collection <ReservaInstrumento> reservainstrumento = new ArrayList<ReservaInstrumento>();
+	private Collection <ReservaInstrumento> listainstrumentos;
+	private Collection <ReservaServicio> listaservicios;
 	
-	SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-d:HH:mm:ss");
+	private SimpleDateFormat d = null;
 	
-	public Reserva(int reserva_id, int hora_inicio, int hora_fin, Date fecha,int alquilado, Persona opersona, Sala osala,
-			Collection<ReservaInstrumento> reservainstrumento) {
+	
+	
+	
+public Reserva(int reserva_id, int hora_inicio, int hora_fin, Date fecha,
+			int alquilado, Persona opersona, Sala osala/*,
+			Collection<ReservaInstrumento> listainstrumentos,
+			Collection<ReservaServicio> listaservicios*/, SimpleDateFormat d) {
 		super();
-		this.reserva_id 		= reserva_id;
-		this.hora_inicio 		= hora_inicio;
-		this.hora_fin 			= hora_fin;
-		this.fecha 				= fecha;
-		this.alquilado 			= alquilado;
-		this.opersona 			= opersona;
-		this.osala 				= osala;
-		this.reservainstrumento = reservainstrumento;
+		d=new SimpleDateFormat("yyyy-MM-d:HH:mm:ss");
+		this.reserva_id = reserva_id;
+		this.hora_inicio = hora_inicio;
+		this.hora_fin = hora_fin;
+		this.fecha = fecha;
+		this.alquilado = alquilado;
+		this.opersona = opersona;
+		this.osala = osala;/*
+		this.listainstrumentos = listainstrumentos;
+		this.listaservicios = listaservicios;*/
+		this.d = d;
 	}
-	
+
+
+
 	public Reserva(){
+		d=new SimpleDateFormat("yyyy-MM-d:HH:mm:ss");
 		
 	}
 
@@ -64,12 +74,13 @@ public class Reserva {
 	public Date getFecha() {
 		return fecha;
 	}
-
-	public String getFechaString() {
-		
-		return d.format(fecha);
-	}
 	
+
+    public String getFechaString() {
+            
+            return d.format(fecha);
+    }
+
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
@@ -98,16 +109,31 @@ public class Reserva {
 		this.osala = osala;
 	}
 
-	public Collection<ReservaInstrumento> getReservainstrumento() {
-		return reservainstrumento;
+//	public SimpleDateFormat getD() {
+//		return d;
+//	}
+//
+//	public void setD(SimpleDateFormat d) {
+//		this.d = d;
+//	}
+
+	public Collection<ReservaInstrumento> getListainstrumentos() {
+		return listainstrumentos;
 	}
 
-	public void setReservainstrumento(
-			Collection<ReservaInstrumento> reservainstrumento) {
-		this.reservainstrumento = reservainstrumento;
+	public void setListainstrumentos(
+			Collection<ReservaInstrumento> listainstrumentos) {
+		this.listainstrumentos = listainstrumentos;
 	}
-	
-	
-	
-	
+
+	public Collection<ReservaServicio> getListaservicios() {
+		return listaservicios;
+	}
+
+	public void setListaservicios(Collection<ReservaServicio> listaservicios) {
+		this.listaservicios = listaservicios;
+	}
+
+
+
 }

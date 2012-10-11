@@ -1,7 +1,5 @@
 package studio7i.modelo;
 
-import java.util.Collection;
-
 public class Instrumento {
 	private int instrumento_id;
 	private String tipo;
@@ -16,14 +14,7 @@ public class Instrumento {
 	
 
 	public Instrumento() {
-
 	}
-
-
-
-
-	
-
 
 
 

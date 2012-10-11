@@ -13,7 +13,7 @@ import studio7i.negocio.GestionLocal;
 
 public class GestionLocalTest {
 	
-	//  @Test
+	  @Test
 	public void insertarTest() {
 
 		GestionLocal negocio = new GestionLocal();
@@ -93,7 +93,7 @@ public class GestionLocalTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void obtenerTest(){
 		
 		

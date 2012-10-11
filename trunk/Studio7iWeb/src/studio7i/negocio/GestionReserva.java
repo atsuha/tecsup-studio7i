@@ -8,35 +8,46 @@ import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Persona;
 import studio7i.modelo.Reserva;
 import studio7i.modelo.ReservaInstrumento;
+import studio7i.modelo.ReservaServicio;
 import studio7i.modelo.Sala;
 
 public class GestionReserva {
 
-	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId, int persona_id, 
-								Collection <ReservaInstrumento> reservainstrumento)
-
-		throws DAOExcepcion {
+	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId,
+							int persona_id, Collection <ReservaInstrumento> listainstrumentos,
+							Collection <ReservaServicio> listaservicios)throws DAOExcepcion {
 				
 		ReservaDAO dao = new ReservaDAO();
+		
 		Sala s1	= new Sala();
-		Reserva vo = new Reserva();
 		s1.setSalaId(salaId);
 		
 		Persona p1 = new Persona();
 		p1.setPersona_id(persona_id);
 		
+		Reserva vo = new Reserva();
 		vo.setHora_inicio(hora_inicio);
 		vo.setHora_fin(hora_fin);
 		vo.setFecha(fecha);
 		vo.setAlquilado(alquilado);
 		vo.setOpersona(p1);
-		vo.setOsala(s1);
-				
-		//Reserva_instrumento
+		vo.setOsala(s1);	
 		
-		vo.setReservainstrumento(reservainstrumento);
-				
-		return dao.insertar(vo);
+		//Reserva_instrumento y Reserva_Servicio
+		
+		vo.setListainstrumentos(listainstrumentos);
+		vo.setListaservicios(listaservicios);
+//		Instrumento i1 = new Instrumento();
+//		i1.setInstrumento_id(1);
+//					
+//		Servicio serv1 = new Servicio();
+//		serv1.setServicio_id(1);
+//		return dao.insertar(vo);
+		try {
+			return dao.insertar(vo);
+		} catch (Exception e) {
+			throw e;
+		}
 		
 		
 	}
