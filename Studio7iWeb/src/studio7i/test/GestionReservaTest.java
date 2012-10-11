@@ -8,10 +8,12 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import studio7i.dao.InstrumentoDAO;
+import studio7i.dao.ReservaDAO;
 import studio7i.excepcion.DAOExcepcion;
-import studio7i.modelo.Instrumento;
 import studio7i.modelo.Reserva;
 import studio7i.modelo.ReservaInstrumento;
+import studio7i.modelo.ReservaServicio;
 import studio7i.negocio.GestionReserva;
 
 public class GestionReservaTest {
@@ -21,26 +23,26 @@ public class GestionReservaTest {
 	@Test
 	public void insertarTest() {
 
-		
-		ReservaInstrumento ri = new ReservaInstrumento();
-		Reserva r1 		=	new Reserva();
-		Instrumento i1	=	new Instrumento();
-		r1.setReserva_id(1);
-		i1.setInstrumento_id(1);
-	
-		ri.setOreserva(r1);
-		ri.setOinstrumento(i1);
-		
-		Collection <ReservaInstrumento> reservainstrumento = new ArrayList<ReservaInstrumento>();
-				
-		reservainstrumento.add(ri);
-
 		GestionReserva negocio = new GestionReserva();
+		
 		try {
-			//int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId, int persona_id
-			negocio.insertar(6,fecha,12,1,1,1,reservainstrumento);
-			Reserva nuevo = negocio.obtener(2);
-			Assert.assertEquals(10, nuevo.getHora_inicio());
+			//Para Collection de Reserva_Instrumento
+			ReservaInstrumento i1 = new ReservaInstrumento();
+			InstrumentoDAO daoi = new InstrumentoDAO();
+			i1.setOinstrumento(daoi.obtener(2));
+			Collection<ReservaInstrumento> detInstrumento = new ArrayList<ReservaInstrumento>();
+			detInstrumento.add(i1);
+			
+		//Para Collection de Reserva_Servicio
+			ReservaServicio s1 = new ReservaServicio();
+			ReservaDAO daos = new ReservaDAO();
+			s1.setOreserva(daos.obtener(1));
+			Collection<ReservaServicio> detServicio = new ArrayList<ReservaServicio>();
+			detServicio.add(s1);
+
+			negocio.insertar(11,fecha,12,1,1,1,detInstrumento,detServicio);
+//			Reserva nuevo = negocio.obtener(2);
+//			Assert.assertEquals(10, nuevo.getHora_inicio());
 
 		} catch (DAOExcepcion e) {
 			Assert.fail("Fallo la inserción: " + e.getMessage());
