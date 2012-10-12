@@ -1,5 +1,5 @@
 <div class="container">
-	<form action="CrearEventoServlet" method = "Post">
+	<form action="EventoServlet?cmd=crear" method = "Post">
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre del evento </label></td>
