@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.ReservaServicio;
+import studio7i.modelo.Servicio;
 
 public class ReservaServicioDAO extends BaseDAO{
 	
@@ -18,8 +19,9 @@ public class ReservaServicioDAO extends BaseDAO{
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
+			ServicioDAO sd = new ServicioDAO();
 			stmt = con.prepareStatement(query);
-			stmt.setInt(1, vo.getOservicio().getServicio_id());
+			stmt.setInt(1, 1);//vo.getOservicio().getServicio_id());
 			stmt.setInt(2, vo.getOreserva().getReserva_id());
 									
 			int i = stmt.executeUpdate();

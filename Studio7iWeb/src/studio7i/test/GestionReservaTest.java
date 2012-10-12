@@ -40,7 +40,7 @@ public class GestionReservaTest {
 			Collection<ReservaServicio> detServicio = new ArrayList<ReservaServicio>();
 			detServicio.add(s1);
 
-			negocio.insertar(11,fecha,12,1,1,1,detInstrumento,detServicio);
+			negocio.insertar(11,fecha,12,1,1,1,detServicio,detInstrumento);
 //			Reserva nuevo = negocio.obtener(2);
 //			Assert.assertEquals(10, nuevo.getHora_inicio());
 

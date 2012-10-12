@@ -14,8 +14,8 @@ import studio7i.modelo.Sala;
 public class GestionReserva {
 
 	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId,
-							int persona_id, Collection <ReservaInstrumento> listainstrumentos,
-							Collection <ReservaServicio> listaservicios)throws DAOExcepcion {
+							int persona_id,Collection <ReservaServicio> listaservicios,
+							Collection <ReservaInstrumento> listainstrumentos)throws DAOExcepcion {
 				
 		ReservaDAO dao = new ReservaDAO();
 		
@@ -35,8 +35,10 @@ public class GestionReserva {
 		
 		//Reserva_instrumento y Reserva_Servicio
 		
-		vo.setListainstrumentos(listainstrumentos);
 		vo.setListaservicios(listaservicios);
+		vo.setListainstrumentos(listainstrumentos);
+		
+		
 //		Instrumento i1 = new Instrumento();
 //		i1.setInstrumento_id(1);
 //					
