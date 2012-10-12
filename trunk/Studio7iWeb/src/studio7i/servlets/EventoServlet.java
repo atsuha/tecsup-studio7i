@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Evento;
@@ -35,37 +36,71 @@ public class EventoServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String metodo = request.getParameter("metodo");
-			PrintWriter out = response.getWriter();
-			Collection<Evento> resultado = new ArrayList<Evento>();
-			try{
-				switch(metodo){
-				case "listar":
-					resultado = listar();
-					request.setAttribute("lista", resultado);
-					RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
-					rd.forward(request, response);
-				case "buscarPorNombre":
-					String evento = request.getParameter("txtEvento");
-					resultado = buscarPorNombre(evento);
-					request.setAttribute("resultado", resultado);
-					RequestDispatcher rd1 = request.getRequestDispatcher("buscarEvento.jsp");
-					rd1.forward(request, response);
-					break;
-				}
-			}catch (Exception e){
+			
+		HttpSession miSesion = request.getSession(true);
+		String cmd = request.getParameter("cmd");
+		
+		//crear evento
+		if (cmd.equals("crear")){
+			String nomb = request.getParameter("txtNombre");
+			String desc = request.getParameter("txtDescripcion");
+			String lug = request.getParameter("txtLugar");
+			String fech = request.getParameter("txtFecha");
+			String prem = request.getParameter("txtPremios");
+			
+			try {
+				insertar(nomb, desc, lug, fech, prem);
+			} catch (DAOExcepcion e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
+			rd.forward(request,response);
+		}
+		
+		if (cmd.equals("buscarNombre")){
+			String nombre = request.getParameter("txtEvento");
+			
+			try{
+			Collection<Evento> resultado =	buscarNombre(nombre);
+			request.setAttribute("resultado", resultado);
+			}catch (DAOExcepcion e){
+				e.printStackTrace();
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
+			rd.forward(request, response);
+		}
+		
+		if (cmd.equals("listar")){
+			try{
+				Collection<Evento> resultado = listar();
+				request.setAttribute("lista", resultado);
+			}catch (DAOExcepcion e){
+				e.printStackTrace();
+			}
+		}
+		
+			
+		}
+	
+	public void insertar(String nombre, String descripcion, String lugar, String fecha, String premios)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		gestion.insertar(nombre, descripcion, lugar, fecha, premios);
 	}
+	
+	public Collection<Evento> buscarNombre(String nombre)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		return gestion.buscarPorNombre(nombre);
+	}
+	
 	
 	public Collection<Evento> listar() throws DAOExcepcion{
 		GestionEvento gestion = new GestionEvento();
 		return gestion.listar();
 	}
 	
-	public Collection<Evento> buscarPorNombre(String evento) throws DAOExcepcion{
-		GestionEvento gestion = new GestionEvento();
-		return gestion.buscarPorNombre(evento);
-	}
+		
+		
 
 }
