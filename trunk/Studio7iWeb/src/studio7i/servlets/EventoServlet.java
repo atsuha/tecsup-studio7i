@@ -81,6 +81,16 @@ public class EventoServlet extends HttpServlet {
 			}
 		}
 		
+		/*
+		if (cmd.equals("eliminar")){
+			try{
+				eliminar();
+			}catch (DAOExcepcion e){
+				e.printStackTrace();
+			}
+		}
+		*/
+		
 			
 		}
 	
@@ -100,7 +110,10 @@ public class EventoServlet extends HttpServlet {
 		return gestion.listar();
 	}
 	
-		
+	public void eliminar(int evento_id)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		gestion.eliminar(evento_id);
+	}
 		
 
 }
