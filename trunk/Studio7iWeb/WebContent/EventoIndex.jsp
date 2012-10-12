@@ -56,7 +56,7 @@
 					<th>Premios</th>
 					<th>&nbsp;</th>
 				</tr>
-				<c:forEach var="evento" items="${lista}">
+				<c:forEach var="evento" items="${sessionScope.lista}">
 				   <tr>
 						<td>1</td>
 						<td>${evento.nombre}</td>
