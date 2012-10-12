@@ -48,8 +48,6 @@ public class ReservaDAO extends BaseDAO {
 			vo.setReserva_id(id);
 			
 			//Creando el objeto Reserva
-			Reserva oreserva 			= new Reserva();
-			
 			ReservaDAO reserva1 		= new ReservaDAO();
 			
 			ReservaInstrumentoDAO daoi 	= new ReservaInstrumentoDAO();
@@ -69,7 +67,6 @@ public class ReservaDAO extends BaseDAO {
 			for (ReservaServicio s1 : vo.getListaservicios()){
 				ReservaServicio rs1	= new ReservaServicio();
 				rs1.setOreserva(reserva1.obtener(id));
-				//rs1.setOreserva(reserva1.obtener(id));
 				rs1.setOservicio(s1.getOservicio());
 				daos.insertar(rs1, con);
 				
@@ -93,7 +90,7 @@ public class ReservaDAO extends BaseDAO {
 			}
 			this.cerrarResultSet(rs);
 			this.cerrarStatement(stmt);
-			this.cerrarConexion(con);
+			//this.cerrarConexion(con);
 		}
 		return vo;	
 			

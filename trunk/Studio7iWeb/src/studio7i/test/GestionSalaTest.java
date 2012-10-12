@@ -39,13 +39,13 @@ public class GestionSalaTest {
 			SalaInstrumento ss1 = new SalaInstrumento();
 			
 			InstrumentoDAO daoi = new InstrumentoDAO();
-			ss1.setInstrumento(daoi.obtener(1));
+			ss1.setInstrumento(daoi.obtener(2));
 			
 			Collection<SalaInstrumento> detalles2 = new ArrayList<SalaInstrumento>();
 			detalles2.add(ss1);
 			
 			
-			negocio.insertar("sala de pruebas 48",10," caracteristicas caracteristicas ",150,1,detalles,detalles2);
+			negocio.insertar("sala de pruebas 3",10," caracteristicas caracteristicas ",150,1,detalles,detalles2);
 			
 			//Sala nuevo = negocio.obtener(48);
 			//Assert.assertEquals("sala de pruebas 48", nuevo.getNombre());
