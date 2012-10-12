@@ -78,8 +78,10 @@
 						<td><c:out value="${eventos.fecha}"></c:out></td>
 						<td><c:out value="${eventos.premios}"></c:out></td>
 						<td>
-							<a href="javascript:;" onclick="editar_evento(${evento.evento_id});" title="editar" alt="editar"><i class="icon-edit"></i></a>
-							<a href="javascript:;" onclick="eliminar_evento(${evento.evento_id});" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
+							<a href="javascript:;" onclick="editar_evento(${evento.evento_id});" title="editar"><i class="icon-edit"></i></a>
+							<form action = "EventoServlet?cmd=eliminar" method = "POST">
+							<a href="javascript:;" onclick="eliminar_evento(${evento.evento_id});" title="eliminar"><i class="icon-remove"></i></a>
+							</form>
 						</td>
 					</tr>
 			</c:forEach>
