@@ -27,7 +27,7 @@ public class GestionEventoTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void eliminarTest(){
 		GestionEvento evento = new GestionEvento();
 		try{
@@ -42,14 +42,14 @@ public class GestionEventoTest {
 	}
 
 	
-	//@Test
+	@Test
 	public void actualizarTest(){
 		GestionEvento evento = new GestionEvento();
 		try{
-			evento.actualizar(1, "", "", "", "", "");
+			evento.actualizar(2,"acdc", "tributo a los grandes", "surco", "2012-12-12", "no hay premios");
 			
-			Evento nuevo = evento.buscar(1);
-			Assert.assertEquals("",nuevo.getNombre());
+			Evento nuevo = evento.buscar(2);
+			Assert.assertEquals("acdc",nuevo.getNombre());
 		} catch(DAOExcepcion e){
 			Assert.fail("Falló la actualización: " + e.getMessage());
 		}
