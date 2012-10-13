@@ -1,3 +1,4 @@
+ <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@include file="menu.jsp" %>
     <head>
     <script src="js/jquery-1.7.2.min.js"></script>
