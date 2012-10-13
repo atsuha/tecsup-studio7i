@@ -46,33 +46,29 @@ public class EventoServlet extends HttpServlet {
 				rd =  request.getRequestDispatcher("editarEvento.jsp");
 				rd.forward(request, response);
 				break;
-		/*	
-			
+		
 			case "eliminar":
-			PrintWriter out1 = response.getWriter();
-			String evento_id1 = request.getParameter("evento");
-			try{
-				eliminar(Integer.parseInt(evento_id1));
-			}catch (DAOExcepcion e){
-				e.printStackTrace();
-			}rd = request.getRequestDispatcher("EventoIndex.jsp");
-			rd.forward(request,response);
-			}
-		}
-	
-		*/	
+				eliminar(Integer.parseInt(evento_id));
+				rd =  request.getRequestDispatcher("EventoIndex.jsp");
+				rd.forward(request, response);
 			}
 
-	}catch (DAOExcepcion e) {
+		}catch (DAOExcepcion e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}
+		}
 	
 	}
 	
 	public Evento buscar(int evento_id)throws DAOExcepcion{
 		GestionEvento gestion = new GestionEvento();
 		return gestion.buscar(evento_id);
+	}
+	
+	public void eliminar(int evento_id)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		gestion.eliminar(evento_id);
+		
 	}
 
 
@@ -191,11 +187,7 @@ public class EventoServlet extends HttpServlet {
 	}
 	
 	
-	public void eliminar(int evento_id)throws DAOExcepcion{
-		GestionEvento gestion = new GestionEvento();
-		gestion.eliminar(evento_id);
-		
-	}
+
 	
 
 }
