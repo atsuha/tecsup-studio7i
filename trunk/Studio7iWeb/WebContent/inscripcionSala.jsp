@@ -28,6 +28,10 @@
 					<textarea rows="3" name="caracteristicas"></textarea>
 				</td>
 			</tr>
+			<tr>
+				<td>Costo :</td>
+				<td><input class="input-mini" type="text" name="costo" placeholder="0"/></td>
+			</tr>
 		</table>
 		<div class="form-actions">
 		  <button type="submit" class="btn btn-primary">Guardar</button>
