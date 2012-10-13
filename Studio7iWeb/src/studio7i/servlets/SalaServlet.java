@@ -43,13 +43,15 @@ public class SalaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String metodo = request.getParameter("metodo");
+		String sala_id = request.getParameter("sala");
 		PrintWriter out = response.getWriter();
 		GestionLocal dao = new GestionLocal();
+		GestionSala daos = new GestionSala();
 		RequestDispatcher rd;
+		Collection<Sala> resultado = new ArrayList<Sala>();
 		try {
 			switch (metodo) {
 				case "editar":
-					String sala_id = request.getParameter("sala");
 					Sala sala = obtener(Integer.parseInt(sala_id));
 					request.setAttribute("SALA", sala);
 					request.setAttribute("LOCAL", dao.listar());
@@ -59,6 +61,19 @@ public class SalaServlet extends HttpServlet {
 				case "nuevo":
 					request.setAttribute("LOCAL", dao.listar());
 					rd = request.getRequestDispatcher("inscripcionSala.jsp");
+					rd.forward(request, response);
+					break;
+				case "eliminar":
+					daos.eliminar(Integer.parseInt(sala_id));
+					/*resultado = listar();
+					request.setAttribute("LISTA", resultado);
+					rd = request.getRequestDispatcher("SalaIndex.jsp");
+					rd.forward(request, response);*/
+					break;
+				case "listar":
+					resultado = listar();
+					request.setAttribute("LISTA", resultado);
+					rd = request.getRequestDispatcher("SalaIndex.jsp");
 					rd.forward(request, response);
 					break;
 			}
@@ -75,15 +90,20 @@ public class SalaServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Collection<Sala> resultado = new ArrayList<Sala>();
 		
+		String sala_id = request.getParameter("sala_id");
+		System.out.println(sala_id);
 		String nombre = request.getParameter("nombre");
 		String capacidad = request.getParameter("capacidad");
 		String local = request.getParameter("local");
-		//String local = "1";
 		String caracteristicas = request.getParameter("caracteristicas");
 		String costo = request.getParameter("costo");
 		
 		Collection<SalaServicio> listaServicios = new ArrayList<SalaServicio>();
 		Collection<SalaInstrumento> listaInstrumentos = new ArrayList<SalaInstrumento>();
+		
+		GestionSala dao = new GestionSala();
+		
+		RequestDispatcher rd1;
 		
 		try {
 			switch (metodo) {
@@ -95,14 +115,22 @@ public class SalaServlet extends HttpServlet {
 				case "buscarPorNombre":
 					String sala = request.getParameter("txtSala");
 					resultado = buscarPorNombre(sala);
-					request.setAttribute("RESULTADO", resultado);
-					RequestDispatcher rd1 = request.getRequestDispatcher("buscarSalaEnsayo.jsp");
+					request.setAttribute("LISTA", resultado);
+					request.setAttribute("TEXTO", sala);
+					rd1 = request.getRequestDispatcher("SalaIndex.jsp");
 					rd1.forward(request, response);
 					break;
 				case "grabar":
-					GestionSala dao = new GestionSala();
-					System.out.println(nombre+" "+caracteristicas+" "+local+" "+costo);
-					dao.insertar2(nombre, caracteristicas, Integer.parseInt(local));
+					dao.insertar2(nombre, Integer.parseInt(capacidad), caracteristicas, Double.parseDouble(costo), Integer.parseInt(local));
+					rd1 = request.getRequestDispatcher("SalaIndex.jsp");
+					rd1.forward(request, response);
+					break;
+				case "editar":
+					dao.acutalizar(Integer.parseInt(sala_id), nombre, Integer.parseInt(capacidad), caracteristicas, Double.parseDouble(costo), Integer.parseInt(local),"1");
+					resultado = listar();
+					request.setAttribute("LISTA", resultado);
+					rd = request.getRequestDispatcher("SalaIndex.jsp");
+					rd.forward(request, response);
 					break;
 				
 			}
