@@ -11,7 +11,7 @@
   	});
     
     function editar_evento(evento){
-    	$('#mantenimiento').load('inscripcionEvento.jsp');
+    	$('#mantenimiento').load('editarEvento.jsp');
     }
     function eliminar_evento(evento){
     	if(confirm("Esta seguro de eliminar el Evento?")){
