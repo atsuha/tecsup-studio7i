@@ -11,14 +11,18 @@
   	});
     
     function editar_evento(evento){
-    	$('#mantenimiento').load('editarEvento.jsp');
+    	$('#mantenimiento').load('EventoServlet?metodo=editar&evento=' + evento);
     }
+    
+    
     function eliminar_evento(evento){
     	if(confirm("Esta seguro de eliminar el Evento?")){
+    		$('#mantenimiento').load('EventoServlet?metodo=eliminar&evento=' + evento);
 			alert("Elimino");
 		}
 		return false;
     }
+    
     function cancelar(){
     	$('#mantenimiento').html('');
     }
@@ -27,7 +31,7 @@
 	<div class="container" style="height: 400px;">
 		<div class="" >
 			<form class="form-search" name="frmBuscar" action="EventoServlet" method="POST">
-				<input type = "hidden" name = "cmd" value = "buscarNombre" />
+				<input type = "hidden" name = "metodo" value = "buscarNombre" />
 
 				<table>
 					<tr>
@@ -74,8 +78,8 @@
 						<td><c:out value ="${eventos.fecha}"></c:out></td>
 						<td><c:out value ="${eventos.premios}"></c:out></td>
 						<td>
-							<a href="javascript:;" onclick="editar_evento(${evento.evento_id});" title="editar"><i class="icon-edit"></i></a>
-							<a href="javascript:;" onclick="eliminar_evento(${evento.evento_id});" title="eliminar"><i class="icon-remove"></i></a>
+							<a href="javascript:;" onclick="editar_evento(${EVENTO.evento_id});" title="editar"><i class="icon-edit"></i></a>
+							<a href="javascript:;" onclick="eliminar_evento(${EVENTO.evento_id});" title="eliminar"><i class="icon-remove"></i></a>
 						</td>
 					</tr>
 						</c:forEach>
