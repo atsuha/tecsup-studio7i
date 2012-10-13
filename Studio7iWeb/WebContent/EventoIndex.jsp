@@ -65,6 +65,7 @@
 				</tr>
 					<c:forEach varStatus="i" var="eventos" items="${requestScope.lista}">
 				   <tr>
+				   
 						<td>${i.count}</td>
 						<td><c:out value="${eventos.nombre}"></c:out></td>
 						<td><c:out value="${eventos.descripcion}"></c:out></td>
