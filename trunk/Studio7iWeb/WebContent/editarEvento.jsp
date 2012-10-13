@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="container">
 	<form action="EventoServlet" method = "post">
-		<input type = "hidden" name = "cmd" value = "editar" />
+		<input type = "hidden" name = "cmd" value = "grabar" />
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre del evento </label></td>
