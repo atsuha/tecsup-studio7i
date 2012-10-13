@@ -35,6 +35,27 @@ public class GestionSala {
 			throw e;
 		}
 	}
+	
+	public Sala insertar2(String nombre, int capacidad, String caracteristicas,
+			double costo, int local) throws DAOExcepcion {
+
+		SalaDAO dao = new SalaDAO();
+
+		Sala vo = new Sala();
+		vo.setNombre(nombre);
+		vo.setCapacidad(capacidad);
+		vo.setCaracteristicas(caracteristicas);
+		vo.setCosto(costo);
+
+		LocalDAO daol = new LocalDAO();
+
+		vo.setLocal(daol.obtener(local));
+		try {
+			return dao.insertar(vo);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 
 	public Sala obtener(int sala_id) throws DAOExcepcion {
 		SalaDAO dao = new SalaDAO();
