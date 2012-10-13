@@ -18,7 +18,7 @@
 	            <ul class="dropdown-menu">
 	              <li><a href="SalaServlet?metodo=listar">Incribir sala</a></li>
 	              <li><a href="#">Registra instrumentos</a></li>
-	              <li><a href="#">Armar Sala</a></li>
+	              <li><a href="SalaServlet?metodo=listar2">Armar Sala</a></li>
 	              <li><a href="#">Registra servicios</a></li>
 	              <li><a href="#">consultar Reservas</a></li>
 	              <li><a href="#">Eventos musicales</a></li>
