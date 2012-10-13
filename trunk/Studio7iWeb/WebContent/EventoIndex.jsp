@@ -31,12 +31,17 @@
 			<input type = "hidden" name = "cmd" value = "listar" />
 					<table>
 						<tr>
-							<td align="right" width="60%">
+							<td align="left" >
 							<button class="btn btn-primary" type="button" onclick="editar_evento()">Nuevo</button>
 							</td>
-							<td align = "right" width = "60%">
+							<td align = "left" >
 							<button type = "submit"  class="btn btn-primary" >Listar Eventos </button>
 							</td>
+						</tr>
+						<tr>
+						<td colspan="2">
+						<a href = "BuscarEvento.jsp">Buscar Evento por Nombre</a>
+						</td>
 						</tr>
 					</table>	
 	
