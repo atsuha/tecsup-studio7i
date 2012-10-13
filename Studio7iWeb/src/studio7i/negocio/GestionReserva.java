@@ -3,6 +3,7 @@ package studio7i.negocio;
 import java.util.Date;
 import java.util.Collection;
 
+
 import studio7i.dao.ReservaDAO;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Persona;
@@ -12,6 +13,12 @@ import studio7i.modelo.ReservaServicio;
 import studio7i.modelo.Sala;
 
 public class GestionReserva {
+	
+	public Collection<Reserva> buscarPorFechaYSala(String fecha, int sala_id)
+			throws DAOExcepcion {
+		ReservaDAO dao = new ReservaDAO();
+		return dao.buscarPorFechaYSala(fecha, sala_id);
+	}
 
 	public Reserva insertar(int hora_inicio, Date fecha, int hora_fin, int alquilado, int salaId,
 							int persona_id,Collection <ReservaServicio> listaservicios,
