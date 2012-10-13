@@ -19,8 +19,26 @@ import studio7i.negocio.GestionReserva;
 public class GestionReservaTest {
 	
 	Date fecha= new Date();
-
+	
 	@Test
+	public void buscarPorFechaYSalaTest() {
+
+		GestionReserva negocio = new GestionReserva();
+
+		 try{
+			 Collection<Reserva> busqueda=negocio.buscarPorFechaYSala("2012-10-11", 1);
+			 System.out.println(busqueda.size());
+			 Assert.assertTrue(busqueda.size()> 0); 
+		 }
+		catch (DAOExcepcion e){
+			
+		Assert.fail("Falló la búsqueda: " + e.getMessage());
+				
+		}
+	}
+
+
+	//@Test
 	public void insertarTest() {
 
 		GestionReserva negocio = new GestionReserva();
