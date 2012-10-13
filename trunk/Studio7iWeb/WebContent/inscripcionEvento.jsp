@@ -1,6 +1,6 @@
 <div class="container">
 	<form action="EventoServlet" method = "Post">
-		<input type = "hidden" name = "cmd" value = "crear" />
+		<input type = "hidden" name = "metodo" value = "crear" />
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre del evento </label></td>
