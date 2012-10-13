@@ -27,7 +27,7 @@ public class GestionEventoTest {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void eliminarTest(){
 		GestionEvento evento = new GestionEvento();
 		try{
@@ -71,7 +71,7 @@ public class GestionEventoTest {
 		}
 	}
 
-	@Test
+	//@Test
 	public void buscarNombre(){
 		GestionEvento negocio = new GestionEvento();
 		try{
