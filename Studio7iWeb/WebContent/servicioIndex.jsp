@@ -10,7 +10,7 @@
   	});
     
     function editar_servicio(servicio){
-    	$('#mantenimiento').load('inscripcionServicio.jsp?servicio=' + servicio );
+    	$('#mantenimiento').load('ServicioServlet?metodo=editar&servicio=' + servicio );
     }
     function eliminar_servicio(sevicio){
     	if(confirm("Esta seguro de eliminar el servicio?")){
@@ -27,11 +27,11 @@
 	<div class="container" style="height: 400px;">
 		<div class="" >
 			<form class="form-search" name="frmServicios" action="ServicioServlet" method="POST">
-				<input type="hidden" name="metodo" id="metodo" value="listar" />
+				<input type="hidden" name="metodo" id="metodo" value="filtrar" />
 				<table>
 					<tr>
 						<td>Servicio :</td>
-						<td><input type="text" name="descripcion" id="descripcion" /></td>
+						<td><input type="text" name="buscar" id="buscar" /></td>
 						<td><button class="btn" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
 						<td align="right" width="60%">
 							<button class="btn btn-primary" type="button" onclick="editar_servicio()">Nuevo</button>
