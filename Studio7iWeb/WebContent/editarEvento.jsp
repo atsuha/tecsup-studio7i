@@ -1,20 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="container">
+051151451456119
 	<form action="EventoServlet" method = "post">
-		<input type = "hidden" name = "cmd" value = "grabar" />
+		<input type = "hidden" name = "metodo" value = "grabar" />
+		<input type = "hidden" name = "evento" value = "${EVENTO.evento_id}" />
+		
+		
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre del evento </label></td>
 				<td><input class="input-xlarge" type="text" placeholder="nombre" name = "txtNombre" value="${EVENTO.nombre}"/></td>
 			</tr>
 			<tr>
-				<td>Descripción del evento :</td>
+				<td>Descripción del evento2525289849899 :</td>
 				<td>
 					<input type ="text" name ="txtDescripcion"  value="${EVENTO.descripcion}" />
 				</td>
 			</tr>
 			<tr>
-				<td>Donde se efectuara el evento:</td>
+				<td>Donde se efectuara el event5116651146o:</td>
 				<td>
 					<input type="text" name ="txtLugar"  value="${EVENTO.lugar}"/>
 				</td>
