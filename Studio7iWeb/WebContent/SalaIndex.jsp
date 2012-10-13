@@ -9,7 +9,10 @@
   	});
     
     function editar_sala(sala){
-    	$('#mantenimiento').load('inscripcionSala.jsp');
+    	$('#mantenimiento').load('SalaServlet?metodo=editar&sala=' + sala);
+    }
+    function nueva_sala(){
+    	$('#mantenimiento').load('SalaServlet?metodo=nuevo');
     }
     function eliminar_sala(sala){
     	if(confirm("Esta seguro de eliminar la sala?")){
@@ -22,7 +25,7 @@
     }
     </script>
     </head>
-	<div class="container" style="height: 400px;">
+	<div class="container" style="height: 700px;">
 		<div class="" >
 			<form class="form-search" name="frmBuscar" action="SalaServlet" method="POST">
 				<input type="hidden" name="metodo" id="metodo" value="listar" />
@@ -32,7 +35,7 @@
 						<td><input type="text" /></td>
 						<td><button class="btn" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
 						<td align="right" width="60%">
-							<button class="btn btn-primary" type="button" onclick="editar_sala()">Nuevo</button>
+							<button class="btn btn-primary" type="button" onclick="nueva_sala()">Nuevo</button>
 						</td>
 					</tr>
 				</table>
