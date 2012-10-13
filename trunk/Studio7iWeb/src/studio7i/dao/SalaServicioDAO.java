@@ -12,12 +12,13 @@ import studio7i.util.ConexionBD;
 public class SalaServicioDAO extends BaseDAO {
 	
 	// a este metodo se le pasa el con para poder insertar en detalle
-	public SalaServicio insertar(SalaServicio vo,Connection con) throws DAOExcepcion{
-		
+	public SalaServicio insertar(SalaServicio vo) throws DAOExcepcion{
+		Connection con = null;
 		String query = "insert into sala_servicio (servicio_id,sala_id) values (?,?)";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
+			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, vo.getServicio().getServicio_id());
 			stmt.setInt(2,vo.getSala().getSalaId());
@@ -41,6 +42,7 @@ public class SalaServicioDAO extends BaseDAO {
 		} finally {
 			this.cerrarResultSet(rs);
 			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
 		}
 		return vo;
 	}
