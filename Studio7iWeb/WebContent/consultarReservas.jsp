@@ -32,7 +32,7 @@
 			</tr>
 		      <c:forEach var="reserva" items="${RESULTADO}">
         <tr>
-          <td>${reserva.reserva_id}</td>
+          <td>${reserva.opersona.nombres}</td>
 			<td>Horario</td>
 			<td>Costo</td>
 			<td>Instrumentos</td>
