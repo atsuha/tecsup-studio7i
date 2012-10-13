@@ -179,7 +179,7 @@ public class EventoDAO extends BaseDAO{
 	
 	//buscar por nombre
 	public Collection<Evento> buscarPorNombre(String nombre) throws DAOExcepcion{
-		String query = "select evento_id, nombre, descripcion, lugar, fecha, premios from evento where nombre like = ?";
+		String query = "select evento_id, nombre, descripcion, lugar, fecha, premios from evento where nombre like ?";
 		Collection<Evento> lista = new ArrayList<Evento>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -187,7 +187,7 @@ public class EventoDAO extends BaseDAO{
 		try{
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
-			stmt.setString(1, "%" + nombre +  "%");
+			stmt.setString(1,  "%" + nombre +  "%");
 			rs = stmt.executeQuery();
 			while (rs.next()){
 
