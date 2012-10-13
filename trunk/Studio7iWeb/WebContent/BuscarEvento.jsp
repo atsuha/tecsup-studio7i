@@ -35,6 +35,9 @@
 						<td><input type="text" name = "txtEvento"/></td>
 						<td><button class="btn" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
 					</tr>
+					<tr>
+					<td><a href = "EventoIndex.jsp">Regresar</a></td>
+					</tr>
 				</table>
 			
 
