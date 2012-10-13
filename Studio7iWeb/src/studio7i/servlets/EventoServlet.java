@@ -75,7 +75,7 @@ public class EventoServlet extends HttpServlet {
 			
 			try {
 				resultado = buscarNombre(nombre);
-				System.out.print(resultado.size());
+				System.out.print(nombre);
 				request.setAttribute("resultado", resultado);
 			} catch (DAOExcepcion e) {
 				// TODO Auto-generated catch block
@@ -106,8 +106,20 @@ public class EventoServlet extends HttpServlet {
 			rd.forward(request,response);
 		}
 		
-
 		
+		
+		
+		
+		/*
+		if (cmd.equals("editar")){
+			String nomb = request.getParameter("txtNombre");
+			String desc = request.getParameter("txtDescripcion");
+			String lug = request.getParameter("txtLugar");
+			String fech = request.getParameter("txtFecha");
+			String prem = request.getParameter("txtPremios");
+		}
+
+		*/
 			
 		}
 	
@@ -131,6 +143,13 @@ public class EventoServlet extends HttpServlet {
 		GestionEvento gestion = new GestionEvento();
 		gestion.eliminar(evento_id);
 	}
+	
+	/*
+	public Evento actualizar(String nombre, String descripcion, String lugar, String fecha, String premios) throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		return gestion.actualizar(nombre, descripcion, lugar, fecha, premios);
 		
+	}
+	*/	
 
 }
