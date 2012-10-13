@@ -1,4 +1,5 @@
- <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+ <%@page import="java.io.PrintWriter"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@include file="menu.jsp" %>
     <head>
     <script src="js/jquery-1.7.2.min.js"></script>
@@ -35,6 +36,8 @@
     </script>
     </head>
 	<div class="container" style="height: 700px;">
+		<h1>Inscribir Salas</h1>
+		<p>Consultar las salas por el nombre.</p>
 		<div class="" >
 			<form class="form-search" name="frmBuscar" action="SalaServlet" method="POST">
 				<input type="hidden" name="metodo" id="metodo" value="buscarPorNombre" />
@@ -60,14 +63,14 @@
 		<div>
 			<table class="table table-hover">
 				<tr>
-					<th>#</th>
+					<th>Codigo</th>
 					<th>Nombre</th>
 					<th>Capacidad</th>
 					<th>&nbsp;</th>
 				</tr>
 				<c:forEach var="sala" items="${LISTA}">
 				   <tr>
-						<td>1</td>
+						<td>${sala.salaId}</td>
 						<td>${sala.nombre}</td>
 						<td>${sala.capacidad}</td>
 						<td>
