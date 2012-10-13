@@ -16,7 +16,15 @@
     }
     function eliminar_sala(sala){
     	if(confirm("Esta seguro de eliminar la sala?")){
-			alert("Elimino");
+			$.ajax({
+			       type: "GET",
+			       url: "SalaServlet",
+			       data: "metodo=eliminar&sala=" + sala+"",
+			       success: function(){
+			      		alert( "Se elimino su el registro");
+			      		//location.href="";
+			     }
+			});
 		}
 		return false;
     }
@@ -28,11 +36,11 @@
 	<div class="container" style="height: 700px;">
 		<div class="" >
 			<form class="form-search" name="frmBuscar" action="SalaServlet" method="POST">
-				<input type="hidden" name="metodo" id="metodo" value="listar" />
+				<input type="hidden" name="metodo" id="metodo" value="buscarPorNombre" />
 				<table>
 					<tr>
 						<td>Nombre de la Sala :</td>
-						<td><input type="text" /></td>
+						<td><input type="text" name="txtSala" value="${TEXTO }" /></td>
 						<td><button class="btn" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
 						<td align="right" width="60%">
 							<button class="btn btn-primary" type="button" onclick="nueva_sala()">Nuevo</button>
