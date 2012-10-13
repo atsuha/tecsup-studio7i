@@ -16,7 +16,7 @@
               <li class="dropdown active">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administracion <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
-	              <li><a href="#">Incribir sala</a></li>
+	              <li><a href="SalaServlet?metodo=listar">Incribir sala</a></li>
 	              <li><a href="#">Registra instrumentos</a></li>
 	              <li><a href="#">Armar Sala</a></li>
 	              <li><a href="#">Registra servicios</a></li>
