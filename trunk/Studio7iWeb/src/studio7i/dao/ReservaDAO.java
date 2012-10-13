@@ -23,8 +23,8 @@ public class ReservaDAO extends BaseDAO {
 		String query = "select r.reserva_id, r.sala_id, r.hora_inicio, r.fecha, r.hora_fin, r.alquilado, p.nombres, p.paterno, p.materno, s.costo " +
 						"from reserva r " +
 						"left join persona p on (r.persona_id = p.persona_id) " +
-						"left join sala s on (r.sala_id = s.sala_id)" +
-						"where r.fecha = ? and r.sala_id = ";
+						"left join sala s on (r.sala_id = s.sala_id) " +
+						"where r.fecha = ? and r.sala_id = ?";
 		Collection<Reserva> lista = new ArrayList<Reserva>();
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -33,7 +33,7 @@ public class ReservaDAO extends BaseDAO {
 			con = ConexionBD.obtenerConexion();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, fecha);
-			//stmt.setInt(1, sala_id);
+			stmt.setInt(2, sala_id);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				 Reserva vo =new Reserva();
