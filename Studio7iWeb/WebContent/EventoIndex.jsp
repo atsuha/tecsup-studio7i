@@ -5,8 +5,7 @@
     <script src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-    	
-    	
+    	    	
   	  
   	});
     
@@ -34,7 +33,7 @@
 		<div class="" >
 
 			<form action="EventoServlet" method="POST">
-			<input type = "hidden" name = "cmd" value = "listar" />
+			<input type = "hidden" name = "metodo" value = "listar" />
 					<table>
 						<tr>
 							<td align="left" >
