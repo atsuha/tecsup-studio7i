@@ -46,44 +46,45 @@ public class EventoServlet extends HttpServlet {
 				rd =  request.getRequestDispatcher("editarEvento.jsp");
 				rd.forward(request, response);
 				break;
-				/*
-			case "eliminar":
-				Evento evento2 = eliminar(Integer.parseInt(evento_id));
-				rd =  request.getRequestDispatcher("EventoIndex.jsp");
-				rd.forward(request,response);
-				*/
+		/*	
 			
+			case "eliminar":
+			PrintWriter out1 = response.getWriter();
+			String evento_id1 = request.getParameter("evento");
+			try{
+				eliminar(Integer.parseInt(evento_id1));
+			}catch (DAOExcepcion e){
+				e.printStackTrace();
+			}rd = request.getRequestDispatcher("EventoIndex.jsp");
+			rd.forward(request,response);
 			}
-		}catch (DAOExcepcion e){
-			e.printStackTrace();
 		}
-		
+	
+		*/	
+			}
+
+	}catch (DAOExcepcion e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 	
+	}
 	
 	public Evento buscar(int evento_id)throws DAOExcepcion{
 		GestionEvento gestion = new GestionEvento();
 		return gestion.buscar(evento_id);
 	}
 
-	
-	public void eliminar(int evento_id)throws DAOExcepcion{
-		GestionEvento gestion = new GestionEvento();
-		gestion.eliminar(evento_id);
-		
-	}
-	
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		System.out.print("Evento Servlet" + request.getParameter("cmd"));
+		System.out.print("Evento Servlet" + request.getParameter("metodo"));
+		String metodo = request.getParameter("metodo");
 		
-
-		String cmd = request.getParameter("cmd");
-
 		
 		//crear evento
-		if (cmd.equals("crear")){
+		if (metodo.equals("crear")){
 			String nomb = request.getParameter("txtNombre");
 			String desc = request.getParameter("txtDescripcion");
 			String lug = request.getParameter("txtLugar");
@@ -105,7 +106,7 @@ public class EventoServlet extends HttpServlet {
 		
 		
 		
-		if (cmd.equals("buscarNombre")){
+		if (metodo.equals("buscarNombre")){
 			
 			Collection<Evento> resultado = new ArrayList<Evento>();
 			String nombre = request.getParameter("txtEvento");
@@ -127,7 +128,7 @@ public class EventoServlet extends HttpServlet {
 		
 		
 		
-		if (cmd.equals("listar")){
+		if (metodo.equals("listar")){
 			try{
 				Collection<Evento> resultado = listar();
 				System.out.print(resultado.size());				
@@ -141,6 +142,27 @@ public class EventoServlet extends HttpServlet {
 		}
 		
 		
+		if (metodo.equals("grabar")){
+		
+			PrintWriter out = response.getWriter();
+			String evento_id = request.getParameter("evento");
+			System.out.print(evento_id);
+
+			String nomb = request.getParameter("txtNombre");
+			String desc = request.getParameter("txtDescripcion");
+			String lug = request.getParameter("txtLugar");
+			String fech = request.getParameter("txtFecha");
+			String prem = request.getParameter("txtPremios");
+		try{
+			actualizar(Integer.parseInt(evento_id),nomb, desc, lug, fech, prem);
+				}catch (DAOExcepcion e){
+					e.printStackTrace();
+				}
+		RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
+		rd.forward(request,response);
+		
+		}
+
 		
 		
 	
@@ -160,6 +182,19 @@ public class EventoServlet extends HttpServlet {
 	public Collection<Evento> listar() throws DAOExcepcion{
 		GestionEvento gestion = new GestionEvento();
 		return gestion.listar();
+	}
+	
+	public Evento actualizar(int evento_id,String nombre, String descripcion, String lugar, String fecha, String premios)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		return gestion.actualizar(evento_id, nombre, descripcion, lugar, fecha, premios);
+		
+	}
+	
+	
+	public void eliminar(int evento_id)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		gestion.eliminar(evento_id);
+		
 	}
 	
 
