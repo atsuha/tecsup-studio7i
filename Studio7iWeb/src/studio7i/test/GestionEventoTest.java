@@ -13,7 +13,7 @@ import studio7i.negocio.GestionEvento;
 
 public class GestionEventoTest {
 
-	@Test 
+	//@Test 
 	public void InsertarTest(){
 		GestionEvento evento = new GestionEvento();
 		
@@ -71,6 +71,19 @@ public class GestionEventoTest {
 		}
 	}
 
-	
+	@Test
+	public void buscarNombre(){
+		GestionEvento negocio = new GestionEvento();
+		try{
+			Collection<Evento> listado = negocio.buscarPorNombre("acdc");
+			
+			System.out.println(listado.size());
+						
+			Assert.assertTrue(listado.size()>0);
+			
+		}catch (DAOExcepcion e){
+			Assert.fail("Fallo el listado: " + e.getMessage());
+		}
+	}
 	
 }
