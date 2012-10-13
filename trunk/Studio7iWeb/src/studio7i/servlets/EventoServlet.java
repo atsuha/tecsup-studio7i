@@ -2,6 +2,7 @@ package studio7i.servlets;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Evento;
+import studio7i.modelo.Sala;
 import studio7i.negocio.GestionEvento;
 
 /**
@@ -34,14 +36,14 @@ public class EventoServlet extends HttpServlet {
 	}
 
 
-	@SuppressWarnings("unused")
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		System.out.print("Evento Servlet" + request.getParameter("cmd"));
 		
-		HttpSession miSesion = request.getSession(true);
+
 		String cmd = request.getParameter("cmd");
-		Evento evento = new Evento();
+
 		
 		//crear evento
 		if (cmd.equals("crear")){
@@ -61,31 +63,32 @@ public class EventoServlet extends HttpServlet {
 			rd.forward(request,response);
 		}
 		
+		
+		
+		
+		
+		
 		if (cmd.equals("buscarNombre")){
 			
+			Collection<Evento> resultado = new ArrayList<Evento>();
 			String nombre = request.getParameter("txtEvento");
-			GestionEvento gestion = new GestionEvento();
-			String mensaje;
-			Collection<Evento> resultado = null;
 			
-			
-			try{
-				if(nombre.equals(evento.getNombre()) || nombre == evento.getNombre()){
-					resultado = gestion.buscarPorNombre(nombre);
-				}			
-			
-			request.setAttribute("resultado", resultado);
-			
-			if (evento == null){
-				mensaje = "No existe el evento de nombre " + nombre;
-			}
-			}catch (DAOExcepcion e){
+			try {
+				resultado = buscarNombre(nombre);
+				System.out.print(resultado.size());
+				request.setAttribute("resultado", resultado);
+			} catch (DAOExcepcion e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("BuscarEvento.jsp");
 			rd.forward(request, response);
 		}
+				
+		
+		
 		
 		if (cmd.equals("listar")){
 			try{
@@ -103,15 +106,7 @@ public class EventoServlet extends HttpServlet {
 			rd.forward(request,response);
 		}
 		
-		/*
-		if (cmd.equals("eliminar")){
-			try{
-				eliminar();
-			}catch (DAOExcepcion e){
-				e.printStackTrace();
-			}
-		}
-		*/
+
 		
 			
 		}
@@ -121,7 +116,10 @@ public class EventoServlet extends HttpServlet {
 		gestion.insertar(nombre, descripcion, lugar, fecha, premios);
 	}
 	
-
+	public Collection<Evento> buscarNombre(String evento) throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		return gestion.buscarPorNombre(evento);
+	}
 	
 	
 	public Collection<Evento> listar() throws DAOExcepcion{
