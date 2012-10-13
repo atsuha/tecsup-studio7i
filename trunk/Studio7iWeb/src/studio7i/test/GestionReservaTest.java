@@ -26,7 +26,7 @@ public class GestionReservaTest {
 		GestionReserva negocio = new GestionReserva();
 
 		 try{
-			 Collection<Reserva> busqueda=negocio.buscarPorFechaYSala("2012-10-11", 1);
+			 Collection<Reserva> busqueda=negocio.buscarPorFechaYSala("2012-10-11", 2);
 			 System.out.println(busqueda.size());
 			 Assert.assertTrue(busqueda.size()> 0); 
 		 }
