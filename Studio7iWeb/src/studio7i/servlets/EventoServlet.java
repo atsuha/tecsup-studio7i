@@ -1,6 +1,7 @@
 package studio7i.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,9 +34,45 @@ public class EventoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String metodo = request.getParameter("metodo");
+		PrintWriter out = response.getWriter();
+		String evento_id = request.getParameter("evento");
+		RequestDispatcher rd;
+		try{
+			switch(metodo){
+			case "editar":		
+				Evento evento1 = buscar(Integer.parseInt(evento_id));
+				request.setAttribute("EVENTO", evento1);
+				rd =  request.getRequestDispatcher("editarEvento.jsp");
+				rd.forward(request, response);
+				break;
+				/*
+			case "eliminar":
+				Evento evento2 = eliminar(Integer.parseInt(evento_id));
+				rd =  request.getRequestDispatcher("EventoIndex.jsp");
+				rd.forward(request,response);
+				*/
+			
+			}
+		}catch (DAOExcepcion e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public Evento buscar(int evento_id)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		return gestion.buscar(evento_id);
 	}
 
-
+	
+	public void eliminar(int evento_id)throws DAOExcepcion{
+		GestionEvento gestion = new GestionEvento();
+		gestion.eliminar(evento_id);
+		
+	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -93,13 +130,10 @@ public class EventoServlet extends HttpServlet {
 		if (cmd.equals("listar")){
 			try{
 				Collection<Evento> resultado = listar();
-				System.out.print(resultado.size());
-				
-				request.setAttribute("lista", resultado);
-				
-	
-				
+				System.out.print(resultado.size());				
+				request.setAttribute("lista", resultado);				
 			}catch (DAOExcepcion e){
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
@@ -109,18 +143,7 @@ public class EventoServlet extends HttpServlet {
 		
 		
 		
-		
-		/*
-		if (cmd.equals("editar")){
-			String nomb = request.getParameter("txtNombre");
-			String desc = request.getParameter("txtDescripcion");
-			String lug = request.getParameter("txtLugar");
-			String fech = request.getParameter("txtFecha");
-			String prem = request.getParameter("txtPremios");
-		}
-
-		*/
-			
+	
 		}
 	
 	public void insertar(String nombre, String descripcion, String lugar, String fecha, String premios)throws DAOExcepcion{
@@ -139,17 +162,5 @@ public class EventoServlet extends HttpServlet {
 		return gestion.listar();
 	}
 	
-	public void eliminar(int evento_id)throws DAOExcepcion{
-		GestionEvento gestion = new GestionEvento();
-		gestion.eliminar(evento_id);
-	}
-	
-	/*
-	public Evento actualizar(String nombre, String descripcion, String lugar, String fecha, String premios) throws DAOExcepcion{
-		GestionEvento gestion = new GestionEvento();
-		return gestion.actualizar(nombre, descripcion, lugar, fecha, premios);
-		
-	}
-	*/	
 
 }
