@@ -14,9 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Reserva;
-import studio7i.modelo.Sala;
 import studio7i.negocio.GestionReserva;
-import studio7i.negocio.GestionSala;
+
 
 /**
  * Servlet implementation class reservaServlet
@@ -55,6 +54,15 @@ public class reservaServlet extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("consultarReservas.jsp");
 					rd.forward(request, response);
 					break;
+				case "buscarPorFechaYSala":
+					String fecha = request.getParameter("txtFecha");
+					int sala_id = Integer.parseInt(request.getParameter ("txtSala"));
+					resultado = buscarPorFechaYSala(fecha, sala_id);
+					request.setAttribute("RESULTADO", resultado);
+					RequestDispatcher rd1 = request.getRequestDispatcher("consultarReservas.jsp");
+					rd1.forward(request, response);
+					break;					
+					
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,6 +72,12 @@ public class reservaServlet extends HttpServlet {
 	public Collection<Reserva> listar() throws DAOExcepcion{
 		GestionReserva dao = new GestionReserva();
 		return dao.listar();
+	}
+	
+	public Collection<Reserva> buscarPorFechaYSala(String fecha, int sala_id) throws DAOExcepcion{
+		GestionReserva dao = new GestionReserva();
+		return dao.buscarPorFechaYSala(fecha, sala_id);
+		//return dao.buscarPorFechaYSala("2012-10-11", 2);
 	}
 
 }
