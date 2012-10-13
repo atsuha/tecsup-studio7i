@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import studio7i.dao.ServicioDAO;
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Sala;
 import studio7i.modelo.Servicio;
+import studio7i.negocio.GestionLocal;
+import studio7i.negocio.GestionSala;
 import studio7i.negocio.GestionServicios;
 
 /**
@@ -39,6 +42,29 @@ public class ServicioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+				String metodo = request.getParameter("metodo");				
+				GestionLocal dao = new GestionLocal();
+				GestionServicios negocio = new GestionServicios();
+				RequestDispatcher rd;
+				try {
+					switch (metodo) {
+						case "editar":
+							String servicio_id = request.getParameter("servicio");
+							Servicio servicio = negocio.obtener(Integer.parseInt(servicio_id));
+							request.setAttribute("SERVICIO", servicio);
+							request.setAttribute("LOCAL", dao.listar());
+							rd = request.getRequestDispatcher("editarServicio.jsp");
+							rd.forward(request, response);
+							break;
+						case "nuevo":
+							request.setAttribute("LOCAL", dao.listar());
+							rd = request.getRequestDispatcher("inscripcionServicio.jsp");
+							rd.forward(request, response);
+							break;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	}
 
 	/**
@@ -48,20 +74,38 @@ public class ServicioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String metodo = request.getParameter("metodo");
-		String servicio =  request.getParameter("servicio");
 		
-
+		
+		String servicio_id = request.getParameter("txtServicio");
+		String descripcion = request.getParameter("txtDescripcion");		
+		String local_id = request.getParameter("cboLocal");
+		String precio_hora = request.getParameter("txtPrecioHora");
+		GestionServicios negocio = new GestionServicios();
+		RequestDispatcher rd = request
+				.getRequestDispatcher("servicioIndex.jsp");
+		
 		try {
 			switch (metodo) {
 			case "listar":
-				String descripcion = request.getParameter("descripcion");
-				GestionServicios negocio = new GestionServicios();
+												
+			
 				request.setAttribute("LISTA",
-						negocio.buscarPorDescripcion(descripcion));
-
-				RequestDispatcher rd = request
-						.getRequestDispatcher("servicioIndex.jsp");
+						negocio.listar());
+				
 				rd.forward(request, response);
+				break;			
+			case "filtrar":
+				String buscar = request.getParameter("buscar");								
+				
+				request.setAttribute("LISTA",
+						negocio.buscarPorDescripcion(buscar));
+				
+				rd.forward(request, response);
+				break;
+			case "editar":
+				GestionServicios dao=new GestionServicios();						
+				System.out.println(servicio_id + "" + descripcion+" "+local_id+" "+precio_hora);
+				dao.actualizar(Integer.parseInt(servicio_id), descripcion, Double.parseDouble(precio_hora),Integer.parseInt( local_id));				
 				break;
 			}
 			
