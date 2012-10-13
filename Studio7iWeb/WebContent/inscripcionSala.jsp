@@ -1,27 +1,31 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="container">
-	<form action="">
+
+	<form action="SalaServlet" method="POST">
+		<input type="hidden" name="metodo" value="grabar" />
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre de la sala </label></td>
-				<td><input class="input-xlarge" type="text" placeholder="nombre"/></td>
+				<td><input class="input-xlarge" type="text" placeholder="nombre" name="nombre" /></td>
 			</tr>
 			<tr>
 				<td>Seleccione Local :</td>
 				<td>
-					<select  class="span3">
-						<option>::Seleccione::</option>
-						<option>Local 1</option>
+					<select  class="span3" name="local">
+						<c:forEach var="local" items="${LOCAL}">
+							<option value="${local.local_id}">${local.nombre}</option>
+						</c:forEach>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>Capacidad Maxima :</td>
-				<td><input class="input-mini" type="text" placeholder="0"/></td>
+				<td><input class="input-mini" type="text" name="capacidad" placeholder="0"/></td>
 			</tr>
 			<tr>
 				<td>Caracteristicas :</td>
 				<td>
-					<textarea rows="3"></textarea>
+					<textarea rows="3" name="caracteristicas"></textarea>
 				</td>
 			</tr>
 		</table>
