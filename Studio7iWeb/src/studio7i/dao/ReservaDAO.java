@@ -1,7 +1,6 @@
 package studio7i.dao;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +8,65 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Persona;
 import studio7i.modelo.Reserva;
 import studio7i.modelo.ReservaInstrumento;
 import studio7i.modelo.ReservaServicio;
+import studio7i.modelo.Sala;
 import studio7i.util.ConexionBD;
 import studio7i.dao.BaseDAO;
 
 public class ReservaDAO extends BaseDAO {
+
+	public Collection<Reserva> buscarPorFechaYSala(String fecha, int sala_id)
+			throws DAOExcepcion {
+		String query = "select r.reserva_id, r.sala_id, r.hora_inicio, r.fecha, r.hora_fin, r.alquilado, p.nombres, p.paterno, p.materno, s.costo " +
+						"from reserva r " +
+						"left join persona p on (r.persona_id = p.persona_id) " +
+						"left join sala s on (r.sala_id = s.sala_id)" +
+						"where r.fecha = ? and r.sala_id = ";
+		Collection<Reserva> lista = new ArrayList<Reserva>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, fecha);
+			//stmt.setInt(1, sala_id);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				 Reserva vo =new Reserva();
+				 vo.setReserva_id(rs.getInt("reserva_id"));
+				 vo.setHora_inicio(rs.getInt("hora_inicio"));
+				 vo.setHora_fin(rs.getInt("hora_fin"));
+				 vo.setAlquilado(rs.getInt("alquilado"));
+				 
+				 Persona pe = new Persona();
+				 pe.setNombres(rs.getString("nombres"));
+				 pe.setPaterno(rs.getString("paterno"));
+				 pe.setMaterno(rs.getString("materno"));
+				 vo.setOpersona(pe);
+
+				 Sala sa = new Sala();
+				 sa.setSalaId(rs.getInt("sala_id"));
+				 sa.setCosto(rs.getDouble("costo"));
+				 vo.setOsala(sa);
+				 
+				 lista.add(vo);
+				 
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
 	
 	public Reserva insertar(Reserva vo)throws DAOExcepcion { 
 		String query 			= "insert into Reserva(hora_inicio, fecha, hora_fin, alquilado,persona_id,sala_id) values (?,?,?,?,?,?)";
@@ -95,9 +146,7 @@ public class ReservaDAO extends BaseDAO {
 		return vo;	
 			
 	}
-	
-		
-	
+
 	//Consulta
 	public Reserva obtener(int reserva_id) throws DAOExcepcion {
 		Reserva vo = new Reserva();
