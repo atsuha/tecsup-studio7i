@@ -35,7 +35,7 @@
 							<button class="btn btn-primary" type="button" onclick="editar_evento()">Nuevo</button>
 							</td>
 							<td align = "right" width = "60%">
-							<button type = "submit"  class="btn btn-primary" >Listar Eventos" </button>
+							<button type = "submit"  class="btn btn-primary" >Listar Eventos </button>
 							</td>
 						</tr>
 					</table>	
