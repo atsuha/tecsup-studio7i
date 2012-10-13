@@ -3,15 +3,16 @@
 
 	<form action="SalaServlet" method="POST">
 		<input type="hidden" name="metodo" value="editar" />
+		<input type="hidden" name="sala_id" value="${SALA.salaId}" />
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre de la sala </label></td>
-				<td><input class="input-xlarge" type="text" placeholder="nombre" value="${SALA.nombre}"/></td>
+				<td><input class="input-xlarge" type="text" name="nombre" placeholder="nombre" value="${SALA.nombre}"/></td>
 			</tr>
 			<tr>
 				<td>Seleccione Local :</td>
 				<td>
-					<select  class="span3">
+					<select  class="span3" name="local">
 						<c:forEach var="local" items="${LOCAL}">
 							<c:if test="${local.local_id==SALA.local.local_id}">
 								<option selected="selected" value="${local.local_id}">${local.nombre}</option>
@@ -25,13 +26,17 @@
 			</tr>
 			<tr>
 				<td>Capacidad Maxima :</td>
-				<td><input class="input-mini" type="text" placeholder="0" value="${SALA.capacidad}"/></td>
+				<td><input class="input-mini" type="text" placeholder="0" name="capacidad" value="${SALA.capacidad}"/></td>
 			</tr>
 			<tr>
 				<td>Caracteristicas :</td>
 				<td>
-					<textarea rows="3">${SALA.caracteristicas}</textarea>
+					<textarea rows="3" name="caracteristicas">${SALA.caracteristicas}</textarea>
 				</td>
+			</tr>
+			<tr>
+				<td>Costo :</td>
+				<td><input class="input-mini" type="text" name="costo" placeholder="0" value="${SALA.costo}"/></td>
 			</tr>
 		</table>
 		<div class="form-actions">
