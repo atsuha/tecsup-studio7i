@@ -46,7 +46,7 @@ public class SalaDAO extends BaseDAO {
 			vo.setSalaId(id);
 			
 			// creando el objeto sala
-			Sala sala = new Sala();
+			/*Sala sala = new Sala();
 			sala.setSalaId(id);
 			
 			SalaInstrumentoDAO daoi = new SalaInstrumentoDAO();
@@ -65,7 +65,7 @@ public class SalaDAO extends BaseDAO {
 				si.setInstrumento(ins.getInstrumento());
 				si.setSala(sala);
 				daoi.insertar(si,con);
-			}
+			}*/
 			con.commit();
 		}catch (SQLException e) {
 			try {
@@ -178,7 +178,7 @@ public class SalaDAO extends BaseDAO {
 		LocalDAO local =new LocalDAO();
 		try {
 			con = ConexionBD.obtenerConexion();
-			String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala order by nombre";
+			String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where estado!=0 order by nombre";
 			stmt = con.prepareStatement(query);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -205,7 +205,7 @@ public class SalaDAO extends BaseDAO {
 	
 	public Collection<Sala> buscarPorNombre(String nombre)
 			throws DAOExcepcion {
-		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where nombre like ? order by nombre";
+		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where nombre like ? and estado!=0 order by nombre";
 		Collection<Sala> lista = new ArrayList<Sala>();
 		Connection con = null;
 		PreparedStatement stmt = null;
