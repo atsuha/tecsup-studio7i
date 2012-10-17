@@ -33,8 +33,8 @@
 		      <c:forEach var="reserva" items="${RESULTADO}">
         <tr>
           <td>${reserva.opersona.nombres}</td>
-			<td>Horario</td>
-			<td>Costo</td>
+			<td>${reserva.hora_inicio} - ${reserva.hora_fin}</td>
+			<td>${reserva.osala.costo}</td>
 			<td>Instrumentos</td>
 			<td>Servicios</td>
         </tr>
