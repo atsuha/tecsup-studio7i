@@ -29,7 +29,7 @@
 	            <ul class="dropdown-menu">
 	              <li><a href="#">Registrar Cliente</a></li>
 	              <li><a href="#">Buscar Sala</a></li>
-	              <li><a href="#">Inscripcion a Eventos</a></li>
+	              <li><a href="InscripcionIndex.jsp">Inscripcion a Eventos</a></li>
 	            </ul>
 	          </li>
             </ul>
