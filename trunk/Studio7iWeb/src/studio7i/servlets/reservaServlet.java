@@ -59,6 +59,8 @@ public class reservaServlet extends HttpServlet {
 					int sala_id = Integer.parseInt(request.getParameter ("txtSala"));
 					resultado = buscarPorFechaYSala(fecha, sala_id);
 					request.setAttribute("RESULTADO", resultado);
+					request.setAttribute("fecha", fecha);
+					request.setAttribute("sala", sala_id);
 					RequestDispatcher rd1 = request.getRequestDispatcher("consultarReservas.jsp");
 					rd1.forward(request, response);
 					break;					
