@@ -21,6 +21,13 @@
 
     	<label>Sala</label>
     	<input type="text" placeholder="Type something" name="txtSala">
+    	<label>Sala lista</label>
+					<select  class="span3" name="local">
+						<c:forEach var="sala" items="${LISTA}">
+								<option value="${sala.salaId}">${sala.nombre}</option>
+						</c:forEach>
+					</select>    	
+    	
     	<button type="submit" class="btn">Buscar</button>
     	<table class="table table-condensed">
     		<tr>
