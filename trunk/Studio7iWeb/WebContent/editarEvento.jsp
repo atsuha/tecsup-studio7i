@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="container">
-051151451456119
+
 	<form action="EventoServlet" method = "post">
 		<input type = "hidden" name = "metodo" value = "grabar" />
 		<input type = "hidden" name = "evento" value = "${EVENTO.evento_id}" />
