@@ -12,13 +12,13 @@
 				<td><input class="input-xlarge" type="text" placeholder="nombre" name = "txtNombre" value="${EVENTO.nombre}"/></td>
 			</tr>
 			<tr>
-				<td>Descripción del evento2525289849899 :</td>
+				<td>Descripción del evento:</td>
 				<td>
 					<input type ="text" name ="txtDescripcion"  value="${EVENTO.descripcion}" />
 				</td>
 			</tr>
 			<tr>
-				<td>Donde se efectuara el event5116651146o:</td>
+				<td>Donde se efectuara el evento:</td>
 				<td>
 					<input type="text" name ="txtLugar"  value="${EVENTO.lugar}"/>
 				</td>
