@@ -98,4 +98,8 @@
 	</div>
 	
 	<br><br><br><br>
+	<table>
+	<tr align="right">
 	<%@include file="footer.jsp" %>
+	</tr>
+	</table>
