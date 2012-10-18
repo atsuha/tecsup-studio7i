@@ -46,7 +46,6 @@ public class reservaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String metodo = request.getParameter("metodo");
-		PrintWriter out = response.getWriter();
 		Collection<Reserva> resultado = new ArrayList<Reserva>();
 		Collection<Sala> salas = new ArrayList<Sala>();
 		try {
