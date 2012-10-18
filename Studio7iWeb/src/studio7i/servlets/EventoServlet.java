@@ -117,12 +117,12 @@ public class EventoServlet extends HttpServlet {
 			}
 			
 			
-			RequestDispatcher rd = request.getRequestDispatcher("BuscarEvento.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
 			rd.forward(request, response);
 		}
 				
 		
-		
+		/*no la voy a usar debido a que usare buscarNombre
 		
 		if (metodo.equals("listar")){
 			try{
@@ -136,7 +136,7 @@ public class EventoServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
 			rd.forward(request,response);
 		}
-		
+		*/
 		
 		if (metodo.equals("grabar")){
 		
@@ -174,11 +174,13 @@ public class EventoServlet extends HttpServlet {
 		return gestion.buscarPorNombre(evento);
 	}
 	
-	
+	/*estoy usando el metodo buscarNombre, asi que listar queda comentado
+	 * 
 	public Collection<Evento> listar() throws DAOExcepcion{
 		GestionEvento gestion = new GestionEvento();
 		return gestion.listar();
 	}
+	*/
 	
 	public Evento actualizar(int evento_id,String nombre, String descripcion, String lugar, String fecha, String premios)throws DAOExcepcion{
 		GestionEvento gestion = new GestionEvento();
