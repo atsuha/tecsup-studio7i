@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Reserva;
+import studio7i.modelo.Sala;
 import studio7i.negocio.GestionReserva;
+import studio7i.negocio.GestionSala;
 
 
 /**
@@ -46,6 +48,7 @@ public class reservaServlet extends HttpServlet {
 		String metodo = request.getParameter("metodo");
 		PrintWriter out = response.getWriter();
 		Collection<Reserva> resultado = new ArrayList<Reserva>();
+		Collection<Sala> salas = new ArrayList<Sala>();
 		try {
 			switch (metodo) {
 				case "listar": 
@@ -59,8 +62,10 @@ public class reservaServlet extends HttpServlet {
 					int sala_id = Integer.parseInt(request.getParameter ("txtSala"));
 					resultado = buscarPorFechaYSala(fecha, sala_id);
 					request.setAttribute("RESULTADO", resultado);
-					request.setAttribute("fecha", fecha);
-					request.setAttribute("sala", sala_id);
+					request.setAttribute("fecha", fecha); // devuelve la fecha seleccionada previamente
+					request.setAttribute("sala", sala_id); // devuelve la sala seleccionada previamente
+					salas = listarSalas(); // para poblar la lista de salas en el combo
+					request.setAttribute("LISTA", salas);
 					RequestDispatcher rd1 = request.getRequestDispatcher("consultarReservas.jsp");
 					rd1.forward(request, response);
 					break;					
@@ -80,6 +85,11 @@ public class reservaServlet extends HttpServlet {
 		GestionReserva dao = new GestionReserva();
 		return dao.buscarPorFechaYSala(fecha, sala_id);
 		//return dao.buscarPorFechaYSala("2012-10-11", 2);
+	}
+	
+	public Collection<Sala> listarSalas() throws DAOExcepcion{
+		GestionSala dao = new GestionSala();
+		return dao.lista();
 	}
 
 }
