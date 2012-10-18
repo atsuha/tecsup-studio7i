@@ -33,21 +33,20 @@
 		<div class="" >
 
 			<form action="EventoServlet" method="POST">
-			<input type = "hidden" name = "metodo" value = "listar" />
+			<input type = "hidden" name = "metodo" value = "buscarNombre" />
 					<table>
 						<tr>
+							<td>Nombre del Evento :</td>
+							<td><input type="text" name = "txtEvento"/></td>
+						</tr>
+						<tr>
+							<td align = "left" >
+							<button class="btn tbn-primary" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button>
+							</td>
 							<td align="left" >
 							<button class="btn btn-primary" type="button" onclick="nuevo_evento()">Nuevo</button>
 							</td>
-							<td align = "left" >
-							<button type = "submit"  class="btn btn-primary" >Listar Eventos </button>
-							</td>
-						</tr>
-						<tr>
-						<td colspan="2">
-						<a href = "BuscarEvento.jsp">Buscar Evento por Nombre</a>
-						</td>
-						</tr>
+						</tr>	
 					</table>	
 	
 			
@@ -73,7 +72,7 @@
 					<th>Premios</th>
 					<th>&nbsp;</th>
 				</tr>
-					<c:forEach varStatus="i" var="EVENTO" items="${requestScope.lista}">
+					<c:forEach varStatus="i" var="EVENTO" items="${requestScope.resultado}">
 				   <tr>
 				   
 						<td>${i.count}</td>
