@@ -20,7 +20,7 @@
 	              <li><a href="#">Registra instrumentos</a></li>
 	              <li><a href="SalaServlet?metodo=listar2">Armar Sala</a></li>
 	              <li><a href="#">Registra servicios</a></li>
-	              <li><a href="#">consultar Reservas</a></li>
+	              <li><a href="SalaServlet?metodo=listar3">Consultar Reservas</a></li>
 	              <li><a href="#">Eventos musicales</a></li>
 	            </ul>
 	          </li>
