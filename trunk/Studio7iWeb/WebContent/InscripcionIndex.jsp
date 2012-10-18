@@ -10,7 +10,7 @@
   	});
     
     function inscripcion_Cliente(evento){
-    	$('#mantenimiento').load('inscripcionCliente.jsp');
+    	$('#mantenimiento').load('InscripcionServlet?metodo=mostrar&evento=' + evento);
     }
     
     function cancelar(){
