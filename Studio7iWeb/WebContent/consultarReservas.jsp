@@ -17,7 +17,7 @@
     <form name="f1" action="reservaServlet" method="post">
     	<input type="hidden" name="metodo" value="buscarPorFechaYSala" >
     	<label>Fecha</label>
-    	<input name="txtFecha" type="text" id="txtFecha" />
+    	<input name="txtFecha" type="text" id="txtFecha" value="${fecha}" />
     	<label>Sala</label>
 					<select  class="span3" name="txtSala">
 						<c:forEach var="sala" items="${LISTA}">
