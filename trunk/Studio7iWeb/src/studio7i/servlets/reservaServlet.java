@@ -63,8 +63,8 @@ public class reservaServlet extends HttpServlet {
 					request.setAttribute("RESULTADO", resultado);
 					request.setAttribute("fecha", fecha); // devuelve la fecha seleccionada previamente
 					request.setAttribute("sala", sala_id); // devuelve la sala seleccionada previamente
-					salas = listarSalas(); // para poblar la lista de salas en el combo
-					request.setAttribute("LISTA", salas);
+					salas = listarSalas(); 
+					request.setAttribute("LISTA", salas); // para poblar la lista de salas en el combo
 					RequestDispatcher rd1 = request.getRequestDispatcher("consultarReservas.jsp");
 					rd1.forward(request, response);
 					break;					
