@@ -18,11 +18,8 @@
     	<input type="hidden" name="metodo" value="buscarPorFechaYSala" >
     	<label>Fecha</label>
     	<input name="txtFecha" type="text" id="txtFecha" />
-
     	<label>Sala</label>
-    	<input type="text" placeholder="Type something" name="txtSala">
-    	<label>Sala lista</label>
-					<select  class="span3" name="local">
+					<select  class="span3" name="txtSala">
 						<c:forEach var="sala" items="${LISTA}">
 								<option value="${sala.salaId}">${sala.nombre}</option>
 						</c:forEach>
