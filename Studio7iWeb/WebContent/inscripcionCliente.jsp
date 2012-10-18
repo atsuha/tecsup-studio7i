@@ -5,7 +5,7 @@
 	
 		<table>
 			<tr>
-				<td>Fecha de inscripción:</td>
+				<td>Fecha de inscripción AA-MM-DD:</td>
 				<td>
 					<input type="text" name ="txtFecha" />
 				</td>
