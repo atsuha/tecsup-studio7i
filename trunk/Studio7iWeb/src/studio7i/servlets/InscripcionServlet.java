@@ -69,8 +69,8 @@ public class InscripcionServlet extends HttpServlet {
 			String fecha = request.getParameter("txtFecha");
 			String presentacion = request.getParameter("txtPresentacion");
 			try{
-				//falta arreglar la parte de persona_id
-				insertar(Integer.parseInt(evento_id),0, fecha,presentacion);
+				//falta arreglar la parte de persona_id, para que agregue debe estar persona_id en la bd
+				insertar(Integer.parseInt(evento_id),1, fecha,presentacion);
 			}catch (DAOExcepcion e){
 				e.printStackTrace();
 			}
