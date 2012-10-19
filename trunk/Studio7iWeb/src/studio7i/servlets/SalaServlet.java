@@ -2,8 +2,10 @@ package studio7i.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,14 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.jni.Local;
-
 import studio7i.excepcion.DAOExcepcion;
-import studio7i.modelo.Instrumento;
 import studio7i.modelo.Sala;
 import studio7i.modelo.SalaInstrumento;
 import studio7i.modelo.SalaServicio;
-import studio7i.modelo.Servicio;
 import studio7i.negocio.GestionLocal;
 import studio7i.negocio.GestionSala;
 
@@ -85,6 +83,11 @@ public class SalaServlet extends HttpServlet {
 				case "listar3":
 					resultado = listar();
 					request.setAttribute("LISTA", resultado);
+					//*** calcular fecha de hoy *** //
+					Date ahora = new Date();
+			        SimpleDateFormat formateador = new SimpleDateFormat("yyyy/MM/dd");
+					String hoy = formateador.format(ahora);
+					request.setAttribute("fecha", hoy);
 					rd = request.getRequestDispatcher("consultarReservas.jsp");
 					rd.forward(request, response);
 					break;					
