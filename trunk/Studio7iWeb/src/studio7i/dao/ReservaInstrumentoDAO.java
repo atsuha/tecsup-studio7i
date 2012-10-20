@@ -58,7 +58,7 @@ public class ReservaInstrumentoDAO extends BaseDAO {
 				"i.tipo, i.caracteristicas, i.local_id, i.marca, i.modelo, i.precio " +
 				"from reserva_instrumento ri " +
 				"left join instrumento i on (ri.instrumento_id = i.instrumento_id) " +
-				"where reserva_id = ? and estado";
+				"where reserva_id = ? and ri.estado";
 		Collection<ReservaInstrumento> lista = new ArrayList<ReservaInstrumento>();
 		Connection con = null;
 		PreparedStatement stmt = null;
