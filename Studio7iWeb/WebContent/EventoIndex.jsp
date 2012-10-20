@@ -56,7 +56,7 @@
 							<button class="btn tbn-primary" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button>
 							</td>
 							<td align="left" >
-							<button class="btn btn-primary" type="button" onclick="nuevo_evento()">Nuevo</button>
+							<button class="btn btn-success" type="button" onclick="nuevo_evento()">Nuevo</button>
 							</td>
 						</tr>	
 					</table>	
