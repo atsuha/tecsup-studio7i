@@ -237,4 +237,42 @@ public class SalaDAO extends BaseDAO {
 		System.out.println(lista.size());
 		return lista;
 	}
+
+
+	public Collection<Sala> buscarPorSalaId(int sala_id)
+
+			throws DAOExcepcion {
+		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where sala_id = ? and estado!=0 order by nombre";
+		Collection<Sala> lista = new ArrayList<Sala>();
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		LocalDAO local =new LocalDAO();
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, sala_id);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Sala vo = new Sala();
+				vo.setSalaId(rs.getInt("sala_id"));
+				vo.setNombre(rs.getString("nombre"));
+				vo.setCapacidad(rs.getInt("capacidad"));
+				vo.setCaracteristicas(rs.getString("caracteristicas"));
+				vo.setCosto(rs.getDouble("costo"));
+				vo.setLocal(local.obtener(rs.getInt(6)));
+				lista.add(vo);
+			}
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
+	
 }
