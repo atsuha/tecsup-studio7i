@@ -15,4 +15,10 @@ public class GestionReservaInstrumento {
 		return dao.buscarPorReserva(oreserva);
 	}
 
+	public Collection<ReservaInstrumento> buscarPorReservaId(int reserva_id)
+			throws DAOExcepcion {
+		ReservaInstrumentoDAO dao = new ReservaInstrumentoDAO();
+		return dao.buscarPorReservaId(reserva_id);
+	}
+	
 }
