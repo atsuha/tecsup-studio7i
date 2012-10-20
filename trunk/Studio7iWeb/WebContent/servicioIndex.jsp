@@ -12,6 +12,10 @@
     function editar_servicio(servicio){
     	$('#mantenimiento').load('ServicioServlet?metodo=editar&servicio=' + servicio );
     }
+    
+    function nuevo_servicio(){
+    	$('#mantenimiento').load('ServicioServlet?metodo=nuevo');
+    }
     function eliminar_servicio(sevicio){
     	if(confirm("Esta seguro de eliminar el servicio?")){
 			alert("Elimino");
@@ -34,7 +38,7 @@
 						<td><input type="text" name="buscar" id="buscar" /></td>
 						<td><button class="btn" type="submit"><i class="icon-search"></i>&nbsp;&nbsp;Buscar</button></td>
 						<td align="right" width="60%">
-							<button class="btn btn-primary" type="button" onclick="editar_servicio()">Nuevo</button>
+							<button class="btn btn-primary" type="button" onclick="nuevo_servicio()">Nuevo</button>
 						</td>
 					</tr>
 				</table>
