@@ -17,9 +17,9 @@
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administracion <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="SalaServlet?metodo=listar">Incribir sala</a></li>
-	              <li><a href="#">Registra instrumentos</a></li>
+	              <li><a href="InstrumentoServlet?metodo=listar">Registra instrumentos</a></li>
 	              <li><a href="SalaServlet?metodo=listar2">Armar Sala</a></li>
-	              <li><a href="#">Registra servicios</a></li>
+	              <li><a href="ServicioServlet?metodo=listar">Registra servicios</a></li>
 	              <li><a href="SalaServlet?metodo=listar3">Consultar Reservas</a></li>
 	              <li><a href="EventoIndex.jsp">Eventos musicales</a></li>
 	            </ul>
