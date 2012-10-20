@@ -5,16 +5,31 @@
     <script type="text/javascript">
     $(document).ready(function() {
     	
-    	$("#ver_instrumentos_servicios").click(function(){
-    		/*$.ajax({
-			       type: "POST",
-			       url: "InstrumentoServlet",
-			       success: function(data){
-			      		
-			     }
-			});*/
-			$("#instrumentos_servicios").show();
-    	});
+    	$(".ver_servicios").click(function(){
+    		url = "rest/servicios?nombre=asd";
+			$.getJSON(url, function(data) {
+				var fila = '';
+				$.each(data, function(i, item) {
+					fila += '<tr>';
+					fila += '<td><div align="center"><input type="checkbox" name="chkservicios['+i+']" id="chkservicios['+i+']" value="'+item.servicio_id+'" /></div></td>';
+					fila += '<td>'+item.descripcion+'</td>';
+					fila += '</tr>';
+				});
+				$("#servicios").show();
+				$("#tableServicios").append(fila);
+				//limipiar_tablaServicio();
+				
+			});
+  		});
+    	
+    	function limipiar_tablaServicio(){
+    		var n = $('#tableServicios >tbody >tr').length;
+    		for(i=1;i<n;i++){
+    			if(i >= 1){
+    				$('#tableServicios >tbody >tr').css("display","none");
+    			}
+    		}
+    	}
     	  	  
   	});
     </script>
@@ -25,6 +40,7 @@
 		<div class="" >
 			<form class="form-search" name="frmBuscar" action="SalaServlet" method="POST">
 				<input type="hidden" name="metodo" id="metodo" value="buscarPorNombre" />
+				<input type="hidden" name="pagina" id="pagina" value="armarSala.jsp" />
 				<table>
 					<tr>
 						<td>Nombre de la Sala :</td>
@@ -50,23 +66,35 @@
 					<th>id</th>
 					<th>Nombre</th>
 					<th>Capacidad</th>
-					<th>&nbsp;&nbsp</th>
+					<th>Local</th>
+					<th>Servicios</th>
+					<th>Instrumentos</th>
 				</tr>
 				<c:forEach var="sala" items="${LISTA}">
 				   <tr>
 						<td>${sala.salaId}</td>
 						<td>${sala.nombre}</td>
 						<td>${sala.capacidad}</td>
+						<td>${sala.local.nombre}</td>
 						<td>
-							<a href="javascript:;" onclick="editar_sala(${sala.salaId});" title="editar" alt="editar"><i class="icon-edit"></i></a>
-							<a href="javascript:;" id="ver_instrumentos_servicios" title="ver instrumentos y servicios" alt="ver instrumentos y servicios"><i class="icon-list"></i></a>
+							<a href="javascript:;" class="ver_servicios" title="ver servicios" alt="ver servicios"><i class="icon-list"></i></a>
+						</td>
+						<td>
+							<a href="javascript:;" class="ver_instrumentos" title="ver instrumentos" alt="ver instrumentos"><i class="icon-list"></i></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
-		<div id="instrumentos_servicios" style="display:none;">
-			<input type="checkbox" />HOLAAA
+		<div id="servicios" style="display:none;">
+			<table class="table table-hover" id="tableServicios">
+				<tr>
+					<th width="6%">Seleccionar</th>
+					<th>Descripción</th>
+				</tr>
+			</table>
+		</div>
+		<div id="instrumentos" style="display:none;">
 			
 		</div>
 	</div>
