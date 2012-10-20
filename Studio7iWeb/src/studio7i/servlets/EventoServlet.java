@@ -155,7 +155,9 @@ public class EventoServlet extends HttpServlet {
 			String prem = request.getParameter("txtPremios");
 		try{
 			actualizar(Integer.parseInt(evento_id),nomb, desc, lug, fech, prem);
+			request.setAttribute("mensaje", "El evento se actualizo correctamente");
 				}catch (DAOExcepcion e){
+					request.setAttribute("mensaje", "Error al actualizar evento");
 					e.printStackTrace();
 				}
 		RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
