@@ -9,8 +9,10 @@
 		<table>
 			
 			<tr>
+
 				<td> <label class="control-label" for="inputWarning">Servicio: </label></td>
 				<td><input class="input-xlarge" type="text" placeholder="ingrese descripción" name="txtDescripcion" /></td>
+
 			</tr>
 			<tr>
 				<td>Local :</td>
@@ -27,6 +29,7 @@
 			</tr>
 			<tr>
 				<td>Precio Hora :</td>
+
 				<td><input class="input-mini" type="text" placeholder="0.00" name="txtPrecioHora"/></td>
 			</tr>
 			
