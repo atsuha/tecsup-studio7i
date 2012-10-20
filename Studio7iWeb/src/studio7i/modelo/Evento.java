@@ -12,6 +12,7 @@ public class Evento {
 	private String fecha;
 	private String premios;
 	private Collection<Inscrito> inscrito;
+	private char estado;
 
 	
 	//constructor sin parametros
@@ -23,7 +24,7 @@ public class Evento {
 	//constructor con parametros
 	public Evento(int evento_id, String nombre, String descripcion,
 			String lugar, String fecha, String premios,
-			Collection<Inscrito> inscrito) {
+			Collection<Inscrito> inscrito, char estado) {
 		super();
 		this.evento_id = evento_id;
 		this.nombre = nombre;
@@ -32,7 +33,7 @@ public class Evento {
 		this.fecha = fecha;
 		this.premios = premios;
 		this.inscrito = inscrito;
-
+		this.estado = estado;
 	}
 
 
@@ -107,7 +108,13 @@ public class Evento {
 		this.inscrito = inscrito;
 	}
 
-	
+	public char getEstado() {
+		return estado;
+	}
 
+	public void setEstado(char estado) {
+		this.estado = estado;
+	}	
+	
 	
 }
