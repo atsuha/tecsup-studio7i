@@ -8,8 +8,19 @@
   $(document).ready(function() {
 	$("#txtFecha").datepicker($.datepicker.regional['es']);  
     $("#txtFecha").datepicker({dateFormat: 'yy-mm-dd'});
+    
+    $(".ver_instrumentos").click(function(){
+    	
+    		
+		  $( "#dialog-modal" ).dialog({
+	          height: 140,
+	          modal: true
+	      });
+	  });
+    
   });
   </script>
+
     <div class="container">
 
       <h1>Consultar reservas</h1>
@@ -42,12 +53,14 @@
 			<c:forEach var="reservainstrumento" items="${reserva.listainstrumentos}">
 				<c:set var="marca" scope="page" value="${reservainstrumento.oinstrumento.marca}"/>
 			</c:forEach>
-			<td>${tipo}</td>
+			<td><a href="javascript:;" class="ver_instrumentos" >Instrumentos</a></td>
 			<td>Servicios</td>
         </tr>
       </c:forEach>    	
 		</table>
-		
+		<div id="dialog-modal" title="Lista de instrumentos y servicios">
+    		<p>Instrumentos y servicios.</p>
+		</div>		
     </form>
     </div> <!-- /container -->
     
