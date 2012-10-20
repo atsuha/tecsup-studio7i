@@ -4,7 +4,7 @@
     <script src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-    	
+    	$(".success").hide().fadeIn('slow').delay(1500).fadeOut('slow').css({"background-color": "#DFF2BF","color": "#4F8A10","border": "1px solid","font-family":"Arial, Helvetica, sans-serif","font-size":"13px"});
     	
   	  
   	});
@@ -53,6 +53,7 @@
 			</table>
 		</div>
 		<div>
+			<div class="success"> ${MENSAJE}</div>			
 			<table class="table table-hover">
 				<tr>
 					<th>#</th>
