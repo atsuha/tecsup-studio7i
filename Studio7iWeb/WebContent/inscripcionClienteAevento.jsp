@@ -1,4 +1,13 @@
 <div class="container">
+
+
+ <script>
+    $(function() {
+    	 $( "#datepicker" ).datepicker();
+    });
+    </script>
+ 
+
 	<form action="InscripcionServlet" method = "Post">
 		<input type = "hidden" name = "metodo" value = "inscribir"  />
 		<input type="hidden" name = "evento" value="${EVENTO.evento_id}" />
@@ -7,7 +16,7 @@
 			<tr>
 				<td>Fecha de inscripción AA-MM-DD:</td>
 				<td>
-					<input type="text" name ="txtFecha" />
+						<input type="text" id="datepicker" name = "txtFecha" />
 				</td>
 			</tr>	
 						<tr>
@@ -23,4 +32,7 @@
 		  <button type="button" class="btn" onclick="cancelar();">Cancelar</button>
 		</div>
 	</form>
+	
+	
+	
 </div>
