@@ -141,6 +141,14 @@ public class SalaServlet extends HttpServlet {
 					rd1 = request.getRequestDispatcher("SalaIndex.jsp");
 					rd1.forward(request, response);
 					break;
+				case "buscarPorNombre2":
+					String sala = request.getParameter("txtSala");
+					resultado = buscarPorNombre(sala);
+					request.setAttribute("LISTA", resultado);
+					request.setAttribute("TEXTO", sala);
+					rd1 = request.getRequestDispatcher("buscarSalaEnsayo.jsp");
+					rd1.forward(request, response);
+					break;
 				case "grabar":
 					dao.insertar2(nombre, Integer.parseInt(capacidad), caracteristicas, Double.parseDouble(costo), Integer.parseInt(local));
 					rd1 = request.getRequestDispatcher("SalaIndex.jsp");
