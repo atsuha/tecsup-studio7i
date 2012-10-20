@@ -90,13 +90,13 @@ public class SalaServlet extends HttpServlet {
 					request.setAttribute("fecha", hoy);
 					rd = request.getRequestDispatcher("consultarReservas.jsp");
 					rd.forward(request, response);
-					break;					
+					break;
 				case "listar4":
 					resultado = listar();
 					request.setAttribute("LISTA", resultado);
 					rd = request.getRequestDispatcher("buscarSalaEnsayo.jsp");
 					rd.forward(request, response);
-					break;	
+					break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,6 +108,7 @@ public class SalaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String metodo = request.getParameter("metodo");
+		String pagina = request.getParameter("pagina");
 		PrintWriter out = response.getWriter();
 		Collection<Sala> resultado = new ArrayList<Sala>();
 		
@@ -138,7 +139,7 @@ public class SalaServlet extends HttpServlet {
 					resultado = buscarPorNombre(sala);
 					request.setAttribute("LISTA", resultado);
 					request.setAttribute("TEXTO", sala);
-					rd1 = request.getRequestDispatcher("SalaIndex.jsp");
+					rd1 = request.getRequestDispatcher(pagina);
 					rd1.forward(request, response);
 					break;
 				case "buscarPorNombre2":
