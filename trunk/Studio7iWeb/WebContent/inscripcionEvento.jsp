@@ -1,4 +1,15 @@
 <div class="container">
+
+
+ <script>
+    $(function() {
+    	 $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+
+    });
+    </script>
+ 
+
+
 	<form action="EventoServlet" method = "Post">
 		<input type = "hidden" name = "metodo" value = "crear" />
 		<table>
@@ -19,8 +30,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Fecha del evento: (AA-MM-DD)</td>
-				<td><input type="text" name ="txtFecha" /></td>
+				<td>Fecha del evento: </td>
+				<td><input type="text" id="datepicker" name = "txtFecha" /></td>
 			</tr>
 			<tr>
 				<td>Cuales serán los premios del evento :</td>
