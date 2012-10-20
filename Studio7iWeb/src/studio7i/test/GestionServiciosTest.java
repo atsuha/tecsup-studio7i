@@ -55,7 +55,7 @@ public class GestionServiciosTest {
 
 	
 	
-	 //@Test 
+	 @Test 
 	 public void listarTest(){
 			GestionServicios negocio = new GestionServicios();
 			
