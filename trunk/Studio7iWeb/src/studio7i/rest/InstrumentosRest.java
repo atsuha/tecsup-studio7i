@@ -8,6 +8,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.ReservaInstrumento;
+import studio7i.negocio.GestionReservaInstrumento;
+
 import net.sf.json.JSONArray;
 
 @Path("/instrumentos")
@@ -15,15 +19,15 @@ public class InstrumentosRest {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String buscar( @QueryParam("nombre") String nombre ) {		
+	public String buscar( @QueryParam("reserva_id") int reserva_id ) {		
 
 		JSONArray arrayObj = new JSONArray();
 		
 		try {
-			GestionProductos negocio = new GestionProductos();
-			Collection<Producto> productos =  negocio.buscarPorNombre(nombre);
-			System.out.println(productos.size());
-			arrayObj.addAll(productos);
+			GestionReservaInstrumento negocio = new GestionReservaInstrumento();
+			Collection<ReservaInstrumento> instrumentos =  negocio.buscarPorReservaId(reserva_id);
+			System.out.println(instrumentos.size());
+			arrayObj.addAll(instrumentos);
 			
 		} catch (DAOExcepcion e) {	
 			System.out.println(e.getMessage());
