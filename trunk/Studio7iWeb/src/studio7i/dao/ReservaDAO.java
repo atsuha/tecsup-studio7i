@@ -42,6 +42,11 @@ public class ReservaDAO extends BaseDAO {
 				 vo.setHora_fin(rs.getInt("hora_fin"));
 				 vo.setAlquilado(rs.getInt("alquilado"));
 				 
+				 Collection<ReservaInstrumento> listaInstrumentos = new ArrayList<ReservaInstrumento>();
+				 ReservaInstrumentoDAO riDAO = new ReservaInstrumentoDAO();
+				 listaInstrumentos = riDAO.buscarPorReserva(vo);
+				 vo.setListainstrumentos(listaInstrumentos);
+				 
 				 Persona pe = new Persona();
 				 pe.setNombres(rs.getString("nombres"));
 				 pe.setPaterno(rs.getString("paterno"));
