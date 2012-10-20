@@ -79,13 +79,16 @@
 			</table>
 		</div>
 		
-	</form>		
+	</form>	
+	<br><br>
+	<h3>${mensaje}</h3>	
 	</div>
 		<div id="mantenimiento"></div>
 	</div>
 	
 	<br><br><br><br>
 	<table>
+	
 	<tr align="right">
 	<%@include file="footer.jsp" %>
 	</tr>
