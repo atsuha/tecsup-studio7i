@@ -16,7 +16,7 @@
     <form name="f1" action="SalaServlet" method="post">
     	<input type="hidden" name="metodo" value="buscarPorSalaId" >
     	<label>Sala</label>
-					<select  class="span3" name="txtSala">
+					<select  class="span3" name="sala_id">
 						<c:forEach var="sala" items="${LISTA}">
 								<option value="${sala.salaId}">${sala.nombre}</option>
 						</c:forEach>
@@ -31,7 +31,7 @@
 				<td>Servicios</td>
 				<td>Reservar</td>
 			</tr>
-		      <c:forEach var="sala" items="${RESULTADO}">
+		      <c:forEach var="sala" items="${LISTA}">
         <tr>
           <td>${sala.nombre}</td>
 			<td>Local</td>
