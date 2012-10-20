@@ -71,7 +71,9 @@ public class InscripcionServlet extends HttpServlet {
 			try{
 				//falta arreglar la parte de persona_id, para que agregue debe estar persona_id en la bd
 				insertar(Integer.parseInt(evento_id),1, fecha,presentacion);
+				request.setAttribute("mensaje", "Ya es parte de nuestro evento, suerte!");
 			}catch (DAOExcepcion e){
+				request.setAttribute("mensaje", "Datos inválidos, por favor intente nuevamente");
 				e.printStackTrace();
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("InscripcionAevento.jsp");
