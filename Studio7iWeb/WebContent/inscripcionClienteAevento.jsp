@@ -1,13 +1,12 @@
 <div class="container">
 
-
  <script>
     $(function() {
     	 $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
 
     });
     </script>
- 
+
 
 	<form action="InscripcionServlet" method = "Post">
 		<input type = "hidden" name = "metodo" value = "inscribir"  />
