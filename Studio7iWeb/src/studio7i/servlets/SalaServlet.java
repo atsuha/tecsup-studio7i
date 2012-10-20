@@ -91,6 +91,12 @@ public class SalaServlet extends HttpServlet {
 					rd = request.getRequestDispatcher("consultarReservas.jsp");
 					rd.forward(request, response);
 					break;					
+				case "listar4":
+					resultado = listar();
+					request.setAttribute("LISTA", resultado);
+					rd = request.getRequestDispatcher("buscarSalaEnsayo.jsp");
+					rd.forward(request, response);
+					break;	
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
