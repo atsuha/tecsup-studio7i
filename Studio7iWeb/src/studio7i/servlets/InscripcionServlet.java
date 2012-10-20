@@ -60,7 +60,7 @@ public class InscripcionServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 				
-		RequestDispatcher rd = request.getRequestDispatcher("InscripcionIndex.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("InscripcionAevento.jsp");
 		rd.forward(request,response);		
 		}
 		
@@ -74,7 +74,7 @@ public class InscripcionServlet extends HttpServlet {
 			}catch (DAOExcepcion e){
 				e.printStackTrace();
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("InscripcionIndex.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("InscripcionAevento.jsp");
 			rd.forward(request, response);
 			
 		}
