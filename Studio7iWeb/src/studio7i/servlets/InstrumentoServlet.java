@@ -19,42 +19,45 @@ import studio7i.negocio.GestionLocal;
 @WebServlet("/InstrumentoServlet")
 public class InstrumentoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InstrumentoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String metodo = request.getParameter("metodo");	
+	public InstrumentoServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String metodo = request.getParameter("metodo");
 		System.out.println(metodo);
 		GestionLocal dao = new GestionLocal();
-		GestionInstrumentos negocio=new GestionInstrumentos();
-		
+		GestionInstrumentos negocio = new GestionInstrumentos();
+
 		RequestDispatcher rd;
 		try {
 			switch (metodo) {
-				case "editar":
-					String instrumento_id = request.getParameter("instrumento");
-					System.out.println(instrumento_id);
-					Instrumento instrumento=negocio.obtener(Integer.parseInt(instrumento_id));
-					
-					request.setAttribute("INSTRUMENTO", instrumento);
-					request.setAttribute("LOCAL", dao.listar());
-					rd = request.getRequestDispatcher("editarInstrumento.jsp");
-					rd.forward(request, response);
-					break;
-				case "nuevo":
-					request.setAttribute("LOCAL", dao.listar());
-					rd = request.getRequestDispatcher("inscripcionInstrumento.jsp");
-					rd.forward(request, response);
-					break;
+			case "editar":
+				String instrumento_id = request.getParameter("instrumento");
+				System.out.println(instrumento_id);
+				Instrumento instrumento = negocio.obtener(Integer
+						.parseInt(instrumento_id));
+
+				request.setAttribute("INSTRUMENTO", instrumento);
+				request.setAttribute("LOCAL", dao.listar());
+				rd = request.getRequestDispatcher("editarInstrumento.jsp");
+				rd.forward(request, response);
+				break;
+			case "nuevo":
+				request.setAttribute("LOCAL", dao.listar());
+				rd = request.getRequestDispatcher("inscripcionInstrumento.jsp");
+				rd.forward(request, response);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,16 +65,19 @@ public class InstrumentoServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String metodo = request.getParameter("metodo");
-		System.out.println(metodo);
-		
-//		String servicio_id = request.getParameter("txtInstrumento");
-//		String descripcion = request.getParameter("txtDescripcion");		
-//		String local_id = request.getParameter("cboLocal");
-//		String precio_hora = request.getParameter("txtPrecioHora");
+//		System.out.println(metodo);	
+		String instrumento_id = request.getParameter("txtInstrumento");
+		String tipo = request.getParameter("txtTipo");		
+		String caracteristicas = request.getParameter("txtCaracteristicas");
+		String marca = request.getParameter("txtMarca");	
+		String modelo = request.getParameter("txtModelo");	
+		String local_id = request.getParameter("cboLocal");
+		String precio = request.getParameter("txtPrecio");
 		GestionInstrumentos negocio=new GestionInstrumentos();
 		
 		
@@ -94,13 +100,14 @@ public class InstrumentoServlet extends HttpServlet {
 				rd.forward(request, response);
 				break;
 			case "editar":								
-//				System.out.println(servicio_id + "" + descripcion+" "+local_id+" "+precio_hora);
+			System.out.println(instrumento_id + "" + tipo  + "" + caracteristicas  + "" + marca  + "" + modelo  +" "+ local_id +" "+precio);
 				
-//				negocio.actualizar(Integer.parseInt(servicio_id), descripcion, Double.parseDouble(precio_hora),Integer.parseInt( local_id));				
-				break;
+			negocio.actualizar(Integer.parseInt(instrumento_id), tipo,modelo,marca,caracteristicas,   Double.parseDouble(precio),Integer.parseInt( local_id));				
+				break; 
 			case "nuevo":									
-//				System.out.println(servicio_id + "" + descripcion+" "+local_id+" "+precio_hora);
-//				negocio.insertar(descripcion,Double.parseDouble(precio_hora), Integer.parseInt(local_id));								
+				System.out.println(instrumento_id + "" + tipo  + "" + caracteristicas  + "" + marca  + "" + modelo  +" "+ local_id +" "+precio);
+				
+				negocio.insertar(tipo,marca,modelo,caracteristicas, Double.parseDouble(precio),Integer.parseInt( local_id));											
 				break;
 						
 			}
@@ -111,5 +118,4 @@ public class InstrumentoServlet extends HttpServlet {
 		}
 		
 	}
-
 }
