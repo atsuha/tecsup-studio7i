@@ -81,6 +81,7 @@ public class EventoServlet extends HttpServlet {
 		
 		//crear evento
 		if (metodo.equals("crear")){
+			
 			String nomb = request.getParameter("txtNombre");
 			String desc = request.getParameter("txtDescripcion");
 			String lug = request.getParameter("txtLugar");
@@ -89,9 +90,12 @@ public class EventoServlet extends HttpServlet {
 			
 			try {
 				insertar(nomb, desc, lug, fech, prem);
+				request.setAttribute("mensaje", "El evento fue creado con exito");
 			} catch (DAOExcepcion e) {
 				// TODO Auto-generated catch block
+				request.setAttribute("mensaje", "Error al crear evento");
 				e.printStackTrace();
+				
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("EventoIndex.jsp");
 			rd.forward(request,response);
