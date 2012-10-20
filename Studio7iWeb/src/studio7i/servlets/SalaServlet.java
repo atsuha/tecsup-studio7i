@@ -123,6 +123,7 @@ public class SalaServlet extends HttpServlet {
 		Collection<SalaServicio> listaServicios = new ArrayList<SalaServicio>();
 		Collection<SalaInstrumento> listaInstrumentos = new ArrayList<SalaInstrumento>();
 		String sala = null;
+		
 		GestionSala dao = new GestionSala();
 		
 		RequestDispatcher rd1;
@@ -142,9 +143,8 @@ public class SalaServlet extends HttpServlet {
 					rd1 = request.getRequestDispatcher(pagina);
 					rd1.forward(request, response);
 					break;
-				case "buscarPorNombre2":
-					sala = request.getParameter("txtSala");
-					resultado = buscarPorNombre(sala);
+				case "buscarPorSalaId":
+					resultado = buscarPorSalaId(Integer.parseInt(sala_id));
 					request.setAttribute("LISTA", resultado);
 					request.setAttribute("TEXTO", sala);
 					rd1 = request.getRequestDispatcher("buscarSalaEnsayo.jsp");
@@ -177,6 +177,11 @@ public class SalaServlet extends HttpServlet {
 	public Collection<Sala> buscarPorNombre(String sala) throws DAOExcepcion{
 		GestionSala dao = new GestionSala();
 		return dao.buscarPorNombre(sala);
+	}
+	
+	public Collection<Sala> buscarPorSalaId(int sala_id) throws DAOExcepcion{
+		GestionSala dao = new GestionSala();
+		return dao.buscarPorSalaId(sala_id);
 	}
 	
 	public Sala obtener(int sala_id)throws DAOExcepcion{
