@@ -41,6 +41,7 @@
 		<div class="" >
 			<form class="form-search" name="frmBuscar" action="SalaServlet" method="POST">
 				<input type="hidden" name="metodo" id="metodo" value="buscarPorNombre" />
+				<input type="hidden" name="pagina" id="pagina" value="SalaIndex.jsp" />
 				<table>
 					<tr>
 						<td>Nombre de la Sala :</td>
@@ -66,6 +67,7 @@
 					<th>Codigo</th>
 					<th>Nombre</th>
 					<th>Capacidad</th>
+					<th>Local</th>
 					<th>&nbsp;</th>
 				</tr>
 				<c:forEach var="sala" items="${LISTA}">
@@ -73,6 +75,7 @@
 						<td>${sala.salaId}</td>
 						<td>${sala.nombre}</td>
 						<td>${sala.capacidad}</td>
+						<td>${sala.local.nombre}</td>
 						<td>
 							<a href="javascript:;" onclick="editar_sala(${sala.salaId});" title="editar" alt="editar"><i class="icon-edit"></i></a>
 							<a href="javascript:;" onclick="eliminar_sala(${sala.salaId});" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
