@@ -48,6 +48,13 @@ public class ServicioServlet extends HttpServlet {
 		RequestDispatcher rd;
 		try {
 			switch (metodo) {
+			case "listar":
+
+				request.setAttribute("LISTA", negocio.listar());
+
+				rd = request.getRequestDispatcher("servicioIndex.jsp");
+				rd.forward(request, response);
+				break;
 			case "editar":
 				String servicio_id = request.getParameter("servicio");
 				Servicio servicio = negocio.obtener(Integer
