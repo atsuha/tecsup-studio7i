@@ -121,7 +121,7 @@ public class SalaServlet extends HttpServlet {
 		
 		Collection<SalaServicio> listaServicios = new ArrayList<SalaServicio>();
 		Collection<SalaInstrumento> listaInstrumentos = new ArrayList<SalaInstrumento>();
-		
+		String sala = null;
 		GestionSala dao = new GestionSala();
 		
 		RequestDispatcher rd1;
@@ -134,7 +134,7 @@ public class SalaServlet extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("SalaIndex.jsp");
 					rd.forward(request, response);
 				case "buscarPorNombre":
-					String sala = request.getParameter("txtSala");
+					sala = request.getParameter("txtSala");
 					resultado = buscarPorNombre(sala);
 					request.setAttribute("LISTA", resultado);
 					request.setAttribute("TEXTO", sala);
@@ -142,7 +142,7 @@ public class SalaServlet extends HttpServlet {
 					rd1.forward(request, response);
 					break;
 				case "buscarPorNombre2":
-					String sala = request.getParameter("txtSala");
+					sala = request.getParameter("txtSala");
 					resultado = buscarPorNombre(sala);
 					request.setAttribute("LISTA", resultado);
 					request.setAttribute("TEXTO", sala);
