@@ -72,7 +72,7 @@ public class PersonaServlet extends HttpServlet {
 				case "listar": 
 					personas = listar();
 					request.setAttribute("RESULTADO", personas);
-					RequestDispatcher rd = request.getRequestDispatcher(""); // *** modificar jsp quien lo necesite. *** //
+					RequestDispatcher rd = request.getRequestDispatcher("inscripcionCliente.jsp"); // *** modificar jsp quien lo necesite. *** //
 					rd.forward(request, response);
 					break;
 				case "obtener":
