@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Evento;
+import studio7i.modelo.Persona;
 import studio7i.negocio.GestionEvento;
 import studio7i.negocio.GestionInscrito;
 
@@ -65,6 +67,16 @@ public class InscripcionServlet extends HttpServlet {
 		}
 		
 		if(metodo.equals("inscribir")){
+			
+			/*
+			
+		    HttpSession session = request.getSession(true);
+			Persona miusuario =
+		                    (Persona)session.getValue((miusuario.getPersona_id()));
+		                    
+		    */
+			
+			
 			String evento_id = request.getParameter("evento");
 			String fecha = request.getParameter("txtFecha");
 			String presentacion = request.getParameter("txtPresentacion");
