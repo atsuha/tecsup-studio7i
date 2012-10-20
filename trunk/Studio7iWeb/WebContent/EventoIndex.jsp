@@ -20,7 +20,7 @@
     
     function eliminar_evento(evento){
     	if(confirm("Esta seguro de eliminar el Evento?")){
-    		$('#mantenimiento').load('EventoServlet?metodo=eliminar&evento=' + evento);
+    		$('#container').load('EventoServlet?metodo=eliminar&evento=' + evento);
 			alert("Elimino");
 		}
 		return false;
@@ -39,7 +39,7 @@
     
     
     </head>
-	<div class="container" style="height: 400px;">
+	<div id ="container" class="container" style="height: 400px;">
 		<div class="" >
 			
 			<h1>Crear Eventos</h1>
