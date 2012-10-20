@@ -102,11 +102,15 @@ public class ServicioServlet extends HttpServlet {
 				
 				rd.forward(request, response);
 				break;
-			case "editar":
-				GestionServicios dao=new GestionServicios();						
-				System.out.println(servicio_id + "" + descripcion+" "+local_id+" "+precio_hora);
-				dao.actualizar(Integer.parseInt(servicio_id), descripcion, Double.parseDouble(precio_hora),Integer.parseInt( local_id));				
+			case "editar":								
+				System.out.println(servicio_id + "" + descripcion+" "+local_id+" "+precio_hora);				
+				negocio.actualizar(Integer.parseInt(servicio_id), descripcion, Double.parseDouble(precio_hora),Integer.parseInt( local_id));				
 				break;
+			case "nuevo":									
+				System.out.println(servicio_id + "" + descripcion+" "+local_id+" "+precio_hora);
+				negocio.insertar(descripcion,Double.parseDouble(precio_hora), Integer.parseInt(local_id));								
+				break;
+						
 			}
 			
 			
