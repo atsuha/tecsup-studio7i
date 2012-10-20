@@ -43,6 +43,13 @@ public class InstrumentoServlet extends HttpServlet {
 		RequestDispatcher rd;
 		try {
 			switch (metodo) {
+			case "listar":
+				
+				request.setAttribute("LISTA",
+						negocio.listar());
+				rd = request.getRequestDispatcher("instrumentoIndex.jsp");
+				rd.forward(request, response);
+				break;
 			case "editar":
 				String instrumento_id = request.getParameter("instrumento");
 				System.out.println(instrumento_id);
