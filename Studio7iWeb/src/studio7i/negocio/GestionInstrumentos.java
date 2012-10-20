@@ -3,9 +3,11 @@ package studio7i.negocio;
 import java.util.Collection;
 
 import studio7i.dao.InstrumentoDAO;
+import studio7i.dao.ServicioDAO;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
+import studio7i.modelo.Servicio;
 
 public class GestionInstrumentos {
 
@@ -66,5 +68,10 @@ public class GestionInstrumentos {
 		dao.eliminar(instrumento_id);
 	}
 
-
+	public Collection<Instrumento> buscarPorTipo(String tipo)
+			throws DAOExcepcion {
+		InstrumentoDAO dao=new  InstrumentoDAO();
+		return dao.buscarPorTipo(tipo);
+		
+	}
 }
