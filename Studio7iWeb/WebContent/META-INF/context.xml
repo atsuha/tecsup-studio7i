@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context crossContext="true" debug="5" docBase="studio7i"
+	path="/studio7i" reload="true">
+	<Resource 	name="jdbc/studio7i" 
+				auth="Container"
+				type="javax.sql.DataSource" 
+				maxActive="100" 
+				maxIdle="30"
+				maxWait="10000" 
+				username="root" 
+				password=""
+				driverClassName="com.mysql.jdbc.Driver"
+				url="jdbc:mysql://localhost:3306/studio7i?autoReconnect=true" />
+</Context>
+
