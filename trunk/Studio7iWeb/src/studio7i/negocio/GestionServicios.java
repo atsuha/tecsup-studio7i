@@ -58,5 +58,13 @@ public class GestionServicios {
 	}
 
 	
+	public Collection<Servicio> buscarPorDescripcion(String descripcion)
+			throws DAOExcepcion {
+		ServicioDAO dao = new ServicioDAO();
+		return dao.buscarPorDescripcion(descripcion);
+	}
+	
+	
+	
 
 }
