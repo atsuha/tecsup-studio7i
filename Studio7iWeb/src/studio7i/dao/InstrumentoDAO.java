@@ -12,6 +12,7 @@ import java.util.Collection;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
+import studio7i.modelo.Servicio;
 import studio7i.negocio.GestionLocal;
 import studio7i.util.ConexionBD;
 
@@ -267,5 +268,45 @@ public class InstrumentoDAO extends BaseDAO {
 			this.cerrarStatement(stmt);
 			this.cerrarConexion(con);
 		}
+	}
+	public Collection<Instrumento> buscarPorTipo(String tipo)
+			throws DAOExcepcion {
+		String query = "select instrumento.*, local.nombre as local from instrumento, local where instrumento.tipo like ? and local.local_id=instrumento.local_id";
+		Collection<Instrumento> c=new ArrayList<Instrumento>();
+			
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ConexionBD.obtenerConexion();
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, "%" + tipo + "%");
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Instrumento vo=new Instrumento();
+				vo.setInstrumento_id(rs.getInt("instrumento_id"));
+				vo.setTipo(rs.getString("tipo"));
+				vo.setCaracteristicas(rs.getString("caracteristicas"));
+				vo.setModelo(rs.getString("modelo"));
+				vo.setMarca(rs.getString("marca"));	
+				vo.setPrecio(rs.getFloat("precio"));
+				Local local = new Local();
+				local.setLocal_id(rs.getInt("local_id"));
+				local.setNombre(rs.getString("local"));
+				vo.setLocal((local));
+				c.add(vo);
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			throw new DAOExcepcion(e.getMessage());
+		} finally {
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(stmt);
+			this.cerrarConexion(con);
+		}
+		return c;
+
 	}
 }
