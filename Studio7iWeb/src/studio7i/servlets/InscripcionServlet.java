@@ -31,7 +31,7 @@ public class InscripcionServlet extends HttpServlet {
 			case "mostrar":
 				Evento evento = buscar(Integer.parseInt(evento_id));
 				request.setAttribute("EVENTO", evento);
-				RequestDispatcher rd = request.getRequestDispatcher("inscripcionCliente.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("inscripcionClienteAevento.jsp");
 				rd.forward(request,response);
 				break;
 			}
