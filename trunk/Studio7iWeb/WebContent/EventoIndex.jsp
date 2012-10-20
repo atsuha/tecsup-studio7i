@@ -88,13 +88,17 @@
 							
 							<a href="javascript:;" onclick="eliminar_evento(${EVENTO.evento_id});" title="eliminar"><i class="icon-remove"></i></a>
 							
+						
 						</td>
 					</tr>
 			</c:forEach>
+				
 			</table>
 		</div>
 		
-	</form>		
+	</form>
+	<br><br>		
+	<h3>${mensaje}</h3>
 	</div>
 		<div id="mantenimiento"></div>
 	</div>
