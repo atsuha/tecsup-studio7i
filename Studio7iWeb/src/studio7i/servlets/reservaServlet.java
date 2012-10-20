@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,8 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Reserva;
 import studio7i.modelo.Sala;
+import studio7i.negocio.GestionLocal;
+import studio7i.negocio.GestionPersona;
 import studio7i.negocio.GestionReserva;
 import studio7i.negocio.GestionSala;
+import studio7i.negocio.GestionServicios;
 
 
 /**
@@ -48,6 +52,10 @@ public class reservaServlet extends HttpServlet {
 		String metodo = request.getParameter("metodo");
 		Collection<Reserva> resultado = new ArrayList<Reserva>();
 		Collection<Sala> salas = new ArrayList<Sala>();
+		
+		GestionSala	dao = new GestionSala();
+		GestionReserva negocio = new GestionReserva();
+		
 		try {
 			switch (metodo) {
 				case "listar": 
@@ -69,11 +77,50 @@ public class reservaServlet extends HttpServlet {
 					rd1.forward(request, response);
 					break;					
 					
+				case "nuevo":
+					request.setAttribute("SALA", dao.lista());
+					rd = request.getRequestDispatcher("reservasala.jsp");
+					rd.forward(request, response);
+					break;
+					
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		String metodo = request.getParameter("metodo");
+		
+		
+		String sala_id = request.getParameter("cboSala");
+		String persona_id = request.getParameter("cboPersona");
+		String fecha = request.getParameter("txtFecha");
+		String hora_inicio = request.getParameter("txtInicio");
+		String hora_fin = request.getParameter("txtFin");
+		
+		GestionReserva negocio = new GestionReserva();
+		RequestDispatcher rd = request
+				.getRequestDispatcher("servicioIndex.jsp");
+		
+		try {
+			switch (metodo) {
+			
+			case "nuevo":									
+				System.out.println(sala_id+" "+persona_id+" "+fecha+" "+hora_inicio+" "+hora_fin);
+				negocio.insertar1(Integer.parseInt(hora_inicio), Date.parse(fecha), Integer.parseInt(hora_fin), 1, Integer.parseInt(sala_id), Integer.parseInt(persona_id));
+				break;
+						
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+	}	
 	
 	public Collection<Reserva> listar() throws DAOExcepcion{
 		GestionReserva dao = new GestionReserva();
@@ -90,5 +137,6 @@ public class reservaServlet extends HttpServlet {
 		GestionSala dao = new GestionSala();
 		return dao.lista();
 	}
+
 
 }
