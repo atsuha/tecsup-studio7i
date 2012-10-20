@@ -21,6 +21,8 @@
 	<div class="container" style="height: 400px;">
 		<div class="" >
 
+			<h1>Inscripcion a Eventos</h1>
+   			<p>Encuentre los eventos de su preferencia e inscriba a su banda cuanto antes!!.</p>
 			<form action="InscripcionServlet" method="POST">
 			<input type = "hidden" name = "metodo" value = "buscarNombre" />
 					<table align = "right">
