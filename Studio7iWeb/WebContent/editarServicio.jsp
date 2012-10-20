@@ -33,8 +33,12 @@
 			
 		</table>
 		<div class="form-actions">
-		  <button type="submit" class="btn btn-primary">Guardar</button>
+		  <button type="submit" class="btn btn-primary" id="grabar" >Guardar</button>
 		  <button type="button" class="btn" onclick="cancelar();">Cancelar</button>
 		</div>
 	</form>
+	
+	
+				
+  	
 </div>
