@@ -98,4 +98,10 @@ public class GestionSala {
 		return dao.buscarPorNombre(nombre);
 	}
 
+	public Collection<Sala> buscarPorSalaId(int sala_id) throws DAOExcepcion {
+		SalaDAO dao = new SalaDAO();
+		return dao.buscarPorSalaId(sala_id);
+	}
+
+	
 }
