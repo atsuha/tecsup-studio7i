@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
 import studio7i.negocio.GestionInstrumentos;
 import studio7i.negocio.GestionLocal;
@@ -101,14 +102,44 @@ public class InstrumentoServlet extends HttpServlet {
 				break;
 			case "editar":								
 			System.out.println(instrumento_id + "" + tipo  + "" + caracteristicas  + "" + marca  + "" + modelo  +" "+ local_id +" "+precio);
+			
+			
+			try{
 				
-			negocio.actualizar(Integer.parseInt(instrumento_id), tipo,modelo,marca,caracteristicas,   Double.parseDouble(precio),Integer.parseInt( local_id));				
-				break; 
+				
+				negocio.actualizar(Integer.parseInt(instrumento_id), tipo,modelo,marca,caracteristicas,   Double.parseDouble(precio),Integer.parseInt( local_id));
+				request.setAttribute("MENSAJE", "Se actualizó correctamente");
+				request.setAttribute("LISTA", negocio.buscarPorTipo(""));	
+				
+				
+			}
+			catch (DAOExcepcion e){				
+				request.setAttribute("MENSAJE", "No se actualizó correctamente");
+				
+			}
+			
+			
+
+			rd.forward(request, response);
+			break;
 			case "nuevo":									
 				System.out.println(instrumento_id + "" + tipo  + "" + caracteristicas  + "" + marca  + "" + modelo  +" "+ local_id +" "+precio);
 				
-				negocio.insertar(tipo,marca,modelo,caracteristicas, Double.parseDouble(precio),Integer.parseInt( local_id));											
+				try{	
+					
+					negocio.insertar(tipo,marca,modelo,caracteristicas, Double.parseDouble(precio),Integer.parseInt( local_id));
+					request.setAttribute("MENSAJE", "Se registró correctamente");
+					request.setAttribute("LISTA", negocio.buscarPorTipo(""));
+					
+				} catch (DAOExcepcion e) {
+					request.setAttribute("MENSAJE",
+							"No se registró correctamente");
+				}
+				
+				rd.forward(request, response);
 				break;
+															
+			
 						
 			}
 			
