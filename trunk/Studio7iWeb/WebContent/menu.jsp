@@ -28,7 +28,7 @@
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente <b class="caret"></b></a>
 	            <ul class="dropdown-menu">
 	              <li><a href="#">Registrar Cliente</a></li>
-	              <li><a href="#SalaServlet?metodo=listar4">Buscar Sala</a></li>
+	              <li><a href="#SalaServlet?metodo=listar4">Buscar Sala de Ensayo</a></li>
 	              <li><a href="InscripcionAevento.jsp">Inscripcion a Eventos</a></li>
 	            </ul>
 	          </li>
