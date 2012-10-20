@@ -10,11 +10,13 @@ import org.junit.Test;
 
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
+import studio7i.modelo.Servicio;
 import studio7i.negocio.GestionInstrumentos;
+import studio7i.negocio.GestionServicios;
 
 public class GestionInstrumentosTest {
 	
-		@Test
+//		@Test
 		public void insertarTest() {
 
 			GestionInstrumentos negocio = new GestionInstrumentos();
@@ -93,4 +95,22 @@ public class GestionInstrumentosTest {
 		}
 
 
+		
+		 @Test 
+		 public void listarPorTipoTest(){
+			 GestionInstrumentos negocio=new GestionInstrumentos();
+			 	
+			 try{
+				 Collection<Instrumento> listado=negocio.buscarPorTipo("Piano")	;			
+				 System.out.println(listado.size());
+			 Assert.assertTrue(listado.size()> 0); 
+			 }
+			catch (DAOExcepcion e){
+				
+			Assert.fail("Falló el listado: " + e.getMessage());
+					
+			}
+			 	
+			 
+		 }
 }
