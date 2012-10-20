@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@include file="menu.jsp" %>
-    <head>
+    <head>  
+    
     <script src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
@@ -28,6 +29,15 @@
     	$('#mantenimiento').html('');
     }
     </script>
+    
+            <!-- para datepicker -->
+    <script src="js/jquery-1.7.2.min.js"></script>
+       <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    
+    
     </head>
 	<div class="container" style="height: 400px;">
 		<div class="" >
