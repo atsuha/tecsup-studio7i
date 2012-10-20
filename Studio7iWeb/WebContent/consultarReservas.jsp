@@ -39,7 +39,10 @@
           <td>${reserva.opersona.nombres}</td>
 			<td>${reserva.hora_inicio} - ${reserva.hora_fin}</td>
 			<td>${reserva.osala.costo}</td>
-			<td>Instrumentos</td>
+			<c:forEach var="reservainstrumento" items="${reserva.listainstrumentos}">
+				<c:set var="marca" scope="page" value="${reservainstrumento.oinstrumento.marca}"/>
+			</c:forEach>
+			<td>${tipo}</td>
 			<td>Servicios</td>
         </tr>
       </c:forEach>    	
