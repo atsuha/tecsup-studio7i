@@ -1,13 +1,27 @@
 	<%@include file="menu.jsp" %>
     <head>
       <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+  
+   
     <script src="js/jquery-1.7.2.min.js"></script>
+    
+    
     <script type="text/javascript">
-    $(document).ready(function() {
-    	
-    	
-  	  
+    
+    
+   
+    	$(document).ready(function() {    	    	
+						    			    	    	        		
+    			$(".success").hide().fadeIn('slow').delay(1500).fadeOut('slow').css({"background-color": "#DFF2BF","color": "#4F8A10","border": "1px solid","font-family":"Arial, Helvetica, sans-serif","font-size":"13px"});
+    	    			        			
   	});
+    
+    	
+   
+    
+    	
+    	
+    	
     
     function editar_servicio(servicio){
     	$('#mantenimiento').load('ServicioServlet?metodo=editar&servicio=' + servicio );
@@ -18,7 +32,7 @@
     }
     function eliminar_servicio(sevicio){
     	if(confirm("Esta seguro de eliminar el servicio?")){
-			alert("Elimino");
+			alert("Se eliminó");
 		}
 		return false;
     }
@@ -26,7 +40,7 @@
     	$('#mantenimiento').html('');
     }
     </script>
-  
+   
     </head>
 	<div class="container" style="height: 400px;">
 		<div class="" >
@@ -52,6 +66,7 @@
 			</table>
 		</div>
 		<div>
+			<div class="success"> ${MENSAJE}</div>			
 			<table class="table table-hover">
 				<tr>
 					<th>#</th>
