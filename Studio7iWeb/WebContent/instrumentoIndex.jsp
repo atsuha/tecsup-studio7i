@@ -71,8 +71,8 @@
 						<td>${instrumento.marca}</td>
 						
 						<td>
-							<a href="javascript:;" onclick="editar_instrumento" title="editar" alt="editar"><i class="icon-edit"></i></a>
-							<a href="javascript:;" onclick="eliminar_instrumento" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
+							<a href="javascript:;" onclick="editar_instrumento(${instrumento.instrumento_id});" title="editar" alt="editar"><i class="icon-edit"></i></a>
+							<a href="javascript:;" onclick="eliminar_instrumento(${instrumento.instrumento_id});" title="eliminar" alt="eliminar"><i class="icon-remove"></i></a>
 						</td>
 					</tr>
 				</c:forEach>
