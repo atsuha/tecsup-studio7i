@@ -31,7 +31,9 @@
     </head>
 	<div class="container" style="height: 400px;">
 		<div class="" >
-
+			
+			<h1>Crear Eventos</h1>
+   			<p>Permite crear un evento con sus características para sus clientes, editarlo<br> y borrarlo en algun caso.</p>
 			<form action="EventoServlet" method="POST">
 			<input type = "hidden" name = "metodo" value = "buscarNombre" />
 					<table>
