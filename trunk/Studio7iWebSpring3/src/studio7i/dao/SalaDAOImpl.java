@@ -115,6 +115,7 @@ public class SalaDAOImpl implements SalaDAO {
 		return jdbcTemplate.query(query, mapper);
 	}
 	
+	@Override
 	@SuppressWarnings(value = "unchecked")
 	public Collection<Sala> buscarPorNombre(String nombre)
 			throws DAOExcepcion {
@@ -145,6 +146,7 @@ public class SalaDAOImpl implements SalaDAO {
 				mapper);
 	}
 	
+	@Override
 	@SuppressWarnings(value = "unchecked")
 	public Collection<Sala> buscarPorSalaId(String id) throws DAOExcepcion{
 		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where sala_id = ? and estado!=0 order by nombre";
