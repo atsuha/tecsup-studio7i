@@ -1,5 +1,7 @@
 package studio7i.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,10 @@ public class EventoServiceImpl implements EventoService{
 	
 	public Evento insertar(Evento ev)throws DAOExcepcion{
 		return eventoDAO.insertar(ev);
+	}
+
+	public Collection<Evento> buscarNombre(String nombre) throws DAOExcepcion {
+		return eventoDAO.buscarNombre(nombre);
 	}
 	
 }
