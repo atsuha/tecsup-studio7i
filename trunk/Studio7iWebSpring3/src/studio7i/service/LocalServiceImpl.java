@@ -15,7 +15,7 @@ public class LocalServiceImpl implements LocalService {
 	@Autowired
 	private LocalDAO localDAO;
 
-	public void setUsuarioDAO(LocalDAO localDAO) {
+	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO = localDAO;
 	}
 	
