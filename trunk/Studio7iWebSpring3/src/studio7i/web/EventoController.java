@@ -75,7 +75,7 @@ public class EventoController {
 		try{
 			resultado = eventoService.buscarNombre(nombreEvento);
 			request.setAttribute("resultado", resultado);
-			mv = new ModelAndView("rediret:evento.html");
+			mv = new ModelAndView("EventoIndex");
 		}catch(DAOExcepcion e){
 			mv = new ModelAndView("EventoIndex", "mensaje", "No existe el evento");
 		}
