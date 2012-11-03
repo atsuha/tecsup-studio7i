@@ -46,7 +46,6 @@ public class SalaDAOImpl implements SalaDAO {
 	
 	@Override
 	public Sala obener(String id) throws DAOExcepcion{		
-		LocalDAO local;
 		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where estado=1 AND sala_id=? ";
 		RowMapper mapper = new RowMapper() {
 
@@ -57,7 +56,11 @@ public class SalaDAOImpl implements SalaDAO {
 				vo.setCapacidad(rs.getInt(3));
 				vo.setCaracteristicas(rs.getString(4));
 				vo.setCosto(rs.getDouble(5));
-				vo.setLocal(local.obtener(rs.getInt(6)));
+				try {
+					vo.setLocal(local.obtener(rs.getInt(6)));
+				} catch (DAOExcepcion e) {
+					e.printStackTrace();
+				}
 				return vo;
 			}
 		};
@@ -142,8 +145,9 @@ public class SalaDAOImpl implements SalaDAO {
 				mapper);
 	}
 	
+	@SuppressWarnings(value = "unchecked")
 	public Collection<Sala> buscarPorSalaId(String id) throws DAOExcepcion{
-		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where estado!=0 order by nombre";
+		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where sala_id = ? and estado!=0 order by nombre";
 		RowMapper mapper = new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Sala vo = new Sala();
@@ -157,10 +161,12 @@ public class SalaDAOImpl implements SalaDAO {
 				} catch (DAOExcepcion e) {
 					e.printStackTrace();
 				}
+				return vo;
 			}
 		};
-		return jdbcTemplate.queryForObject(query, new Object[] {
-				id, "1" }, mapper);
+		return jdbcTemplate.query(query, new Object[] {id, "1" }, mapper);
+//		return jdbcTemplate.query(query, new Object[] { "%" + nombre + "%" },
+//				mapper);
 	}
 	
 }
