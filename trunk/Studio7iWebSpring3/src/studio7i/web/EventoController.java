@@ -52,7 +52,7 @@ public class EventoController {
 		
 		try{
 			eventoService.insertar(ev);
-			mv = new ModelAndView("EventoIndex");
+			mv = new ModelAndView("redirect:evento.html");
 		}catch(DAOExcepcion e){
 			mv = new ModelAndView("EventoIndex", "mensaje", "No se pudo crear el evento");
 		}
