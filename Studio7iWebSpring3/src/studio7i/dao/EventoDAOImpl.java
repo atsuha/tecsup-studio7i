@@ -40,7 +40,7 @@ public class EventoDAOImpl implements EventoDAO{
 			throws DAOExcepcion {
 		System.out.println("EventoDAOImpl: buscarPorNombre() : " + nombre);
 
-		String sql = "select evento_id, nombre, descricion, lugar, fecha, premios"
+		String sql = "select evento_id, nombre, descripcion, lugar, fecha, premios"
 				+ " from evento where nombre like ? ";
 
 		RowMapper mapper = new RowMapper() {
