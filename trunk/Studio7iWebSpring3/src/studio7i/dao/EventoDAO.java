@@ -9,5 +9,5 @@ public interface EventoDAO {
 
 	public Evento insertar(Evento ev)throws DAOExcepcion;
 	
-	public Collection<Evento> buscarPorNombre(String nombre)throws DAOExcepcion;
+	public Collection<Evento> buscarNombre(String nombre)throws DAOExcepcion;
 }
