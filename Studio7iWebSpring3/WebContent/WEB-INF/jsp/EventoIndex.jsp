@@ -44,7 +44,7 @@
 			
 			<h1>Crear Eventos</h1>
    			<p>Permite crear un evento con sus características para sus clientes, editarlo<br> y borrarlo en algun caso.</p>
-			<form action="EventoServlet" method="POST">
+			<form action="buscarNombre.html" method="get">
 			<input type = "hidden" name = "metodo" value = "buscarNombre" />
 					<table>
 						<tr>
