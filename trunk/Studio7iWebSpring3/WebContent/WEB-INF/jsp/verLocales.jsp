@@ -13,8 +13,7 @@
     <div class="container">
       <h1>Ver locales</h1>
       <p>Consultar los locales que tiene la empresa, así como sus características.</p>
-      <form name="f1" action="SalaServlet" method="post">
-    	<input type="hidden" name="metodo" value="buscarPorSalaId" >
+      <form name="f1" action="buscarPorNombre.html" method="post">
     	<label>Local</label>
 					<select  class="span3" name="sala_id">
 						<c:forEach var="sala" items="${LISTA}">
@@ -34,10 +33,10 @@
 			</tr>
 		      <c:forEach var="local" items="${RESULTADO}">
         <tr>
+        	<td>${local.local_id}</td>
           <td>${local.nombre}</td>
-			<td>Local</td>
-			<td>Capacidad</td>
-			<td>Instrumentos</td>
+			<td>${local.direccion}</td>
+			<td>${local.estado}</td>
 			<td><a href="javascript:;" class="reservar" >Reservar</a></td>
         </tr>
       </c:forEach>    	
