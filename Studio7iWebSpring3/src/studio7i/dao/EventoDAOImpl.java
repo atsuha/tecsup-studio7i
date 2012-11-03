@@ -36,7 +36,7 @@ public class EventoDAOImpl implements EventoDAO{
 	}
 	
 	@SuppressWarnings(value = "unchecked")
-	public Collection<Evento> buscarPorNombre(String nombre)
+	public Collection<Evento> buscarNombre(String nombre)
 			throws DAOExcepcion {
 		System.out.println("EventoDAOImpl: buscarPorNombre() : " + nombre);
 
@@ -59,5 +59,6 @@ public class EventoDAOImpl implements EventoDAO{
 		return jdbcTemplate.query(sql, new Object[] { "%" + nombre + "%" },
 				mapper);
 	}
+
 	
 }
