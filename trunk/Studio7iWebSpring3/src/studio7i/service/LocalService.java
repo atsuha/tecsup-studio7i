@@ -7,7 +7,7 @@ import studio7i.modelo.Local;
 
 public interface LocalService {
 
-	public Collection<Local> buscarPorNombre(String nombre);
+	public Collection<Local> buscarPorNombre(String nombre) throws DAOExcepcion;
 	
 	public Local insertar(Local vo) throws DAOExcepcion;
 	

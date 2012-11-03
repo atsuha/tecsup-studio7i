@@ -20,7 +20,7 @@ public class LocalServiceImpl implements LocalService {
 	}
 	
 	@Override
-	public Collection<Local> buscarPorNombre(String nombre) {
+	public Collection<Local> buscarPorNombre(String nombre) throws DAOExcepcion {
 		return localDAO.buscarPorNombre(nombre);
 	}
 
