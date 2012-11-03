@@ -41,11 +41,12 @@ public class LocalController {
 		
 		try {
 			Collection<Local> locales =  localService.buscarPorNombre(nombre);
-			mv = new ModelAndView("redirect:ver_locales.html", "RESULTADO", locales);// con el redirect se crea un nuevo request, la variable no se carga en memoria, por eso es neceario utilizar param.MENSAJE en el jsp.
+			System.out.println("Locales: " + locales.size());
+			mv = new ModelAndView("verLocales", "RESULTADO", locales);// con el redirect se crea un nuevo request, la variable no se carga en memoria, por eso es neceario utilizar param.MENSAJE en el jsp.
 		} catch (DAOExcepcion e) {
 			mv = new ModelAndView("error", "mensaje", "Usuario y/o clave incorrectos");
 		}
 		
-		return new ModelAndView("verLocales");
+		return mv;
 	}
 }
