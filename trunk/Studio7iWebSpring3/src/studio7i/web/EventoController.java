@@ -1,8 +1,12 @@
 package studio7i.web;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +19,7 @@ import studio7i.service.EventoService;
 @Controller
 public class EventoController {
 
+	@Autowired
 	private EventoService eventoService;
 	public void setEventoService(EventoService eventoService){
 		this.eventoService = eventoService;
@@ -58,6 +63,22 @@ public class EventoController {
 		}
 		return mv;
 	}
-	
-	
+
+	@RequestMapping(value = "/buscarNombre.html")
+	protected ModelAndView buscarNombre(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		System.out.println("Dentro de buscarNombre-EventoController");
+		ModelAndView mv = null;
+		
+		Collection<Evento> resultado = new ArrayList<Evento>();
+		String nombreEvento = request.getParameter("txtEvento");
+		
+		try{
+			resultado = eventoService.buscarNombre(nombreEvento);
+			request.setAttribute("resultado", resultado);
+			mv = new ModelAndView("rediret:evento.html");
+		}catch(DAOExcepcion e){
+			mv = new ModelAndView("EventoIndex", "mensaje", "No existe el evento");
+		}
+		return mv;
+	}
 }
