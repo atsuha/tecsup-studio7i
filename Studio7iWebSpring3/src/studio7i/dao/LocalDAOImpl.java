@@ -44,31 +44,64 @@ public class LocalDAOImpl implements LocalDAO{
 				mapper);
 	}
 
-	@Override
 	public Local insertar(Local vo) throws DAOExcepcion {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("insertar");
+		String query = "INSERT INTO local (nombre,direccion) "
+				+ "VALUES (?,?)";
+		Object[] params = new Object[] { vo.getNombre(), vo.getDireccion() };
+		try {
+			jdbcTemplate.update(query, params);
+		} catch (Exception e) {
+			throw new DAOExcepcion(e.getMessage());
+		}
+		return vo;
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
 	public Local obtener(int idLocal) throws DAOExcepcion {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("LocalDAOImpl: obtener() : " + idLocal);
+
+		String sql = "select local_id,nombre,direccion,estado from sala where local_id=? and estado=?";
+
+		RowMapper mapper = new RowMapper() {
+
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Local vo = new Local();
+				vo.setLocal_id(rs.getInt("local_id"));
+				vo.setNombre(rs.getString("nombre"));
+				vo.setDireccion(rs.getString("direccion"));
+				vo.setEstado(rs.getString("estado"));
+				return vo;
+			}
+		};
+
+		return (Local) jdbcTemplate.queryForObject(sql, new Object[] {
+				idLocal, "1" }, mapper);
 	}
 
-	@Override
 	public void eliminar(int idLocal) throws DAOExcepcion {
-		// TODO Auto-generated method stub
+		String query = "UPDATE usuario SET estado=0 WHERE local_id=?";
+		Object[] params = new Object[] { idLocal };
+		try {
+			jdbcTemplate.update(query, params);
+		} catch (Exception e) {
+			throw new DAOExcepcion(e.getMessage());
+		}
 		
 	}
 
-	@Override
 	public Local actualizar(Local vo) throws DAOExcepcion {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "UPDATE local SET nombre=?, direccion=?"
+				+ " WHERE local_id=?";
+		Object[] params = new Object[] { vo.getNombre(), vo.getDireccion(), vo.getLocal_id() };
+		try {
+			jdbcTemplate.update(query, params);
+		} catch (Exception e) {
+			throw new DAOExcepcion(e.getMessage());
+		}
+		return vo;
 	}
 
-	@Override
 	public Collection<Local> listar() throws DAOExcepcion {
 		// TODO Auto-generated method stub
 		return null;
