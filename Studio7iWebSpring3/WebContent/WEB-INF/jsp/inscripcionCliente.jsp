@@ -12,8 +12,8 @@
     </script>
 		
 <div class="container">
- <h1>Busqueda de Salas</h1>
-      <p>Consultar las salas de ensayo que ofrece la empresa, así como sus características, <br> de manera que pueda decidir reservarlas.</p>
+ <h1>Registrar Cliente</h1>
+      <p>Registre sus Datos y realice sus reservas de nuestros servicios.</p>
 
   
 
