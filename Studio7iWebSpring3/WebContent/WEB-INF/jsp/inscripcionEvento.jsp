@@ -10,7 +10,7 @@
  
 
 
-	<form action="EventoServlet" method = "Post">
+	<form action="insertarEvento.html" method = "get">
 		<input type = "hidden" name = "metodo" value = "crear" />
 		<table>
 			<tr>
