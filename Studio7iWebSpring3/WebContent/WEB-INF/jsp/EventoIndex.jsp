@@ -11,7 +11,7 @@
   	});
     
     function nuevo_evento(evento){
-    	$('#mantenimiento').load('inscripcionEvento.jsp');
+    	$('#mantenimiento').load('inscripcionEvento.html');
     }
     
     function editar_evento(evento){
