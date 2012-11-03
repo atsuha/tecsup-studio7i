@@ -29,6 +29,7 @@
 	            <ul class="dropdown-menu">
 	              <li><a href="#">Registrar Cliente</a></li>
 	              <li><a href="SalaServlet?metodo=listar4">Buscar Sala de Ensayo</a></li>
+	              <li><a href="ver_locales.html">Ver Locales</a></li>
 	              <li><a href="InscripcionAevento.jsp">Inscripcion a Eventos</a></li>
 	            </ul>
 	          </li>
