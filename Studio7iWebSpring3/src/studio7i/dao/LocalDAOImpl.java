@@ -23,7 +23,7 @@ public class LocalDAOImpl implements LocalDAO{
 	}
 
 	@SuppressWarnings(value = "unchecked")
-	public Collection<Local> buscarPorNombre(String nombre) {
+	public Collection<Local> buscarPorNombre(String nombre) throws DAOExcepcion {
 		System.out.println("LocalDAOImpl: buscarPorNombre() : " + nombre);
 
 		String sql = "select local_id,nombre,direccion,estado "
