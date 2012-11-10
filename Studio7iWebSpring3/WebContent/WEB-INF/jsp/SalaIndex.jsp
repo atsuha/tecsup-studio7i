@@ -11,10 +11,10 @@
   	});
     
     function editar_sala(sala){
-    	$('#mantenimiento').load('SalaServlet?metodo=editar&sala=' + sala);
+    	$('#mantenimiento').load('editar_sala.html?sala=' + sala);
     }
     function nueva_sala(){
-    	$('#mantenimiento').load('SalaServlet?metodo=nuevo');
+    	$('#mantenimiento').load('nueva_sala.html');
     }
     function eliminar_sala(sala){
     	if(confirm("Esta seguro de eliminar la sala?")){
@@ -70,7 +70,8 @@
 					<th>Local</th>
 					<th>&nbsp;</th>
 				</tr>
-				<c:forEach var="sala" items="${LISTA}">
+				
+				<c:forEach var="sala" items="${map.LISTA}">
 				   <tr>
 						<td>${sala.salaId}</td>
 						<td>${sala.nombre}</td>
@@ -86,4 +87,4 @@
 		</div>
 		<div id="mantenimiento"></div>
 	</div>
-<%@include file="footer.jsp" %>
+<%-- <%@include file="footer.jsp" %> --%>
