@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <div class="container">
 
-	<form action="SalaServlet" method="POST">
+	<form action="grabar_sala.html" method="POST">
 		<input type="hidden" name="metodo" value="grabar" />
 		<table>
 			<tr>
