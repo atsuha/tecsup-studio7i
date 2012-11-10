@@ -128,7 +128,7 @@ public class InstrumentoDAOImpl implements InstrumentoDAO{
 	}
 
 	public Collection<Instrumento> listar() throws DAOExcepcion {
-		String query = "select instrumento_id, tipo, marca,modelo, caracteristicas,precio,local_id from instrumento where estado!=0 order by nombre";
+		String query = "select instrumento_id, tipo, marca,modelo, caracteristicas,precio,local_id from instrumento where estado!=0";
 		RowMapper mapper = new RowMapper() {
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Instrumento vo = new Instrumento();
