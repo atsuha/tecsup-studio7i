@@ -114,6 +114,12 @@ public class Evento {
 
 	public void setEstado(char estado) {
 		this.estado = estado;
+	}
+
+
+	public void setEvento_id(String evento) {
+		// TODO Auto-generated method stub
+		
 	}	
 	
 	
