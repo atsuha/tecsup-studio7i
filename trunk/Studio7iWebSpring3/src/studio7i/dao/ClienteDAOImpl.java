@@ -1,8 +1,13 @@
 package studio7i.dao;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import studio7i.excepcion.DAOExcepcion;
@@ -20,7 +25,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 /*
-	public Usuario validar(String idUsuario, String clave)
+	public Persona validar(String idPersona, String clave)
 			throws LoginExcepcion, DAOExcepcion {
 
 		System.out.println("UsuarioDAOImpl: validar(): " + idUsuario
@@ -56,29 +61,28 @@ public class ClienteDAOImpl implements ClienteDAO {
 		}
 
 	}
-	
+	*/
 	@SuppressWarnings(value = "unchecked")
-    public Collection<Usuario> buscarPorNombre(String nombre)
+    public Collection<Cliente> buscarPorNombre(String nombre)
                     throws DAOExcepcion {
-            System.out.println("UsuarioDAOImpl: buscarPorNombre() : " + nombre);
+            System.out.println("ClienteDAOImpl: buscarPorNombre() : " + nombre);
 
-            String sql = "select id_usuario,clave,nombres,paterno,materno,correo,direccion,telefono,estado "
-                            + " from usuario where nombres like ? ";
+            String sql = "select persona_id,nombres,paterno,materno,email,fecha_nacimiento,dni,usuario "
+                            + " from persona where nombres like ? ";
 
             RowMapper mapper = new RowMapper() {
 
                     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-                            Usuario vo = new Usuario();
-                            vo.setIdUsuario(rs.getString("id_usuario"));
-                            vo.setClave(rs.getString("clave"));
+                            Persona vo = new Persona();
+                            vo.setPersona_id(rs.getInt("persona_id"));
                             vo.setNombres(rs.getString("nombres"));
                             vo.setPaterno(rs.getString("paterno"));
                             vo.setMaterno(rs.getString("materno"));
-                            vo.setCorreo(rs.getString("correo"));
-                            vo.setDireccion(rs.getString("direccion"));
-                            vo.setTelefono(rs.getString("telefono"));
-                            vo.setEstado(rs.getString("estado"));
-                            return vo;
+                            vo.setEmail(rs.getString("email"));
+                            vo.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                            vo.setDni(rs.getString("dni"));
+                            vo.setUsuario(rs.getString("usuario"));
+                             return vo;
                     }
             };
             return jdbcTemplate.query(sql, new Object[] { "%" + nombre + "%" },
@@ -86,74 +90,71 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
         
         @SuppressWarnings("unchecked")
-        public Usuario obtenerPorIdUsuario(String idUsuario) throws DAOExcepcion {
-        System.out.println("UsuarioDAOImpl: obtenerPorIdUsuario() : "
-                        + idUsuario);
+        public Cliente obtenerPorIdCliente(String idCliente) throws DAOExcepcion {
+        System.out.println("ClienteDAOImpl: obtenerPorIdCliente() : "
+                        + idCliente);
 
-        String sql = "select id_usuario,clave,nombres,paterno,materno,correo,direccion,telefono,estado from usuario where id_usuario=? and estado=?";
+        String sql = "select persona_id,nombres,paterno,materno,email,fecha_nacimiento,dni,usuario  where persona_id=? and estado=?";
 
         RowMapper mapper = new RowMapper() {
 
                 public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        Usuario vo = new Usuario();
-                        vo.setIdUsuario(rs.getString("id_usuario"));
-                        vo.setClave(rs.getString("clave"));
+                        Persona vo = new Persona();
+                        vo.setPersona_id(rs.getInt("persona_id"));
                         vo.setNombres(rs.getString("nombres"));
                         vo.setPaterno(rs.getString("paterno"));
                         vo.setMaterno(rs.getString("materno"));
-                        vo.setCorreo(rs.getString("correo"));
-                        vo.setDireccion(rs.getString("direccion"));
-                        vo.setTelefono(rs.getString("telefono"));
-                        vo.setEstado(rs.getString("estado"));
+                        vo.setEmail(rs.getString("email"));
+                        vo.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                        vo.setDni(rs.getString("dni"));
+                        vo.setUsuario(rs.getString("usuario"));
                         return vo;
                 }
         };
         
-        return (Usuario) jdbcTemplate.queryForObject(sql, new Object[] {idUsuario, "1" }, mapper);
+        return (Cliente) jdbcTemplate.queryForObject(sql, new Object[] {idCliente, "1" }, mapper);
 }
-*/
+
 public Persona insertarCliente(Persona vo) throws DAOExcepcion  {
         System.out.println("insertar Cliente");
-        String query = "INSERT INTO persona (dni,nombres,paterno,materno,email,usuario,password) "
-                        + "VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO persona (dni,nombres,paterno,materno,email,fecha_nacimiento,usuario,password) "
+                        + "VALUES (?,?,?,?,?,?,?,?)";
         Object[] params = new Object[] { vo.getDni(),vo.getNombres(), vo.getPaterno(),
-        							vo.getMaterno(),vo.getEmail(), vo.getUsuario(), vo.getPassword() };
+        							vo.getMaterno(),vo.getEmail(),vo.getFechaNacimiento(), vo.getUsuario(), vo.getPassword() };
         try {
                 jdbcTemplate.update(query, params);
         } catch (Exception e) {
                 throw new DAOExcepcion(e.getMessage());
         }
         return vo;
+}
+
+public Persona actualizar(Persona vo) throws DAOExcepcion {
+        String query = "UPDATE persona SET password=?, nombres=?, paterno=?, materno=?, email=?, fecha_nacimiento=?,"
+                        + " dni=? WHERE persona_id=?";
+        Object[] params = new Object[] { vo.getPassword(), vo.getNombres(), vo.getPaterno(), vo.getMaterno(),
+        					vo.getEmail(),vo.getFechaNacimiento(),vo.getDni() };
+        try {
+                jdbcTemplate.update(query, params);
+        } catch (Exception e) {
+                throw new DAOExcepcion(e.getMessage());
+        }
+        return vo;
+}
+
+public void eliminar(String idPersona) throws DAOExcepcion {
+        String query = "DELETE FROM persona WHERE persona_id=?";
+        Object[] params = new Object[] { idPersona };
+        try {
+                jdbcTemplate.update(query, params);
+        } catch (Exception e) {
+                throw new DAOExcepcion(e.getMessage());
+        }
 }
 /*
-public Usuario actualizar(Usuario vo) throws DAOExcepcion {
-        String query = "UPDATE usuario SET clave=?, nombres=?, paterno=?, materno=?, correo=?, direccion=?,"
-                        + " telefono=?, estado=? WHERE id_usuario=?";
-        Object[] params = new Object[] { vo.getClave(), vo.getNombres(),
-                        vo.getPaterno(), vo.getMaterno(), vo.getCorreo(),
-                        vo.getDireccion(), vo.getTelefono(), vo.getEstado(),
-                        vo.getIdUsuario() };
-        try {
-                jdbcTemplate.update(query, params);
-        } catch (Exception e) {
-                throw new DAOExcepcion(e.getMessage());
-        }
-        return vo;
-}
-
-public void eliminar(String idUsuario) throws DAOExcepcion {
-        String query = "DELETE FROM usuario WHERE id_usuario=?";
-        Object[] params = new Object[] { idUsuario };
-        try {
-                jdbcTemplate.update(query, params);
-        } catch (Exception e) {
-                throw new DAOExcepcion(e.getMessage());
-        }
-}
-
 @SuppressWarnings(value = "unchecked")
-public Collection<Usuario> listarTodos() throws DAOExcepcion {
-        System.out.println("UsuarioDAOImpl: listarTodos()");
+public Collection<Persona> listarTodos() throws DAOExcepcion {
+        System.out.println("ClienteDAOImpl: listarTodos()");
         String sql = "select id_usuario,clave,nombres,paterno,materno,correo,direccion,telefono,estado from usuario ";
 
         RowMapper mapper = new RowMapper() {
