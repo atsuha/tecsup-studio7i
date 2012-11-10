@@ -27,4 +27,16 @@ public class EventoServiceImpl implements EventoService{
 		return eventoDAO.buscarNombre(nombre);
 	}
 	
+	public Evento obtenerPorId(String evento_id)throws DAOExcepcion{
+		return eventoDAO.obtenerPorId(evento_id);
+	}
+	
+	public void eliminar(String evento_id)throws DAOExcepcion{
+		eventoDAO.eliminar(evento_id);
+	}
+	
+	public Evento actualizar(Evento ev)throws DAOExcepcion{
+		return eventoDAO.actualizar(ev);
+	}
+	
 }
