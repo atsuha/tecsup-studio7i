@@ -24,7 +24,7 @@
     	
     
     function editar_servicio(servicio){
-    	$('#mantenimiento').load('ServicioServlet?metodo=editar&servicio=' + servicio );
+    	$('#mantenimiento').load('editar_servicio.html?metodo=editar&servicio=' + servicio );
     }
     
     function nuevo_servicio(){
