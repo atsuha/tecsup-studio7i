@@ -1,5 +1,8 @@
 package studio7i.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,25 +41,28 @@ public class RegistrarClienteController {
 		ModelAndView mv = null;
 		
 		//String cliente_id 		= request.getParameter("idUsuario");
-		String dni 				= request.getParameter("txtdni");
-		String nombres 			= request.getParameter("txtnombre");
-		String paterno			= request.getParameter("txtpaterno");
-		String materno 			= request.getParameter("txtmaterno");
-		String correo 			= request.getParameter("txtemail");
-		//Date fecha_nacimiento 	= request.getParameter("txtfecha");
-		String usuario 			= request.getParameter("txtusuario");
-		String password 		= request.getParameter("txtpassword");
+		String dni 					= request.getParameter("txtdni");
+		String nombres 				= request.getParameter("txtnombre");
+		String paterno				= request.getParameter("txtpaterno");
+		String materno 				= request.getParameter("txtmaterno");
+		String correo 				= request.getParameter("txtemail");
+		String fecha_nacimiento 	= 	request.getParameter("txtfecha");
+		String usuario 				= request.getParameter("txtusuario");
+		String password 			= request.getParameter("txtpassword");
+		String validarpassword		= request.getParameter("txtvalidar");
 		
 		Persona cliente = new Persona();
+		
 		
 		cliente.setDni(dni);
 		cliente.setNombres(nombres);
 		cliente.setPaterno(paterno);
 		cliente.setMaterno(materno);
 		cliente.setEmail(correo);
-		//cliente.setFechaNacimiento(fecha_nacimiento);
+		cliente.setFechaNacimiento(fecha_nacimiento);
 		cliente.setUsuario(usuario);
 		cliente.setPassword(password);
+		
 		
 		try {
 			clienteService.insertarCliente(cliente);
