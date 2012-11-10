@@ -15,7 +15,7 @@
     }
     
     function editar_evento(evento){
-    	$('#mantenimiento').load('?evento=' + evento);
+    	$('#mantenimiento').load('editarEvento.html?evento=' + evento);
     }
     
     function eliminar_evento(evento){
