@@ -7,7 +7,7 @@
 		<table>
 			<tr>
 				<td> <label class="control-label" for="inputWarning">Nombre de la sala </label></td>
-				<td><input class="input-xlarge" type="text" name="nombre" placeholder="nombre" value="${SALA.nombre}"/></td>
+				<td><input class="input-xlarge" type="text" name="nombre" placeholder="nombre" value="${map.SALA.nombre}"/></td>
 			</tr>
 			<tr>
 				<td>Seleccione Local :</td>
