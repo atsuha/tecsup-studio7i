@@ -15,12 +15,12 @@
     }
     
     function editar_evento(evento){
-    	$('#mantenimiento').load('EventoServlet?metodo=editar&evento=' + evento);
+    	$('#mantenimiento').load('?evento=' + evento);
     }
     
     function eliminar_evento(evento){
     	if(confirm("Esta seguro de eliminar el Evento?")){
-    		$('#container').load('EventoServlet?metodo=eliminar&evento=' + evento);
+    		$('#container').load('eliminar.html?evento=' + evento);
 			alert("Elimino");
 		}
 		return false;
