@@ -64,7 +64,7 @@ public class EventoController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/buscarNombre.html")
+	@RequestMapping(value = "/buscarNombre")
 	protected ModelAndView buscarNombre(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		System.out.println("Dentro de buscarNombre-EventoController");
 		ModelAndView mv = null;
@@ -81,4 +81,14 @@ public class EventoController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/eliminar")
+	protected ModelAndView eliminar(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		System.out.println("Dentro de eliminar-EventoController");
+		String evento_id = request.getParameter("evento");
+
+			eventoService.eliminar(evento_id);
+			return new ModelAndView("redirect:evento.html");	
+	}
+	
 }
