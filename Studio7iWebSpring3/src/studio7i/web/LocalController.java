@@ -1,6 +1,8 @@
 package studio7i.web;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
+import studio7i.service.InstrumentoService;
 import studio7i.service.LocalService;
 
 @Controller
@@ -22,6 +26,13 @@ public class LocalController {
 
 	public void setLocalService(LocalService localService) {
 		this.localService = localService;
+	}
+	
+	@Autowired
+	private InstrumentoService instrumentoService;
+
+	public void setInstrumentoService(InstrumentoService instrumentoService) {
+		this.instrumentoService = instrumentoService;
 	}
 	
 	@RequestMapping(value = "/ver_locales")
@@ -42,7 +53,16 @@ public class LocalController {
 		try {
 			Collection<Local> locales =  localService.buscarPorNombre(nombre);
 			System.out.println("Locales: " + locales.size());
-			mv = new ModelAndView("verLocales", "RESULTADO", locales);// con el redirect se crea un nuevo request, la variable no se carga en memoria, por eso es neceario utilizar param.MENSAJE en el jsp.
+			Collection<Instrumento> instrumentos =  instrumentoService.listar();
+			System.out.println("Instrumentos: " + instrumentos.size());
+			
+			Map<Object, Object> map = new HashMap<Object, Object>();
+			map.put("locales", locales);
+			map.put("instrumentos", instrumentos);
+			
+					
+			
+			mv = new ModelAndView("verLocales", "RESULTADO", map);// con el redirect se crea un nuevo request, la variable no se carga en memoria, por eso es neceario utilizar param.MENSAJE en el jsp.
 		} catch (DAOExcepcion e) {
 			mv = new ModelAndView("error", "mensaje", "Usuario y/o clave incorrectos");
 		}
