@@ -91,4 +91,45 @@ public class EventoController {
 			return new ModelAndView("redirect:evento.html");	
 	}
 	
+	@RequestMapping(value = "/editarEvento", method=RequestMethod.GET)
+	protected ModelAndView editar(HttpServletRequest request,
+			HttpServletResponse response)throws Exception{
+		String evento_id = request.getParameter("evento");
+		System.out.println("Dentro de editar-EventoController Id:" + evento_id);
+		Evento even = new Evento();
+		even = eventoService.obtenerPorId(evento_id);
+		request.setAttribute("EVENTO", even);
+		return new ModelAndView("editarEvento");
+	}
+	
+	@RequestMapping(value = "/actualizarEvento")
+	protected ModelAndView actualizar(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		System.out.println("Dentro de -EventoController");
+		ModelAndView mv = null;
+		
+		String evento = request.getParameter("evento");
+		String nombreEvento = request.getParameter("txtNombre");
+		String descripcion = request.getParameter("txtDescripcion");
+		String lugar = request.getParameter("txtLugar");
+		String fecha = request.getParameter("txtFecha");
+		String premios = request.getParameter("txtPremios");
+		
+		Evento ev = new Evento();
+		
+		ev.setEvento_id(evento);
+		ev.setNombre(nombreEvento);
+		ev.setDescripcion(descripcion);
+		ev.setLugar(lugar);
+		ev.setFecha(fecha);
+		ev.setPremios(premios);
+		
+		try{
+			eventoService.actualizar(ev);
+			mv = new ModelAndView("redirect:evento.html");
+		}catch(DAOExcepcion e){
+			mv = new ModelAndView("EventoIndex", "mensaje", "No se pudo actualizar");
+		}
+		return mv;
+	}
+	
 }
