@@ -35,13 +35,16 @@
 				<td>Servicios</td>
 				<td>Salas</td>
 			</tr>
-			<c:forEach var="local" items="${RESULTADO}">
+			<c:forEach var="local" items="${RESULTADO.locales}">
 				<tr>
 					<td>${local.local_id}</td>
 					<td>${local.nombre}</td>
 					<td>${local.direccion}</td>
-					<td><a href="javascript:;" class="reservar"></a></td>
-					<td><a href="javascript:;" class="reservar"></a></td>
+					<c:forEach var="instrumento" items="${local.instrumentos}">
+								
+					</c:forEach>
+					<td>${local.instrumentos.size}</td>
+					<td><a href="javascript:;" class="reservar">Ver</a></td>
 					<td><a href="javascript:;" class="reservar">Reservar</a></td>
 				</tr>
 			</c:forEach>
