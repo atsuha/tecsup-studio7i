@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
 
 @Repository
@@ -21,7 +22,8 @@ public class LocalDAOImpl implements LocalDAO{
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
+	
+	
 	@SuppressWarnings(value = "unchecked")
 	public Collection<Local> buscarPorNombre(String nombre) throws DAOExcepcion {
 		System.out.println("LocalDAOImpl: buscarPorNombre() : " + nombre);
@@ -33,7 +35,7 @@ public class LocalDAOImpl implements LocalDAO{
 
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Local vo = new Local();
-				vo.setLocal_id(rs.getInt("local_id"));
+				vo.setLocal_id(rs.getInt("local_id"));				
 				vo.setNombre(rs.getString("nombre"));
 				vo.setDireccion(rs.getString("direccion"));
 				vo.setEstado(rs.getString("estado"));
