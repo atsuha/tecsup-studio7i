@@ -91,7 +91,7 @@ public class EventoController {
 			return new ModelAndView("redirect:evento.html");	
 	}
 	
-	@RequestMapping(value = "/editarEvento", method=RequestMethod.GET)
+	@RequestMapping(value = "/editarEvento")
 	protected ModelAndView editar(HttpServletRequest request,
 			HttpServletResponse response)throws Exception{
 		String evento_id = request.getParameter("evento");
