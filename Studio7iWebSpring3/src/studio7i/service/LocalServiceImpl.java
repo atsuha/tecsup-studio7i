@@ -51,7 +51,7 @@ public class LocalServiceImpl implements LocalService {
 	@Override
 	public Collection<Local> listar() throws DAOExcepcion {
 		// TODO Auto-generated method stub
-		return null;
+		return localDAO.listar();
 	}
 
 }
