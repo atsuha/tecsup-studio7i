@@ -69,7 +69,7 @@ public class ServicioDAOImpl implements ServicioDAO{
 
 	@SuppressWarnings("unchecked")
 	public Servicio obtener(int servicio_id) throws DAOExcepcion {
-		System.out.println("InstrumentoDAOImpl: obtener() : " + servicio_id);
+		System.out.println("ServicioDAOImpl: obtener() : " + servicio_id);
 
 		String sql = "select servicio_id,descripcion, precio_hora,local_id from servicio where servicio_id=?";
 
@@ -91,7 +91,7 @@ public class ServicioDAOImpl implements ServicioDAO{
 		};
 
 		return (Servicio) jdbcTemplate.queryForObject(sql, new Object[] {
-				servicio_id, "1" }, mapper);
+				servicio_id}, mapper);
 	}
 
 	public void eliminar(int servicio_id) throws DAOExcepcion {
@@ -108,7 +108,8 @@ public class ServicioDAOImpl implements ServicioDAO{
 	public Servicio actualizar(Servicio vo) throws DAOExcepcion {
 		String query = "update servicio set descripcion=?,precio_hora=?,local_id=?  where servicio_id=?";
 			
-		Object[] params = new Object[] {vo.getServicio_id(),vo.getDescripcion(), vo.getPrecio_hora(),vo.getLocal().getLocal_id()};
+		Object[] params = new Object[] {vo.getDescripcion(), vo.getPrecio_hora(),vo.getLocal().getLocal_id(),vo.getServicio_id()};
+		System.out.println("actualizar servicio");
 		try {
 			jdbcTemplate.update(query, params);
 		} catch (Exception e) {
@@ -126,7 +127,7 @@ public class ServicioDAOImpl implements ServicioDAO{
 				vo.setDescripcion(rs.getString("descripcion"));
 				vo.setPrecio_hora(rs.getDouble("precio_hora"));
 				try {
-					vo.setLocal(local.obtener(rs.getInt(6)));
+					vo.setLocal(local.obtener(rs.getInt("local_id")));
 				} catch (DAOExcepcion e) {
 					e.printStackTrace();
 				}
