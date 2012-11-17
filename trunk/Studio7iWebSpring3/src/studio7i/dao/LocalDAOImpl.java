@@ -63,7 +63,7 @@ public class LocalDAOImpl implements LocalDAO{
 	public Local obtener(int idLocal) throws DAOExcepcion {
 		System.out.println("LocalDAOImpl: obtener() : " + idLocal);
 
-		String sql = "select local_id,nombre,direccion,estado from local where local_id=? and estado=?";
+		String sql = "select local_id,nombre,direccion,estado from local where local_id=? and estado";
 
 		RowMapper mapper = new RowMapper() {
 
@@ -78,7 +78,7 @@ public class LocalDAOImpl implements LocalDAO{
 		};
 
 		return (Local) jdbcTemplate.queryForObject(sql, new Object[] {
-				idLocal, "1" }, mapper);
+				idLocal}, mapper);
 	}
 
 	public void eliminar(int idLocal) throws DAOExcepcion {
