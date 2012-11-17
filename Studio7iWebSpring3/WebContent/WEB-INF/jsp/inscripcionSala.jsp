@@ -12,7 +12,7 @@
 				<td>Seleccione Local :</td>
 				<td>
 					<select  class="span3" name="local">
-						<c:forEach var="local" items="${LOCAL}">
+						<c:forEach var="local" items="${map.LOCAL}">
 							<option value="${local.local_id}">${local.nombre}</option>
 						</c:forEach>
 					</select>
