@@ -43,7 +43,7 @@
 					<c:forEach var="instrumento" items="${local.instrumentos}">
 								
 					</c:forEach>
-					<td>${RESULTADO.instrumentos.size()}</td>
+					<td>${RESULTADO.instrumentos}</td>
 					<td><a href="javascript:;" class="reservar">Ver</a></td>
 					<td><a href="javascript:;" class="reservar">Reservar</a></td>
 				</tr>
