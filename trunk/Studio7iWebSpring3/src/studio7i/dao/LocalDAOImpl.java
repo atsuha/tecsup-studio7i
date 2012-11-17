@@ -105,8 +105,23 @@ public class LocalDAOImpl implements LocalDAO{
 	}
 
 	public Collection<Local> listar() throws DAOExcepcion {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("LocalDAOImpl: listar() ");
+
+		String sql = "select local_id,nombre,direccion,estado "
+				+ " from local";
+
+		RowMapper mapper = new RowMapper() {
+
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Local vo = new Local();
+				vo.setLocal_id(rs.getInt("local_id"));				
+				vo.setNombre(rs.getString("nombre"));
+				vo.setDireccion(rs.getString("direccion"));
+				vo.setEstado(rs.getString("estado"));
+				return vo;
+			}
+		};
+		return jdbcTemplate.query(sql, mapper);
 	}
 	
 	
