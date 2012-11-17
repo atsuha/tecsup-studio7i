@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import studio7i.excepcion.DAOExcepcion;
 import studio7i.modelo.Instrumento;
 import studio7i.modelo.Local;
+import studio7i.modelo.Servicio;
 import studio7i.service.InstrumentoService;
 import studio7i.service.LocalService;
+import studio7i.service.ServicioService;
 
 @Controller
 public class LocalController {
@@ -34,6 +37,14 @@ public class LocalController {
 	public void setInstrumentoService(InstrumentoService instrumentoService) {
 		this.instrumentoService = instrumentoService;
 	}
+
+	
+/*	@Autowired
+	private ServicioService servicioService;
+
+	public void setServicioService(ServicioService servicioService) {
+		this.servicioService = servicioService;
+	}*/
 	
 	@RequestMapping(value = "/ver_locales")
 	protected ModelAndView inicio(HttpServletRequest request,
@@ -55,10 +66,17 @@ public class LocalController {
 			System.out.println("Locales: " + locales.size());
 			Collection<Instrumento> instrumentos =  instrumentoService.listar();
 			System.out.println("Instrumentos: " + instrumentos.size());
+			//Collection<Servicio> servicios =  servicioService.listar();
+			//System.out.println("Servicios: " + servicioService.size());
+			
+			String ins = "";
+			for (Instrumento i: instrumentos) {
+				ins = ins.concat(" "+i.getTipo());
+			}
 			
 			Map<Object, Object> map = new HashMap<Object, Object>();
 			map.put("locales", locales);
-			map.put("instrumentos", instrumentos);
+			map.put("instrumentos", ins);
 			
 					
 			
