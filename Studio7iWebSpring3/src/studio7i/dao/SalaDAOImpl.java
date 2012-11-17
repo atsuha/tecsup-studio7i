@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import studio7i.excepcion.DAOExcepcion;
+import studio7i.modelo.Local;
 import studio7i.modelo.Sala;
 
 @Repository
@@ -45,19 +46,20 @@ public class SalaDAOImpl implements SalaDAO {
 	}
 	
 	@Override
-	public Sala obener(String id) throws DAOExcepcion{		
+	@SuppressWarnings("unchecked")
+	public Sala obener(String id) throws DAOExcepcion{
+		System.out.println("SalaDAOImpl: obtener() : " + id);
 		String query = "select sala_id,nombre,capacidad,caracteristicas,costo,local_id from sala where estado=1 AND sala_id=? ";
 		RowMapper mapper = new RowMapper() {
-
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Sala vo = new Sala();
-				vo.setSalaId(rs.getInt(1));				
-				vo.setNombre(rs.getString(2));
-				vo.setCapacidad(rs.getInt(3));
-				vo.setCaracteristicas(rs.getString(4));
-				vo.setCosto(rs.getDouble(5));
+				vo.setSalaId(rs.getInt("sala_id"));				
+				vo.setNombre(rs.getString("nombre"));
+				vo.setCapacidad(rs.getInt("capacidad"));
+				vo.setCaracteristicas(rs.getString("caracteristicas"));
+				vo.setCosto(rs.getDouble("costo"));
 				try {
-					vo.setLocal(local.obtener(rs.getInt(6)));
+					vo.setLocal(local.obtener(rs.getInt("local_id")));
 				} catch (DAOExcepcion e) {
 					e.printStackTrace();
 				}
@@ -66,7 +68,7 @@ public class SalaDAOImpl implements SalaDAO {
 		};
 
 		return (Sala) jdbcTemplate.queryForObject(query, new Object[] {
-				id, "1" }, mapper);
+				id}, mapper);
 	}
 	
 	public void eliminar(String id) throws DAOExcepcion{
@@ -167,8 +169,6 @@ public class SalaDAOImpl implements SalaDAO {
 			}
 		};
 		return jdbcTemplate.query(query, new Object[] {id, "1" }, mapper);
-//		return jdbcTemplate.query(query, new Object[] { "%" + nombre + "%" },
-//				mapper);
 	}
 	
 }
