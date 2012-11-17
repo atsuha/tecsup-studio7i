@@ -43,10 +43,12 @@ public class ServicioDAOImpl implements ServicioDAO{
 				Servicio vo = new Servicio();
 				vo.setServicio_id(rs.getInt("servicio_id"));
 				vo.setDescripcion(rs.getString("descripcion"));
-				vo.setPrecio_hora(rs.getFloat("precio_hora"));
-				Local local = new Local();
-				local.setLocal_id(rs.getInt("local_id"));
-				local.setNombre(rs.getString("local"));
+				vo.setPrecio_hora(rs.getDouble("precio_hora"));
+				try {
+					vo.setLocal(local.obtener(rs.getInt("local_id")));
+				} catch (DAOExcepcion e) {
+					e.printStackTrace();
+				}
 				return vo;
 			}
 		};
