@@ -5,20 +5,24 @@
 		<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" type="text/css" media="all" />
 		<script src="js/jquery.ui.datepicker-es.js" type="text/javascript"></script>
 <script>
-    $(function() {
+    $(document).ready(function() {
     	 $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
 
     });
+    
+	$(document).ready(function() {    	    	
+					    			    	    	        		
+			$(".success").hide().fadeIn('slow').delay(1500).fadeOut('slow').css({"background-color": "#DFF2BF","color": "#4F8A10","border": "1px solid","font-family":"Arial, Helvetica, sans-serif","font-size":"13px"});
+	    			        			
+	});
+    
     </script>
 		
 <div class="container">
  <h1>Registrar Cliente</h1>
       <p>Registre sus Datos y realice sus reservas de nuestros servicios.</p>
 
-  
-
-
-	<form action="inscripcion_cliente.html" method = "Post">
+  	<form action="inscripcion_cliente.html" method = "Post">
 		<input type = "hidden" name = "metodo" value = "crear" />
 		<table>
 			<tr>
@@ -55,7 +59,7 @@
 				<td><input type="text" name="txtpassword"></td>
 			</tr>
 		</table>
-
+		<div class="success"> ${MENSAJE}</div>	
 		<div class="form-actions">
 		  <button type="submit" class="btn btn-primary">Guardar</button>
 		  <button type="button" class="btn" onclick="cancelar();">Cancelar</button>

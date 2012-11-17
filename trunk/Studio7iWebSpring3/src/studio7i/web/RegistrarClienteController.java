@@ -67,6 +67,7 @@ public class RegistrarClienteController {
 		try {
 			clienteService.insertarCliente(cliente);
 			mv = new ModelAndView("inscripcionCliente");
+			request.setAttribute("MENSAJE",	"Sus Datos fueron registrados correctamente");
 		} catch (DAOExcepcion e) {
 			
 			mv  = new ModelAndView("inscripcionCliente","mensaje","No se pudo registrar");
