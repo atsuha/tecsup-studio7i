@@ -138,11 +138,10 @@ public class InstrumentoDAOImpl implements InstrumentoDAO{
 				vo.setCaracteristicas(rs.getString("caracteristicas"));
 				vo.setModelo(rs.getString("modelo"));
 				vo.setPrecio(rs.getDouble("precio"));
-				try {
-					vo.setLocal(local.obtener(rs.getInt(6)));
-				} catch (DAOExcepcion e) {
-					e.printStackTrace();
-				}
+				
+				Local local = new Local();
+				local.setLocal_id(rs.getInt("local_id"));
+				vo.setLocal(local);
 				return vo;
 			}
 		};
