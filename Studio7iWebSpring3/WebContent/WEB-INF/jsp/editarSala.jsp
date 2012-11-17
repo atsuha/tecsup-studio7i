@@ -13,7 +13,7 @@
 				<td>Seleccione Local :</td>
 				<td>
 					<select  class="span3" name="local">
-						<c:forEach var="local" items="${LOCAL}">
+						<c:forEach var="local" items="${map.LOCAL}">
 							<c:if test="${local.local_id==SALA.local.local_id}">
 								<option selected="selected" value="${local.local_id}">${local.nombre}</option>
 							</c:if>
@@ -26,17 +26,17 @@
 			</tr>
 			<tr>
 				<td>Capacidad Maxima :</td>
-				<td><input class="input-mini" type="text" placeholder="0" name="capacidad" value="${SALA.capacidad}"/></td>
+				<td><input class="input-mini" type="text" placeholder="0" name="capacidad" value="${map.SALA.capacidad}"/></td>
 			</tr>
 			<tr>
 				<td>Caracteristicas :</td>
 				<td>
-					<textarea rows="3" name="caracteristicas">${SALA.caracteristicas}</textarea>
+					<textarea rows="3" name="caracteristicas">${map.SALA.caracteristicas}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Costo :</td>
-				<td><input class="input-mini" type="text" name="costo" placeholder="0" value="${SALA.costo}"/></td>
+				<td><input class="input-mini" type="text" name="costo" placeholder="0" value="${map.SALA.costo}"/></td>
 			</tr>
 		</table>
 		<div class="form-actions">
