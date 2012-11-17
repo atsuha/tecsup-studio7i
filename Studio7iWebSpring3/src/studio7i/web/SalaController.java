@@ -19,15 +19,15 @@ import studio7i.service.SalaService;
 
 @Controller
 public class SalaController {
-
-	@Autowired
-	private SalaService salaService;
-	private LocalService localService;
 	
+	@Autowired
+	private LocalService localService;
 	public void setLocalService(LocalService localService) {
 		this.localService = localService;
 	}
 
+	@Autowired
+	private SalaService salaService;
 	public void setSalaService(SalaService salaService) {
 		this.salaService = salaService;
 	}
@@ -44,17 +44,10 @@ public class SalaController {
 	@RequestMapping(value = "/nueva_sala")
 	protected ModelAndView nueva(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		try {
-//			System.out.println("controller");
-//			Collection<Local> listaLocal = localService.listar();
-//			Map<Object, Object> map = new HashMap<>();
-//			map.put("LOCAL", listaLocal);
-//			return new ModelAndView("inscripcionSala","map",map);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return new ModelAndView("inscripcionSala");
+			Collection<Local> listaLocal = localService.listar();
+			Map<Object, Object> map = new HashMap<Object, Object>();
+			map.put("LOCAL", listaLocal);
+			return new ModelAndView("inscripcionSala","map",map);
 	}
 	
 	@RequestMapping(value = "/grabar_sala")
@@ -71,7 +64,7 @@ public class SalaController {
 		String costo = request.getParameter("costo");
 		
 		Local objLocal = new Local();
-		objLocal.setLocal_id(1);
+		objLocal.setLocal_id(Integer.parseInt(local));
 		
 		Sala vo = new Sala();
 		vo.setNombre(nombre);
@@ -104,7 +97,14 @@ public class SalaController {
 	@RequestMapping(value = "/editar_sala")
 	protected ModelAndView editar(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		return new ModelAndView("inscripcionSala");
+		
+		String id = request.getParameter("sala");
+		Sala vo = salaService.obener(id);
+		System.out.println(vo.getNombre());
+		Map<Object, Object> map = new HashMap<>();
+		map.put("SALA", vo);
+		
+		return new ModelAndView("editarSala","map",map);
 	}
 	
 }
