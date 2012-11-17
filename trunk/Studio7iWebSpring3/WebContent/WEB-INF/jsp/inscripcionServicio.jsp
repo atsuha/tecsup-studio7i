@@ -3,7 +3,7 @@
 
 
 <div class="container">
-		<form class="form-search" name="frmInscripcionServicio" action="ServicioServlet" method="POST">
+		<form class="form-search" name="frmInscripcionServicio" action="nuevo_registro.html" method="POST">
 		<input type="hidden" name="metodo" value="nuevo" />
 	
 		<table>
@@ -19,7 +19,7 @@
 				<td>
 					<select  class="span3" name="cboLocal">
 					
-						<c:forEach var="local" items="${LOCAL}">
+						<c:forEach var="local" items="${map.LOCAL}">
 							
 								<option selected="selected" value="${local.local_id}">${local.nombre}</option>
 						</c:forEach>
