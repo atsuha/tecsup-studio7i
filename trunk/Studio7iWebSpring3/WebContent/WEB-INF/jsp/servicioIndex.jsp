@@ -18,17 +18,14 @@
     
     	
    
-    
-    	
-    	
-    	
+   
     
     function editar_servicio(servicio){
     	$('#mantenimiento').load('editar_servicio.html?metodo=editar&servicio=' + servicio );
     }
     
     function nuevo_servicio(){
-    	$('#mantenimiento').load('ServicioServlet?metodo=nuevo');
+    	$('#mantenimiento').load('nuevo_servicio.html');
     }
     function eliminar_servicio(sevicio){
     	if(confirm("Esta seguro de eliminar el servicio?")){
@@ -44,7 +41,7 @@
     </head>
 	<div class="container" style="height: 400px;">
 		<div class="" >
-			<form class="form-search" name="frmServicios" action="ServicioServlet" method="POST">
+			<form class="form-search" name="frmServicios" action="buscar_reg.html" method="POST">
 				<input type="hidden" name="metodo" id="metodo" value="filtrar" />
 				<table>
 					<tr>
