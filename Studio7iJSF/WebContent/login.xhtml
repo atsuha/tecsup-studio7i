@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form>
+
+		<table>
+			<tr>
+				<td>* Usuario:</td>
+				<td><h:inputText value="#{loginBean.usuario}" required="true" requiredMessage="Ingrese su usuario" id="txtUsuario"></h:inputText>
+				<h:message for="txtUsuario"></h:message></td>
+			</tr>
+			<tr>
+				<td>* Clave:</td>
+				<td><h:inputSecret value="#{loginBean.clave}" required="true" requiredMessage="Ingrese su clave" id="txtClave"></h:inputSecret>
+				<h:message for="txtClave"></h:message></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><h:commandButton id="btnIngresar" action="#{loginBean.logear}" value="Ingresar"></h:commandButton></td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>
