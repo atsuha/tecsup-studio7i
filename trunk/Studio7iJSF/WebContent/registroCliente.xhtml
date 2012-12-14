@@ -1,70 +1,62 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-<ui:composition template="/layouts/template.xhtml">
+	<ui:composition template="/layouts/template.xhtml">
 	
 	  <ui:define name="body">
-	 <h1>Registrar Cliente</h1>
-      <p>Registre sus Datos y realice sus reservas de nuestros servicios.</p>
-<h:form>
+	 	<h1>Registrar Cliente</h1>
+      	<p>Registre sus Datos y realice sus reservas de nuestros servicios.</p>
+		<h:form>
 
-<table>
-			<tr>
-				<td>DNI</td>
-				<td><h:inputText value="#{loginBean.dni}" required="true" requiredMessage="Ingrese su Nº de DNI" id="txtdni"></h:inputText>
-				<h:message for="txtdni"></h:message></td>
-				
-			</tr>
-			<tr>
-				<td>Nombres</td>
-				<td><h:inputText value="#{loginBean.Nombres}" required="true" requiredMessage="Ingrese su(s) Nombre(s)" id="txtNombres"></h:inputText>
-				<h:message for="txtNombres"></h:message></td>
-			</tr>
-			<tr>
-				<td>Apellido Paterno :</td>
-				<td><h:inputText value="#{loginBean.Apaterno}" required="true" requiredMessage="Ingrese su Apellido Paterno" id="txtApaterno"></h:inputText>
-				<h:message for="txtApaterno"></h:message></td>
-			</tr>
-			<tr>
-				<td>Apellido Materno:</td>
-				<td><h:inputText value="#{loginBean.Amaterno}" required="true" requiredMessage="Ingrese su Apellido Materno" id="txtAmaterno"></h:inputText>
-				<h:message for="txtAmaterno"></h:message></td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td><h:inputText value="#{loginBean.Email}" required="true" requiredMessage="Ingrese su Email" id="txtEmail"></h:inputText>
-				<h:message for="txtEmail"></h:message></td>
-			</tr>
-			<tr>
-				<td>Fecha de Nacimiento:</td>
-				<td><h:inputText value="#{loginBean.Fnac}" required="true" requiredMessage="Ingrese su Fecha de Nacimiento" id="txtFnac"></h:inputText>
-				<h:message for="txtFnac"></h:message></td>
-			</tr>
+			<table>
+				<tr>
+					<td>DNI</td>
+					<td><h:inputText value="#{personaBean.dni}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Nombres</td>
+					<td><h:inputText value="#{personaBean.nombres}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Apellido Paterno :</td>
+					<td><h:inputText value="#{personaBean.paterno}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Apellido Materno:</td>
+					<td><h:inputText value="#{personaBean.materno}" ></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><h:inputText value="#{personaBean.email}" ></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Fecha de Nacimiento:</td>
+					<td><h:inputText value="#{personaBean.fnac}" ></h:inputText></td>
+				</tr>
 
-			<tr>
-				<td>Usuario</td>
-				<td><h:inputText value="#{loginBean.Usuario}" required="true" requiredMessage="Ingrese su Usuario" id="txtUsuario"></h:inputText>
-				<h:message for="txtUsuario"></h:message></td>
-			</tr>
-			<tr>
-				<td>Contraseña</td>
-				<td><h:inputText value="#{loginBean.Contrasena}" required="true" requiredMessage="Ingrese su Contrasena" id="txtContrasena"></h:inputText>
-				<h:message for="txtContrasena"></h:message></td>
-			</tr>
+				<tr>
+					<td>Usuario</td>
+					<td><h:inputText value="#{personaBean.usuario}" ></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Contraseña</td>
+					<td><h:inputText value="#{personaBean.password}" ></h:inputText></td>
+				</tr>
 			
-			<tr>
-				<td><h:commandButton id="btnGuardar" action="#{loginBean.Guardar}" value="Guardar"></h:commandButton></td>
-				<td><h:commandButton id="btnCancelar" action="#{loginBean.Cancelar}" value="Cancelar"></h:commandButton></td>
-			</tr>
+				<tr>
+					<td><h:commandButton id="btnGuardar" action="#{personaBean.Guardar}" value="Guardar"></h:commandButton></td>
+					<td><h:commandButton id="btnCancelar" action="#{personaBean.Cancelar}" value="Cancelar"></h:commandButton></td>
+				</tr>
 			
-		</table>
+			</table>
 
-</h:form>
+		</h:form>
 		
 		
-	</ui:define>
+		</ui:define>
 
 	</ui:composition>
 
